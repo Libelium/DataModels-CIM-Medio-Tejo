@@ -1,0 +1,53 @@
+{
+  "id": "urn:ngsi-ld:PointOfInterest:ourem-atm-156",
+  "type": "PointOfInterest",
+  "name": {
+    "type": "Property",
+    "value": "Multibanco Avenida D. Nuno Alvares Pereira 201, Ourém",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "category": {
+    "type": "Property",
+    "value": [
+      "159"
+    ],
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.5762812,
+        39.6568666
+      ]
+    },
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "address": {
+    "type": "Property",
+    "value": {
+      "streetAddress": "Avenida D. Nuno Alvares Pereira",
+      "streetNr": "201",
+      "postalCode": "2490-483",
+      "addressLocality": "Ourém",
+      "addressRegion": "Ourém",
+      "addressCountry": "PT"
+    },
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "areaServed": {
+    "type": "Property",
+    "value": "Nossa Senhora da Piedade",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "source": {
+    "type": "Property",
+    "value": "enti:servicos.ourem.pt",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "@context": [
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.PointOfInterest/master/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}

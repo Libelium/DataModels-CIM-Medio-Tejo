@@ -1,0 +1,217 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schemaVersion": "0.0.1",
+  "modelTags": "CNMD",
+  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Gest%C3%A3o%20de%20ativos/schema/PointOfInterest.schema.json",
+  "title": "Schema PointOfInterest da PGU do Médio Tejo",
+  "description": "Descrição geográfica harmonizada de um ponto de interesse; na PGU, multibancos, bancos, bebedouros, paragens de autocarro e pontos de interesse municipais. Derivado do schema PointOfInterest do CNMD (versão 0.4.0), tal como a PGU o publica: a morada indica o município em addressRegion e são acrescentados atributos adicionais.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+    },
+    {
+      "properties": {
+        "address": {
+          "type": "object",
+          "description": "Propriedade. Morada associada ao ativo. Modelo: 'https://schema.org/address'. Na PGU, addressRegion contém o município (ver as diferenças em relação ao CNMD no README).",
+          "properties": {
+            "addressCountry": {
+              "type": "string",
+              "description": "Propriedade. O país, em código ISO 3166-1 (PT). Modelo: 'https://schema.org/addressCountry'."
+            },
+            "addressRegion": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Propriedade. O município em que se situa o ativo."
+            },
+            "addressLocality": {
+              "type": "string",
+              "description": "Propriedade. A localidade (lugar) em que se situa o ativo. Modelo: 'https://schema.org/addressLocality'."
+            },
+            "postalCode": {
+              "type": "string",
+              "description": "Propriedade. Código postal. Modelo: 'https://schema.org/postalCode'."
+            },
+            "streetAddress": {
+              "type": "string",
+              "description": "Propriedade. Endereço da rua. Modelo: 'https://schema.org/streetAddress'."
+            },
+            "streetNr": {
+              "type": "string",
+              "description": "Propriedade. Número de polícia. Modelo: 'https://schema.org/Text'."
+            }
+          },
+          "required": [
+            "addressRegion"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "PointOfInterest"
+          ],
+          "description": "Propriedade. Tipo de entidade NGSI. Tem de ser PointOfInterest."
+        },
+        "category": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Categorias do ponto de interesse. No CNMD, cada valor tem de ser uma das subcategorias da sua tabela de categorias; na PGU, os multibancos (159), os bancos (bench), os bebedouros (drinkingWater) e os pontos genéricos de Abrantes (Pontos de Interesse) usam valores fora dessa tabela (ver README)."
+        },
+        "contactPoint": {
+          "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Contact-Commons/properties/contactPoint"
+        },
+        "refSeeAlso": {
+          "type": "array",
+          "description": "Propriedade. Modelo: 'https://schema.org/URL'. Lista de referências a entidades relacionadas.",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/EntityIdentifierType"
+              }
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "wardId": {
+          "type": "string",
+          "description": "Propriedade. Identificador da zona administrativa da entidade."
+        },
+        "zoneId": {
+          "type": "string",
+          "description": "Propriedade. Identificador da zona da entidade."
+        },
+        "additionalInfoURL": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Propriedade. Formato de identificador de qualquer entidade NGSI."
+            },
+            {
+              "type": "string",
+              "format": "uri",
+              "description": "Propriedade. Formato de identificador de qualquer entidade NGSI."
+            }
+          ],
+          "description": "Relação. URL com informação adicional sobre o ponto de interesse."
+        },
+        "zoneName": {
+          "type": "string",
+          "description": "Propriedade. Nome da zona da entidade."
+        },
+        "municipalityInfo": {
+          "type": "object",
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Informação do município da entidade.",
+          "properties": {
+            "district": {
+              "type": "string",
+              "description": "Propriedade. Modelo: 'https://schema.org/Text'. Nome do distrito."
+            },
+            "ulbName": {
+              "type": "string",
+              "description": "Propriedade. Modelo: 'https://schema.org/Text'. Nome da autarquia local."
+            },
+            "cityID": {
+              "type": "string",
+              "description": "Propriedade. Modelo: 'https://schema.org/Text'. Identificador da cidade."
+            },
+            "wardID": {
+              "type": "string",
+              "description": "Propriedade. Modelo: 'https://schema.org/Text'. Identificador da zona administrativa."
+            },
+            "stateName": {
+              "type": "string",
+              "description": "Propriedade. Modelo: 'https://schema.org/Text'. Nome do estado ou região."
+            },
+            "cityName": {
+              "type": "string",
+              "description": "Propriedade. Modelo: 'https://schema.org/Text'. Nome da cidade."
+            },
+            "zoneName": {
+              "type": "string",
+              "description": "Propriedade. Modelo: 'https://schema.org/Text'. Nome da zona."
+            },
+            "zoneID": {
+              "type": "string",
+              "description": "Propriedade. Modelo: 'https://schema.org/Text'. Identificador da zona."
+            },
+            "wardName": {
+              "type": "string",
+              "description": "Propriedade. Modelo: 'https://schema.org/Text'. Nome da zona administrativa."
+            },
+            "wardNum": {
+              "type": "number",
+              "description": "Propriedade. Modelo: 'https://schema.org/Number'. Número da zona administrativa."
+            }
+          }
+        },
+        "title": {
+          "type": "string",
+          "description": "Propriedade. Designação dada ao ponto de interesse para além do nome."
+        },
+        "relevance": {
+          "type": "number",
+          "description": "Propriedade. Relevância do ponto de interesse para a sua apresentação em diferentes níveis de zoom: 0 é a maior relevância."
+        },
+        "image": {
+          "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/PhysicalObject-Commons/properties/image"
+        },
+        "priceRange": {
+          "type": "string",
+          "description": "Propriedade. Intervalo de preços de acesso ao ponto de interesse."
+        },
+        "capacity": {
+          "type": "number",
+          "description": "Propriedade. Número total de pessoas que o ponto de interesse pode acolher em simultâneo."
+        },
+        "occupancy": {
+          "type": "number",
+          "description": "Propriedade. Número de pessoas no ponto de interesse. Deve ser inferior à capacidade."
+        },
+        "modelName": {
+          "type": "string",
+          "description": "Propriedade. Modelo do banco ou do bebedouro, tal como indicado na origem. Atributo adicional, não existente no CNMD."
+        },
+        "serialNumber": {
+          "type": "string",
+          "description": "Propriedade. Código numérico que precede o modelo na origem. Atributo adicional, não existente no CNMD."
+        },
+        "busLine": {
+          "type": "string",
+          "description": "Propriedade. Linha de autocarro da paragem, obtida da camada de origem. Atributo adicional, não existente no CNMD."
+        },
+        "sourceCategory": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Propriedade. Cada categoria da origem."
+          },
+          "description": "Propriedade. Lista original de categorias da origem. Atributo adicional, não existente no CNMD."
+        },
+        "sourceId": {
+          "type": "string",
+          "description": "Propriedade. Identificador do ponto na origem. Atributo adicional, não existente no CNMD."
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "type",
+    "name",
+    "category",
+    "address",
+    "source"
+  ]
+}
