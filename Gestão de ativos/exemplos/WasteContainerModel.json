@@ -1,0 +1,38 @@
+{
+  "id": "urn:ngsi-ld:WasteContainerModel:ourem-model-larus-sheet",
+  "type": "WasteContainerModel",
+  "name": {
+    "type": "Property",
+    "value": "Larus Sheet",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "brandName": {
+    "type": "Property",
+    "value": "Larus",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "modelName": {
+    "type": "Property",
+    "value": "Sheet",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "dimensions": {
+    "type": "Property",
+    "value": "525*370*840mm",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "category": {
+    "type": "Property",
+    "value": "fixed",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "source": {
+    "type": "Property",
+    "value": "enti:servicos.ourem.pt",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "@context": [
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.WasteManagement/master/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}

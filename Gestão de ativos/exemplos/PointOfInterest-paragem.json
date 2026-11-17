@@ -1,0 +1,71 @@
+{
+  "id": "urn:ngsi-ld:PointOfInterest:abrantes-sig-21-1",
+  "type": "PointOfInterest",
+  "name": {
+    "type": "Property",
+    "value": "Centro Coordenador Transportes (CCT) (Rota Amarela)",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "description": {
+    "type": "Property",
+    "value": "Paragens Rota Amarela",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "category": {
+    "type": "Property",
+    "value": [
+      "Paragem de autocarro"
+    ],
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "sourceCategory": {
+    "type": "Property",
+    "value": [
+      "Paragem de autocarro"
+    ],
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "busLine": {
+    "type": "Property",
+    "value": "Rota Amarela",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.21332,
+        39.463184
+      ]
+    },
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "address": {
+    "type": "Property",
+    "value": {
+      "addressRegion": "Abrantes",
+      "addressCountry": "PT"
+    },
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "dataProvider": {
+    "type": "Property",
+    "value": "Câmara Municipal de Abrantes",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "sourceId": {
+    "type": "Property",
+    "value": "urn:ngsi-ld:PointOfInterest:abrantes:sig-21-1",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "source": {
+    "type": "Property",
+    "value": "entiservices:entiservices-dev.cm-abrantes.pt",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "@context": [
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.PointOfInterest/master/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}

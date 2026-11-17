@@ -1,0 +1,54 @@
+{
+  "id": "urn:ngsi-ld:PointOfInterest:ourem-banco-1",
+  "type": "PointOfInterest",
+  "name": {
+    "type": "Property",
+    "value": "Banco 1",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "category": {
+    "type": "Property",
+    "value": [
+      "bench"
+    ],
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.5567944,
+        39.5715898
+      ]
+    },
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "modelName": {
+    "type": "Property",
+    "value": "Banco Larus Serralves",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "serialNumber": {
+    "type": "Property",
+    "value": "254",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "address": {
+    "type": "Property",
+    "value": {
+      "addressRegion": "Ourém",
+      "addressCountry": "PT"
+    },
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "source": {
+    "type": "Property",
+    "value": "enti:servicos.ourem.pt",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "@context": [
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.PointOfInterest/master/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}

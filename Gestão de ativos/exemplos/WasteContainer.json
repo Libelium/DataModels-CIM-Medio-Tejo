@@ -1,0 +1,62 @@
+{
+  "id": "urn:ngsi-ld:WasteContainer:ourem-papeleira-579",
+  "type": "WasteContainer",
+  "name": {
+    "type": "Property",
+    "value": "Papeleira 579",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.5785176,
+        39.6568272
+      ]
+    },
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "binCapacity": {
+    "type": "Property",
+    "value": 50.0,
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "refWasteContainerModel": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:WasteContainerModel:ourem-model-larus-sheet",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "serialNumber": {
+    "type": "Property",
+    "value": "133",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "category": {
+    "type": "Property",
+    "value": "fixed",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "storedWasteOrigin": {
+    "type": "Property",
+    "value": "municipal",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "address": {
+    "type": "Property",
+    "value": {
+      "addressRegion": "Ourém",
+      "addressCountry": "PT"
+    },
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "source": {
+    "type": "Property",
+    "value": "enti:servicos.ourem.pt",
+    "observedAt": "2026-10-22T12:00:00Z"
+  },
+  "@context": [
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.WasteManagement/master/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}

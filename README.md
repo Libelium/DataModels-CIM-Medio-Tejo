@@ -22,7 +22,7 @@ A PGU integra, para a CIMT e para os seus 11 municípios (Abrantes, Alcanena, Co
 | V3 | Monitoramento do Meio Ambiente e Proteção Civil |  |  |
 | V4 | Eficiência energética em edifícios públicos municipais e iluminação pública | `ACMeasurement`, `Anomaly`, `KeyPerformanceIndicator` | [CNMD — Consumo de eletricidade](https://github.com/amagovpt/CATALOGO_MODELOS_DADOS_TI/tree/main/Energia/Consumo%20de%20electricidade); Smart Data Models ([Anomaly](https://github.com/smart-data-models/dataModel.Alert/tree/master/Anomaly), [KeyPerformanceIndicator](https://github.com/smart-data-models/dataModel.KeyPerformanceIndicator/tree/master/KeyPerformanceIndicator)) |
 | V5 | Gestão de auxílios sociais | `SocialSupportObservation` | [CNMD — Gestão de apoio social](https://github.com/amagovpt/CATALOGO_MODELOS_DADOS_TI/tree/main/Governo%20e%20setor%20p%C3%BAblico/Gest%C3%A3o%20de%20apoio%20social) |
-| V7 | Gestão de ativos |  |  |
+| V7 | Gestão de ativos | `WasteContainer`, `WasteContainerModel`, `PointOfInterest` | CNMD ([Níveis de enchimento dos contentores](https://github.com/amagovpt/CATALOGO_MODELOS_DADOS_TI/tree/main/Ambiente/Res%C3%ADduos/N%C3%ADveis%20de%20enchimento%20dos%20contentores), [POI](https://github.com/amagovpt/CATALOGO_MODELOS_DADOS_TI/tree/main/Comuns/POI)); Smart Data Models ([WasteContainerModel](https://github.com/smart-data-models/dataModel.WasteManagement/tree/master/WasteContainerModel)) |
 | V8 | Gestão inteligente de irrigação |  |  |
 | V9 | Gestão de resíduos urbanos |  |  |
 | V10 | Saúde e bem-estar inteligente |  |  |

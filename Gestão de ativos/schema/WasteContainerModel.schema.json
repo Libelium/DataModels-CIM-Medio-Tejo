@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schemaVersion": "0.0.1",
+  "modelTags": "SDM",
+  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Gest%C3%A3o%20de%20ativos/schema/WasteContainerModel.schema.json",
+  "title": "Schema WasteContainerModel da PGU do Médio Tejo",
+  "description": "Modelo de contentor de resíduos, que reúne as propriedades estáticas de uma classe de contentores. Derivado do schema WasteContainerModel dos Smart Data Models (versão 0.0.1), tal como a PGU o publica: as dimensões são texto e category é texto.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/PhysicalObject-Commons"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "WasteContainerModel"
+          ],
+          "description": "Propriedade. Tipo de entidade NGSI. Tem de ser WasteContainerModel."
+        },
+        "width": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Largura do contentor. Modelo: 'https://schema.org/width'. Unidade: metros."
+        },
+        "height": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Altura do contentor. Modelo: 'https://schema.org/height'. Unidade: metros."
+        },
+        "depth": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Profundidade do contentor. Modelo: 'https://schema.org/depth'. Unidade: metros."
+        },
+        "weight": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Peso do contentor. Modelo: 'https://schema.org/weight'. Unidade: quilogramas."
+        },
+        "cargoVolume": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Volume total que o contentor pode conter. Modelo: 'https://schema.org/cargoVolume'."
+        },
+        "maximumLoad": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Carga máxima que o contentor suporta em segurança. Modelo: 'https://schema.org/Number'. Unidade: quilogramas."
+        },
+        "recommendedLoad": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Carga recomendada pelo fabricante. Modelo: 'https://schema.org/Number'. Unidade: quilogramas."
+        },
+        "category": {
+          "type": "string",
+          "description": "Propriedade. Categoria do modelo de contentor. Na PGU, fixed (papeleira fixa na via pública), a mesma categoria das papeleiras."
+        },
+        "insertHolesNumber": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Número de aberturas de deposição do contentor. Modelo: 'https://schema.org/Number'."
+        },
+        "madeOf": {
+          "type": "string",
+          "enum": [
+            "plastic",
+            "wood",
+            "metal",
+            "other"
+          ],
+          "description": "Propriedade. Material do contentor: plastic, wood, metal ou other."
+        },
+        "madeOfCode": {
+          "type": "string",
+          "description": "Propriedade. Código do material segundo as tabelas normalizadas."
+        },
+        "brandName": {
+          "type": "string",
+          "description": "Propriedade. Nome da marca. Modelo: 'https://schema.org/brand'."
+        },
+        "modelName": {
+          "type": "string",
+          "description": "Propriedade. Nome do modelo dado pelo fabricante, diferente de name, que é a designação atribuída pelo município."
+        },
+        "manufacturerName": {
+          "type": "string",
+          "description": "Propriedade. Nome do fabricante."
+        },
+        "compliantWith": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0,
+          "uniqueItems": true,
+          "description": "Propriedade. Lista das normas que o contentor cumpre (ex.: UNE-EN 840-2:2013)."
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "wheels",
+              "lid",
+              "roundedLid",
+              "insertHoles",
+              "lockable",
+              "other"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Propriedade. Lista de características do contentor: wheels, lid, roundedLid, insertHoles, lockable, ou outro valor com significado para a aplicação."
+        },
+        "dimensions": {
+          "type": "string",
+          "description": "Propriedade. Dimensões do modelo tal como indicadas na origem (ex.: A840*D350mm). Atributo adicional, não existente nos Smart Data Models."
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "type",
+    "name",
+    "category",
+    "source"
+  ]
+}
