@@ -1,0 +1,299 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schemaVersion": "0.0.1",
+  "modelTags": "SDM",
+  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Efici%C3%AAncia%20energ%C3%A9tica%20em%20edif%C3%ADcios%20p%C3%BAblicos%20municipais%20e%20ilumina%C3%A7%C3%A3o%20p%C3%BAblica/schema/KeyPerformanceIndicator.schema.json",
+  "title": "Schema KeyPerformanceIndicator da PGU do Médio Tejo",
+  "description": "Indicador-chave de desempenho (KPI) que avalia o sucesso de uma organização ou de uma atividade. Derivado do schema KeyPerformanceIndicator dos Smart Data Models (versão 0.2.1): organization é um objeto com o nome da organização e calculationPeriod usa data e hora.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "KeyPerformanceIndicator"
+          ],
+          "description": "Propriedade. Tem de ser KeyPerformanceIndicator."
+        },
+        "category": {
+          "type": "array",
+          "description": "Propriedade. Categoria do indicador: quantitative, qualitative, leading, lagging, input, process, output, practical, directional, actionable ou financial.",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "description": "Propriedade. Cada valor da categoria. É obrigatória pelo menos uma categoria.",
+            "enum": [
+              "actionable",
+              "directional",
+              "financial",
+              "input",
+              "lagging",
+              "leading",
+              "output",
+              "practical",
+              "process",
+              "qualitative",
+              "quantitative"
+            ]
+          }
+        },
+        "organization": {
+          "type": "object",
+          "description": "Propriedade. Organização avaliada pelo indicador. Modelo: 'https://schema.org/Organization'.",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Propriedade. Nome da organização, por exemplo o município."
+            }
+          },
+          "required": [
+            "name"
+          ]
+        },
+        "process": {
+          "type": "string",
+          "description": "Propriedade. Processo avaliado pelo indicador. Tem de estar definido process ou product."
+        },
+        "product": {
+          "type": "string",
+          "description": "Propriedade. Produto avaliado pelo indicador. Tem de estar definido process ou product."
+        },
+        "provider": {
+          "type": "string",
+          "description": "Propriedade. Modelo: 'https://schema.org/provider'. Fornecedor do produto ou serviço avaliado pelo indicador, se existir."
+        },
+        "businessTarget": {
+          "type": "string",
+          "description": "Propriedade. Objetivo de negócio a que o indicador está associado, a título informativo."
+        },
+        "calculationFrequency": {
+          "type": "string",
+          "description": "Propriedade. Periodicidade de cálculo do indicador: hourly, daily, weekly, monthly, yearly, quarterly, bimonthly ou biweekly, ou outro valor com significado para a aplicação.",
+          "enum": [
+            "hourly",
+            "daily",
+            "weekly",
+            "monthly",
+            "yearly",
+            "quarterly",
+            "bimonthly",
+            "biweekly"
+          ]
+        },
+        "calculatedBy": {
+          "type": "string",
+          "description": "Propriedade. Organização responsável pelo cálculo do indicador."
+        },
+        "calculationMethod": {
+          "type": "string",
+          "description": "Propriedade. Método de cálculo utilizado.",
+          "enum": [
+            "manual",
+            "automatic",
+            "semiautomatic"
+          ]
+        },
+        "calculationFormula": {
+          "type": "string",
+          "description": "Propriedade. Fórmula utilizada para calcular o indicador, a título informativo."
+        },
+        "aggregatedData": {
+          "type": "array",
+          "description": "Propriedade. Entidades e atributos agregados pelo indicador.",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "description": "Propriedade. Objeto com o tipo de entidade e os atributos agregados.",
+            "properties": {
+              "entityType": {
+                "type": "string",
+                "description": "Propriedade. Tipo de entidade dos dados agregados."
+              },
+              "attrs": {
+                "type": "array",
+                "description": "Propriedade. Lista dos atributos agregados.",
+                "items": {
+                  "type": "string",
+                  "description": "Propriedade. Cada atributo agregado."
+                },
+                "minItems": 1
+              }
+            }
+          }
+        },
+        "calculationPeriod": {
+          "type": "object",
+          "description": "Propriedade. Período a que o valor do indicador se refere.",
+          "properties": {
+            "from": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Propriedade. Início do período de cálculo, em ISO 8601 e UTC."
+            },
+            "to": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Propriedade. Fim do período de cálculo, em ISO 8601 e UTC."
+            }
+          },
+          "required": [
+            "from",
+            "to"
+          ]
+        },
+        "currentStanding": {
+          "type": "string",
+          "description": "Propriedade. Situação atual do indicador face ao seu valor: veryGood, good, fair, bad ou veryBad.",
+          "enum": [
+            "veryGood",
+            "good",
+            "fair",
+            "bad",
+            "veryBad"
+          ]
+        },
+        "kpiValue": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "object"
+            },
+            {
+              "type": "array"
+            }
+          ],
+          "description": "Propriedade. Valor do indicador. Pode ser de qualquer tipo."
+        },
+        "effectiveSince": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Data em que a organização criou o indicador, que pode ser diferente da data de criação da entidade."
+        },
+        "dateNextCalculation": {
+          "type": "string",
+          "format": "date",
+          "description": "Propriedade. Data em que deve estar disponível um novo cálculo do indicador."
+        },
+        "dateExpires": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Data a partir da qual o indicador deixa de ser necessário ou de ter significado."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Data da última atualização dos dados do indicador, que pode ser diferente da data da última atualização do seu valor."
+        },
+        "area": {
+          "type": "string",
+          "description": "Propriedade. Informação geográfica textual adicional, como distrito ou freguesia, para identificar a cobertura do indicador."
+        },
+        "address": {
+          "type": "object",
+          "description": "Propriedade. Morada associada à observação. Modelo: 'https://schema.org/address'.",
+          "properties": {
+            "addressCountry": {
+              "type": "string",
+              "description": "Propriedade. O país. Modelo: 'https://schema.org/addressCountry'."
+            },
+            "addressLocality": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Propriedade. A localidade, que tem de coincidir com o município. Modelo: 'https://schema.org/addressLocality'."
+            },
+            "addressRegion": {
+              "type": "string",
+              "enum": [
+                "Norte",
+                "Centro",
+                "Oeste e Vale do Tejo",
+                "Grande Lisboa",
+                "Península de Setúbal",
+                "Alentejo",
+                "Algarve",
+                "Região Autónoma dos Açores",
+                "Região Autónoma da Madeira"
+              ],
+              "description": "Propriedade. A região NUTS 2 em que se situa a localidade. Modelo: 'https://schema.org/addressRegion'."
+            },
+            "district": {
+              "type": "string",
+              "enum": [
+                "Açores",
+                "Aveiro",
+                "Beja",
+                "Braga",
+                "Bragança",
+                "Castelo Branco",
+                "Coimbra",
+                "Évora",
+                "Faro",
+                "Guarda",
+                "Madeira",
+                "Leiria",
+                "Lisboa",
+                "Portalegre",
+                "Porto",
+                "Santarém",
+                "Setúbal",
+                "Viana do Castelo",
+                "Vila Real",
+                "Viseu"
+              ],
+              "description": "Propriedade. O distrito em que se situa a localidade."
+            },
+            "postalCode": {
+              "type": "string",
+              "description": "Propriedade. Código postal. Modelo: 'https://schema.org/postalCode'."
+            },
+            "streetAddress": {
+              "type": "string",
+              "description": "Propriedade. Endereço da rua. Modelo: 'https://schema.org/streetAddress'."
+            },
+            "streetNr": {
+              "type": "string",
+              "description": "Propriedade. Número de polícia. Modelo: 'https://schema.org/Text'."
+            }
+          },
+          "required": [
+            "addressLocality",
+            "addressRegion",
+            "district"
+          ]
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "type",
+    "name",
+    "kpiValue",
+    "calculationPeriod",
+    "calculationFrequency",
+    "aggregatedData",
+    "category",
+    "organization",
+    "process",
+    "areaServed",
+    "location",
+    "address",
+    "dataProvider"
+  ]
+}

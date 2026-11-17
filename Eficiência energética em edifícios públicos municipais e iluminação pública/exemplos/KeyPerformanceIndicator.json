@@ -1,0 +1,105 @@
+{
+  "id": "urn:ngsi-ld:KeyPerformanceIndicator:edificio-01-consumo-diario",
+  "type": "KeyPerformanceIndicator",
+  "name": {
+    "type": "Property",
+    "value": "Consumo diário (kWh) — Paços do Concelho de Tomar",
+    "observedAt": "2026-11-17T00:00:00Z"
+  },
+  "description": {
+    "type": "Property",
+    "value": "Energia ativa consumida no dia, calculada a partir de totalActiveEnergyImport.",
+    "observedAt": "2026-11-17T00:00:00Z"
+  },
+  "kpiValue": {
+    "type": "Property",
+    "value": 236.49,
+    "observedAt": "2026-11-17T00:00:00Z",
+    "unitCode": "KWH"
+  },
+  "calculationPeriod": {
+    "type": "Property",
+    "value": {
+      "from": "2026-11-16T00:00:00Z",
+      "to": "2026-11-17T00:00:00Z"
+    },
+    "observedAt": "2026-11-17T00:00:00Z"
+  },
+  "currentStanding": {
+    "type": "Property",
+    "value": "fair",
+    "observedAt": "2026-11-17T00:00:00Z"
+  },
+  "calculationFrequency": {
+    "type": "Property",
+    "value": "daily",
+    "observedAt": "2026-11-17T00:00:00Z"
+  },
+  "aggregatedData": {
+    "type": "Property",
+    "value": [
+      {
+        "entityType": "ACMeasurement",
+        "attrs": [
+          "totalActiveEnergyImport"
+        ]
+      }
+    ],
+    "observedAt": "2026-11-17T00:00:00Z"
+  },
+  "category": {
+    "type": "Property",
+    "value": [
+      "quantitative"
+    ],
+    "observedAt": "2026-11-17T00:00:00Z"
+  },
+  "organization": {
+    "type": "Property",
+    "value": {
+      "name": "Município de Tomar"
+    },
+    "observedAt": "2026-11-17T00:00:00Z"
+  },
+  "process": {
+    "type": "Property",
+    "value": "Eficiência energética dos edifícios públicos",
+    "observedAt": "2026-11-17T00:00:00Z"
+  },
+  "areaServed": {
+    "type": "Property",
+    "value": "Paços do Concelho de Tomar",
+    "observedAt": "2026-11-17T00:00:00Z"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.4103,
+        39.6035
+      ]
+    },
+    "observedAt": "2026-11-17T00:00:00Z"
+  },
+  "address": {
+    "type": "Property",
+    "value": {
+      "streetAddress": "Praça da República",
+      "addressLocality": "Tomar",
+      "addressRegion": "Oeste e Vale do Tejo",
+      "district": "Santarém",
+      "addressCountry": "Portugal"
+    },
+    "observedAt": "2026-11-17T00:00:00Z"
+  },
+  "dataProvider": {
+    "type": "Property",
+    "value": "cimt",
+    "observedAt": "2026-11-17T00:00:00Z"
+  },
+  "@context": [
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.KeyPerformanceIndicator/master/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}

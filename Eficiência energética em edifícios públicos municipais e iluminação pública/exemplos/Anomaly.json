@@ -1,0 +1,76 @@
+{
+  "id": "urn:ngsi-ld:Anomaly:medidor-01-20261116T100000Z",
+  "type": "Anomaly",
+  "name": {
+    "type": "Property",
+    "value": "Anomalia de consumo — Paços do Concelho de Tomar — 2026-11-16T10:00:00Z",
+    "observedAt": "2026-11-16T10:00:00Z"
+  },
+  "detectedBy": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:Device:medidor-01",
+    "observedAt": "2026-11-16T10:00:00Z"
+  },
+  "anomalousProperty": {
+    "type": "Property",
+    "value": "totalActivePower",
+    "observedAt": "2026-11-16T10:00:00Z"
+  },
+  "thresholdBreach": {
+    "type": "Property",
+    "value": {
+      "observedAt": "2026-11-16T10:00:00Z",
+      "value": 26141.0,
+      "threshold": 25000,
+      "thresholdType": "upper",
+      "unitCode": "WTT"
+    },
+    "observedAt": "2026-11-16T10:00:00Z"
+  },
+  "dateDetected": {
+    "type": "Property",
+    "value": "2026-11-16T10:00:00Z",
+    "observedAt": "2026-11-16T10:00:00Z"
+  },
+  "description": {
+    "type": "Property",
+    "value": "Consumo acima do limiar configurado (25 kW) durante 45 min; máximo 26.3 kW.",
+    "observedAt": "2026-11-16T10:00:00Z"
+  },
+  "areaServed": {
+    "type": "Property",
+    "value": "Paços do Concelho de Tomar",
+    "observedAt": "2026-11-16T10:00:00Z"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.4103,
+        39.6035
+      ]
+    },
+    "observedAt": "2026-11-16T10:00:00Z"
+  },
+  "address": {
+    "type": "Property",
+    "value": {
+      "streetAddress": "Praça da República",
+      "addressLocality": "Tomar",
+      "addressRegion": "Oeste e Vale do Tejo",
+      "district": "Santarém",
+      "addressCountry": "Portugal"
+    },
+    "observedAt": "2026-11-16T10:00:00Z"
+  },
+  "dataProvider": {
+    "type": "Property",
+    "value": "cimt",
+    "observedAt": "2026-11-16T10:00:00Z"
+  },
+  "@context": [
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.Alert/master/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}

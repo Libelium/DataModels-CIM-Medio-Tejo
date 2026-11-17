@@ -1,0 +1,128 @@
+{
+  "id": "urn:ngsi-ld:ACMeasurement:medidor-01",
+  "type": "ACMeasurement",
+  "name": {
+    "type": "Property",
+    "value": "Paços do Concelho de Tomar — Quadro geral",
+    "observedAt": "2026-11-16T00:00:00Z"
+  },
+  "totalActiveEnergyImport": {
+    "type": "Property",
+    "value": 210678.793,
+    "observedAt": "2026-11-16T00:00:00Z",
+    "unitCode": "KWH"
+  },
+  "activeEnergyImport": {
+    "type": "Property",
+    "value": {
+      "L1": 65310.423,
+      "L2": 69524.004,
+      "L3": 75844.366
+    },
+    "observedAt": "2026-11-16T00:00:00Z",
+    "unitCode": "KWH"
+  },
+  "totalActivePower": {
+    "type": "Property",
+    "value": 3781.9,
+    "observedAt": "2026-11-16T00:00:00Z",
+    "unitCode": "WTT"
+  },
+  "phaseType": {
+    "type": "Property",
+    "value": "threePhase",
+    "observedAt": "2026-11-16T00:00:00Z"
+  },
+  "phaseVoltage": {
+    "type": "Property",
+    "value": {
+      "L1": 231.5,
+      "L2": 233.7,
+      "L3": 229.9
+    },
+    "observedAt": "2026-11-16T00:00:00Z",
+    "unitCode": "VLT"
+  },
+  "phaseToPhaseVoltage": {
+    "type": "Property",
+    "value": {
+      "L12": 402.8,
+      "L23": 401.5,
+      "L31": 399.6
+    },
+    "observedAt": "2026-11-16T00:00:00Z",
+    "unitCode": "VLT"
+  },
+  "current": {
+    "type": "Property",
+    "value": {
+      "L1": 5.22,
+      "L2": 5.6,
+      "L3": 6.17,
+      "N": 0.83
+    },
+    "observedAt": "2026-11-16T00:00:00Z",
+    "unitCode": "AMP"
+  },
+  "dateObserved": {
+    "type": "Property",
+    "value": "2026-11-16T00:00:00Z",
+    "observedAt": "2026-11-16T00:00:00Z"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.4103,
+        39.6035
+      ]
+    },
+    "observedAt": "2026-11-16T00:00:00Z"
+  },
+  "refDevice": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:Device:medidor-01",
+    "observedAt": "2026-11-16T00:00:00Z"
+  },
+  "areaServed": {
+    "type": "Property",
+    "value": "Paços do Concelho de Tomar",
+    "observedAt": "2026-11-16T00:00:00Z"
+  },
+  "refBuilding": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:Building:edificio-01",
+    "observedAt": "2026-11-16T00:00:00Z"
+  },
+  "address": {
+    "type": "Property",
+    "value": {
+      "streetAddress": "Praça da República",
+      "addressLocality": "Tomar",
+      "addressRegion": "Oeste e Vale do Tejo",
+      "district": "Santarém",
+      "addressCountry": "Portugal"
+    },
+    "observedAt": "2026-11-16T00:00:00Z"
+  },
+  "dateEnergyMeteringStarted": {
+    "type": "Property",
+    "value": "2021-03-01T00:00:00Z",
+    "observedAt": "2026-11-16T00:00:00Z"
+  },
+  "dataProvider": {
+    "type": "Property",
+    "value": "cimt",
+    "observedAt": "2026-11-16T00:00:00Z"
+  },
+  "source": {
+    "type": "Property",
+    "value": "Fornecedor dos medidores de energia (a definir)",
+    "observedAt": "2026-11-16T00:00:00Z"
+  },
+  "@context": [
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.Energy/master/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}
