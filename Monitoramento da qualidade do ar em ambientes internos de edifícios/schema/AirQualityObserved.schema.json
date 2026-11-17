@@ -1,0 +1,368 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schemaVersion": "0.0.1",
+  "modelTags": "CNMD",
+  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Monitoramento%20da%20qualidade%20do%20ar%20em%20ambientes%20internos%20de%20edif%C3%ADcios/schema/AirQualityObserved.schema.json",
+  "title": "Schema AirQualityObserved da PGU do Médio Tejo",
+  "description": "Observação das condições de qualidade do ar num determinado local e momento. Derivado do schema AirQualityObserved do CNMD (versão 0.1.4) para os sensores de qualidade do ar interior: os poluentes do ar exterior o3, no2, so2, c6h6 e co não são obrigatórios, por não serem medidos por estes sensores, e é acrescentado o atributo pm05.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "properties": {
+        "location": {
+          "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons/properties/location"
+        },
+        "address": {
+          "type": "object",
+          "description": "Propriedade. Morada do edifício onde está o sensor. Modelo: 'https://schema.org/address'.",
+          "properties": {
+            "addressCountry": {
+              "type": "string",
+              "description": "Propriedade. O país. Modelo: 'https://schema.org/addressCountry'."
+            },
+            "addressLocality": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Propriedade. A localidade, que tem de coincidir com o município. Modelo: 'https://schema.org/addressLocality'."
+            },
+            "addressRegion": {
+              "type": "string",
+              "enum": [
+                "Norte",
+                "Centro",
+                "Oeste e Vale do Tejo",
+                "Grande Lisboa",
+                "Península de Setúbal",
+                "Alentejo",
+                "Algarve",
+                "Região Autónoma dos Açores",
+                "Região Autónoma da Madeira"
+              ],
+              "description": "Propriedade. A região NUTS 2 em que se situa a localidade. Modelo: 'https://schema.org/addressRegion'."
+            },
+            "district": {
+              "type": "string",
+              "enum": [
+                "Açores",
+                "Aveiro",
+                "Beja",
+                "Braga",
+                "Bragança",
+                "Castelo Branco",
+                "Coimbra",
+                "Évora",
+                "Faro",
+                "Guarda",
+                "Madeira",
+                "Leiria",
+                "Lisboa",
+                "Portalegre",
+                "Porto",
+                "Santarém",
+                "Setúbal",
+                "Viana do Castelo",
+                "Vila Real",
+                "Viseu"
+              ],
+              "description": "Propriedade. O distrito em que se situa a localidade."
+            },
+            "postalCode": {
+              "type": "string",
+              "description": "Propriedade. Código postal. Modelo: 'https://schema.org/postalCode'."
+            },
+            "streetAddress": {
+              "type": "string",
+              "description": "Propriedade. Endereço da rua. Modelo: 'https://schema.org/streetAddress'."
+            },
+            "streetNr": {
+              "type": "string",
+              "description": "Propriedade. Número de polícia. Modelo: 'https://schema.org/Text'."
+            }
+          },
+          "required": [
+            "addressLocality",
+            "addressRegion",
+            "district"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "AirQualityObserved"
+          ],
+          "description": "Propriedade. Tipo de entidade NGSI. Tem de ser AirQualityObserved."
+        },
+        "dateObserved": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Data e hora da observação, em ISO 8601 e UTC. Modelo: 'https://schema.org/DateTime'."
+        },
+        "areaServed": {
+          "type": "string",
+          "description": "Propriedade. Área de nível superior a que pertence esta medição da qualidade do ar. Modelo: 'https://schema.org/Text'."
+        },
+        "airQualityIndex": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Índice de qualidade do ar: número usado para comunicar a qualidade do ar num determinado dia."
+        },
+        "airQualityLevel": {
+          "$ref": "https://raw.githubusercontent.com/smart-data-models/dataModel.Environment/master/Environment-schema.json#/definitions/airQualityLevel"
+        },
+        "reliability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1.0,
+          "description": "Propriedade. Fiabilidade da observação da qualidade do ar (percentagem, expressa como fração de 0 a 1). Modelo: 'https://schema.org/Number'."
+        },
+        "as": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Arsénio detetado."
+        },
+        "cd": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Cádmio detetado."
+        },
+        "coLevel": {
+          "type": "string",
+          "description": "Propriedade. Presença qualitativa de monóxido de carbono."
+        },
+        "co2": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Dióxido de carbono detetado. Na PGU, em partes por milhão (unitCode 59)."
+        },
+        "ni": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Níquel detetado."
+        },
+        "no": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Monóxido de azoto detetado."
+        },
+        "nox": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Outros óxidos de azoto detetados."
+        },
+        "o3": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Concentração de ozono (O3). Unidade: microgramas por metro cúbico (GQ).",
+          "examples": [
+            45.2
+          ]
+        },
+        "no2": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Concentração de dióxido de azoto (NO2). Unidade: microgramas por metro cúbico (GQ).",
+          "examples": [
+            28.4
+          ]
+        },
+        "pm10": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Partículas em suspensão com diâmetro igual ou inferior a 10 micrómetros. Unidade: microgramas por metro cúbico (GQ).",
+          "examples": [
+            21.0
+          ]
+        },
+        "pm25": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Partículas em suspensão com diâmetro igual ou inferior a 2,5 micrómetros. Unidade: microgramas por metro cúbico (GQ).",
+          "examples": [
+            11.3
+          ]
+        },
+        "so2": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Concentração de dióxido de enxofre (SO2). Unidade: microgramas por metro cúbico (GQ).",
+          "examples": [
+            3.1
+          ]
+        },
+        "c6h6": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Concentração de benzeno (C6H6). Unidade: microgramas por metro cúbico (GQ).",
+          "examples": [
+            0.8
+          ]
+        },
+        "co": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Concentração de monóxido de carbono (CO). Unidade: miligramas por metro cúbico (GP).",
+          "examples": [
+            0.4
+          ]
+        },
+        "pb": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Chumbo detetado."
+        },
+        "precipitation": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Quantidade de precipitação. Unidade: litros por metro quadrado."
+        },
+        "relativeHumidity": {
+          "type": "number",
+          "description": "Propriedade. Humidade relativa do ar (número entre 0 e 1, que representa o intervalo de 0 % a 100 %).",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "sh2": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Sulfureto de hidrogénio detetado."
+        },
+        "typeofLocation": {
+          "type": "string",
+          "enum": [
+            "indoor",
+            "outdoor"
+          ],
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Tipo de local da amostra: indoor (interior) ou outdoor (exterior)."
+        },
+        "volatileOrganicCompoundsTotal": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Compostos orgânicos voláteis totais (COV): alcanos <C10, cetonas <C6, aldeídos <C10, ácidos carboxílicos <C5, álcoois <C7, alcenos <C8 e aromáticos. Na PGU, em microgramas por metro cúbico (GQ) ou partes por mil milhões (61), conforme o sensor."
+        },
+        "refDevice": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Propriedade. Formato de identificador de qualquer entidade NGSI."
+            },
+            {
+              "type": "string",
+              "format": "uri",
+              "description": "Propriedade. Formato de identificador de qualquer entidade NGSI."
+            }
+          ],
+          "description": "Relação. Referência ao dispositivo ou dispositivos que efetuaram esta observação."
+        },
+        "refPointOfInterest": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Propriedade. Formato de identificador de qualquer entidade NGSI."
+            },
+            {
+              "type": "string",
+              "format": "uri",
+              "description": "Propriedade. Formato de identificador de qualquer entidade NGSI."
+            }
+          ],
+          "description": "Relação. Referência ao ponto de interesse associado a esta observação (normalmente uma estação de qualidade do ar; na PGU, o espaço monitorizado)."
+        },
+        "refWeatherObserved": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Propriedade. Formato de identificador de qualquer entidade NGSI."
+            },
+            {
+              "type": "string",
+              "format": "uri",
+              "description": "Propriedade. Formato de identificador de qualquer entidade NGSI."
+            }
+          ],
+          "description": "Relação. Observação meteorológica associada às condições de qualidade do ar descritas por esta entidade."
+        },
+        "temperature": {
+          "type": "number",
+          "description": "Propriedade. Temperatura do elemento. Na PGU, a do espaço interior, em graus Celsius (CEL)."
+        },
+        "windDirection": {
+          "type": "number",
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Direção do vento.",
+          "minimum": -180,
+          "maximum": 180
+        },
+        "windSpeed": {
+          "type": "number",
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Intensidade do vento.",
+          "minimum": 0
+        },
+        "pm1": {
+          "type": "number",
+          "description": "Propriedade. Partículas em suspensão com diâmetro igual ou inferior a 1 micrómetro."
+        },
+        "pm4": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Partículas em suspensão com diâmetro igual ou inferior a 4 micrómetros."
+        },
+        "tpc": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Propriedade. Contador total de partículas (concentração total de partículas em suspensão no ar)."
+        },
+        "tsp": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Propriedade. Partículas totais em suspensão (concentração de todas as partículas no ar, independentemente do seu tamanho ou composição)."
+        },
+        "pressure": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Pressão atmosférica observada (hPa)."
+        },
+        "charge": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Tensão de carregamento do dispositivo de monitorização."
+        },
+        "pm05": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Partículas em suspensão com diâmetro igual ou inferior a 0,5 micrómetros, quando o sensor disponibiliza este canal; se o sensor medir uma contagem de partículas, e não a massa, a unidade é indicada em unitCode. Atributo adicional, não existente no CNMD."
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "type",
+    "name",
+    "dateObserved",
+    "location",
+    "address",
+    "refDevice",
+    "refPointOfInterest",
+    "typeofLocation",
+    "co2",
+    "volatileOrganicCompoundsTotal",
+    "pm1",
+    "pm25",
+    "pm10",
+    "temperature",
+    "relativeHumidity",
+    "dataProvider",
+    "source"
+  ]
+}

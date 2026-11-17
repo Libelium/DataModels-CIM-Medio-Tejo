@@ -1,0 +1,94 @@
+{
+  "id": "urn:ngsi-ld:Alert:iaq-08-20261109T093000Z",
+  "type": "Alert",
+  "name": {
+    "type": "Property",
+    "value": "Alerta de ventilação — Escola Básica — Sala 15",
+    "observedAt": "2026-11-09T09:30:00Z"
+  },
+  "description": {
+    "type": "Property",
+    "value": "Ventilação insuficiente: CO₂ acima de 1250 ppm durante 195 min.",
+    "observedAt": "2026-11-09T09:30:00Z"
+  },
+  "category": {
+    "type": "Property",
+    "value": "environment",
+    "observedAt": "2026-11-09T09:30:00Z"
+  },
+  "subCategory": {
+    "type": "Property",
+    "value": "airPollution",
+    "observedAt": "2026-11-09T09:30:00Z"
+  },
+  "severity": {
+    "type": "Property",
+    "value": "high",
+    "observedAt": "2026-11-09T09:30:00Z"
+  },
+  "data": {
+    "type": "Property",
+    "value": {
+      "co2": 2178.4,
+      "threshold": 1250,
+      "unitCode": "59"
+    },
+    "observedAt": "2026-11-09T09:30:00Z"
+  },
+  "dateIssued": {
+    "type": "Property",
+    "value": "2026-11-09T09:30:00Z",
+    "observedAt": "2026-11-09T09:30:00Z"
+  },
+  "validFrom": {
+    "type": "Property",
+    "value": "2026-11-09T09:30:00Z",
+    "observedAt": "2026-11-09T09:30:00Z"
+  },
+  "alertSource": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:Device:iaq-08",
+    "observedAt": "2026-11-09T09:30:00Z"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.5392,
+        39.4813
+      ]
+    },
+    "observedAt": "2026-11-09T09:30:00Z"
+  },
+  "address": {
+    "type": "Property",
+    "value": {
+      "streetAddress": "Rua 25 de Abril",
+      "addressLocality": "Torres Novas",
+      "addressRegion": "Oeste e Vale do Tejo",
+      "district": "Santarém",
+      "addressCountry": "Portugal"
+    },
+    "observedAt": "2026-11-09T09:30:00Z"
+  },
+  "dataProvider": {
+    "type": "Property",
+    "value": "cimt",
+    "observedAt": "2026-11-09T09:30:00Z"
+  },
+  "source": {
+    "type": "Property",
+    "value": "Fornecedor dos sensores de qualidade do ar interior (a definir)",
+    "observedAt": "2026-11-09T09:30:00Z"
+  },
+  "validTo": {
+    "type": "Property",
+    "value": "2026-11-09T12:45:00Z",
+    "observedAt": "2026-11-09T09:30:00Z"
+  },
+  "@context": [
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.Alert/master/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}

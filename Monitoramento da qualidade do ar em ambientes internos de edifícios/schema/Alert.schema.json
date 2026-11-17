@@ -1,0 +1,254 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schemaVersion": "0.0.1",
+  "modelTags": "CNMD",
+  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Monitoramento%20da%20qualidade%20do%20ar%20em%20ambientes%20internos%20de%20edif%C3%ADcios/schema/Alert.schema.json",
+  "title": "Schema Alert da PGU do Médio Tejo",
+  "description": "Alerta gerado por um dispositivo ou por uma regra da plataforma. Derivado do schema Alert do CNMD (versão 0.1.0), que descreve os alertas e avisos da proteção civil, para os alertas de ventilação insuficiente: alertSource é uma relação com o sensor que originou o alerta, severity tem os valores do modelo Alert dos Smart Data Models e é acrescentado o atributo data.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+    },
+    {
+      "properties": {
+        "address": {
+          "type": "object",
+          "description": "Propriedade. Morada do edifício onde está o sensor que originou o alerta. Modelo: 'https://schema.org/address'.",
+          "properties": {
+            "addressCountry": {
+              "type": "string",
+              "description": "Propriedade. O país. Modelo: 'https://schema.org/addressCountry'."
+            },
+            "addressLocality": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Propriedade. A localidade, que tem de coincidir com o município. Modelo: 'https://schema.org/addressLocality'."
+            },
+            "addressRegion": {
+              "type": "string",
+              "enum": [
+                "Norte",
+                "Centro",
+                "Oeste e Vale do Tejo",
+                "Grande Lisboa",
+                "Península de Setúbal",
+                "Alentejo",
+                "Algarve",
+                "Região Autónoma dos Açores",
+                "Região Autónoma da Madeira"
+              ],
+              "description": "Propriedade. A região NUTS 2 em que se situa a localidade. Modelo: 'https://schema.org/addressRegion'."
+            },
+            "district": {
+              "type": "string",
+              "enum": [
+                "Açores",
+                "Aveiro",
+                "Beja",
+                "Braga",
+                "Bragança",
+                "Castelo Branco",
+                "Coimbra",
+                "Évora",
+                "Faro",
+                "Guarda",
+                "Madeira",
+                "Leiria",
+                "Lisboa",
+                "Portalegre",
+                "Porto",
+                "Santarém",
+                "Setúbal",
+                "Viana do Castelo",
+                "Vila Real",
+                "Viseu"
+              ],
+              "description": "Propriedade. O distrito em que se situa a localidade."
+            },
+            "postalCode": {
+              "type": "string",
+              "description": "Propriedade. Código postal. Modelo: 'https://schema.org/postalCode'."
+            },
+            "streetAddress": {
+              "type": "string",
+              "description": "Propriedade. Endereço da rua. Modelo: 'https://schema.org/streetAddress'."
+            },
+            "streetNr": {
+              "type": "string",
+              "description": "Propriedade. Número de polícia. Modelo: 'https://schema.org/Text'."
+            }
+          },
+          "required": [
+            "addressLocality",
+            "addressRegion",
+            "district"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "const": "Alert",
+          "description": "Propriedade. Tipo de entidade NGSI. Tem de ser Alert."
+        },
+        "alertSource": {
+          "type": "string",
+          "format": "uri",
+          "description": "Relação. Origem do alerta. Na PGU, o identificador do sensor (Device) que originou o alerta; no CNMD, um URL."
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "traffic",
+            "naturalDisaster",
+            "weather",
+            "environment",
+            "health",
+            "security",
+            "agriculture"
+          ],
+          "description": "Propriedade. Categoria do alerta. Na PGU, environment."
+        },
+        "dateIssued": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Data e hora de emissão do alerta, em ISO 8601."
+        },
+        "description": {
+          "type": "string",
+          "description": "Propriedade. Descrição textual do alerta."
+        },
+        "severity": {
+          "type": "string",
+          "description": "Propriedade. Gravidade do alerta: informational, low, medium, high ou critical.",
+          "enum": [
+            "informational",
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ]
+        },
+        "subCategory": {
+          "type": "string",
+          "enum": [
+            "trafficJam",
+            "carAccident",
+            "carWrongDirection",
+            "carStopped",
+            "pothole",
+            "roadClosed",
+            "roadWorks",
+            "hazardOnRoad",
+            "injuredBiker",
+            "pedestrianOnRoad",
+            "bikerOnRoad",
+            "tramApproaching",
+            "flood",
+            "tsunami",
+            "coastalEvent",
+            "earthquake",
+            "rainfall",
+            "highTemperature",
+            "lowTemperature",
+            "heatWave",
+            "coldWave",
+            "ice",
+            "snow",
+            "wind",
+            "fog",
+            "tornado",
+            "tropicalCyclone",
+            "hurricane",
+            "snow/ice",
+            "thunderstorms",
+            "fireRisk",
+            "avalancheRisk",
+            "floodRisk",
+            "airPollution",
+            "waterPollution",
+            "pollenConcentration",
+            "asthmaAttack",
+            "bumpedPatient",
+            "fallenPatient",
+            "heartAttack",
+            "suspiciousAction",
+            "robbery",
+            "assault",
+            "civilDisorder",
+            "buildingFire",
+            "forestFire",
+            "noxiousWeed",
+            "snail",
+            "insect",
+            "rodent",
+            "bacteria",
+            "microbe",
+            "fungus",
+            "mite",
+            "virus",
+            "nematodes",
+            "irrigation",
+            "fertilisation"
+          ],
+          "description": "Propriedade. Subcategoria do alerta. Na PGU, airPollution: a lista não tem um valor próprio para o CO2 ou a ventilação, e o motivo é indicado em description."
+        },
+        "validFrom": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Início do período de validade do alerta, em ISO 8601: início do episódio."
+        },
+        "validTo": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Fim do período de validade do alerta, em ISO 8601: fim do episódio. Omitido enquanto o alerta está ativo."
+        },
+        "data": {
+          "type": "object",
+          "description": "Propriedade. Valores que dispararam o alerta: o valor máximo de CO2 do episódio, o limiar aplicado e a unidade de ambos (código UN/CEFACT). Atributo adicional, não existente no CNMD.",
+          "required": [
+            "co2",
+            "threshold",
+            "unitCode"
+          ],
+          "properties": {
+            "co2": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Propriedade. Valor máximo de CO2 durante o episódio."
+            },
+            "threshold": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Propriedade. Limiar de CO2 aplicado."
+            },
+            "unitCode": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Propriedade. Código UN/CEFACT da unidade de co2 e threshold (59: ppm)."
+            }
+          }
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "type",
+    "name",
+    "description",
+    "category",
+    "subCategory",
+    "severity",
+    "data",
+    "dateIssued",
+    "validFrom",
+    "alertSource",
+    "location",
+    "address",
+    "dataProvider",
+    "source"
+  ]
+}
