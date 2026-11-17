@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schemaVersion": "0.0.1",
+  "modelTags": "SDM",
+  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Gest%C3%A3o%20inteligente%20de%20irriga%C3%A7%C3%A3o/schema/Anomaly.schema.json",
+  "title": "Schema Anomaly da PGU do Médio Tejo",
+  "description": "Descrição harmonizada de uma anomalia detetada num dispositivo. Derivado do schema Anomaly dos Smart Data Models (versão 0.0.2): thresholdBreach é um objeto com a ultrapassagem do limiar.",
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "Anomaly"
+          ],
+          "description": "Propriedade. Tipo de entidade NGSI-LD. Tem de ser Anomaly."
+        },
+        "detectedBy": {
+          "type": "string",
+          "format": "uri",
+          "description": "Relação. Identificador do dispositivo (Device) em que a anomalia foi detetada."
+        },
+        "anomalousProperty": {
+          "type": "string",
+          "description": "Propriedade. Modelo: 'http://schema.org/Text'. Atributo medido pelo dispositivo em que a anomalia foi detetada."
+        },
+        "dateDetected": {
+          "type": "string",
+          "description": "Propriedade. Modelo: 'http://schema.org/DateTime'. Data e hora em que a anomalia foi detetada pela primeira vez, em ISO 8601 e UTC."
+        },
+        "thresholdBreach": {
+          "type": "object",
+          "description": "Propriedade. Descrição da ultrapassagem de limiar que originou a deteção da anomalia.",
+          "properties": {
+            "observedAt": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Propriedade. Data e hora, em ISO 8601 e UTC, em que a ultrapassagem foi observada."
+            },
+            "value": {
+              "type": "number",
+              "description": "Propriedade. Valor medido no dispositivo para o atributo anómalo."
+            },
+            "threshold": {
+              "type": "number",
+              "description": "Propriedade. Valor do limiar ultrapassado."
+            },
+            "thresholdType": {
+              "type": "string",
+              "enum": [
+                "upper",
+                "lower"
+              ],
+              "description": "Propriedade. Tipo de limiar ultrapassado: upper (máximo) ou lower (mínimo)."
+            },
+            "unitCode": {
+              "type": "string",
+              "maxLength": 3,
+              "description": "Propriedade. Unidade do valor medido e do limiar, em código UN/CEFACT."
+            }
+          },
+          "required": [
+            "observedAt",
+            "value",
+            "threshold",
+            "thresholdType"
+          ]
+        },
+        "address": {
+          "type": "object",
+          "description": "Propriedade. Morada associada à observação. Modelo: 'https://schema.org/address'.",
+          "properties": {
+            "addressCountry": {
+              "type": "string",
+              "description": "Propriedade. O país. Modelo: 'https://schema.org/addressCountry'."
+            },
+            "addressLocality": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Propriedade. A localidade, que tem de coincidir com o município. Modelo: 'https://schema.org/addressLocality'."
+            },
+            "addressRegion": {
+              "type": "string",
+              "enum": [
+                "Norte",
+                "Centro",
+                "Oeste e Vale do Tejo",
+                "Grande Lisboa",
+                "Península de Setúbal",
+                "Alentejo",
+                "Algarve",
+                "Região Autónoma dos Açores",
+                "Região Autónoma da Madeira"
+              ],
+              "description": "Propriedade. A região NUTS 2 em que se situa a localidade. Modelo: 'https://schema.org/addressRegion'."
+            },
+            "district": {
+              "type": "string",
+              "enum": [
+                "Açores",
+                "Aveiro",
+                "Beja",
+                "Braga",
+                "Bragança",
+                "Castelo Branco",
+                "Coimbra",
+                "Évora",
+                "Faro",
+                "Guarda",
+                "Madeira",
+                "Leiria",
+                "Lisboa",
+                "Portalegre",
+                "Porto",
+                "Santarém",
+                "Setúbal",
+                "Viana do Castelo",
+                "Vila Real",
+                "Viseu"
+              ],
+              "description": "Propriedade. O distrito em que se situa a localidade."
+            },
+            "postalCode": {
+              "type": "string",
+              "description": "Propriedade. Código postal. Modelo: 'https://schema.org/postalCode'."
+            },
+            "streetAddress": {
+              "type": "string",
+              "description": "Propriedade. Endereço da rua. Modelo: 'https://schema.org/streetAddress'."
+            },
+            "streetNr": {
+              "type": "string",
+              "description": "Propriedade. Número de polícia. Modelo: 'https://schema.org/Text'."
+            }
+          },
+          "required": [
+            "addressLocality",
+            "addressRegion",
+            "district"
+          ]
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "type",
+    "anomalousProperty",
+    "dateDetected",
+    "detectedBy",
+    "thresholdBreach",
+    "location",
+    "dataProvider",
+    "areaServed"
+  ]
+}

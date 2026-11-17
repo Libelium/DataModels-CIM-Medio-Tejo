@@ -1,0 +1,66 @@
+{
+  "id": "urn:ngsi-ld:GreenspaceRecord:sonda-01",
+  "type": "GreenspaceRecord",
+  "name": {
+    "type": "Property",
+    "value": "Sonda de humidade 01 — Setor 01 — Parque do Mouchão",
+    "observedAt": "2026-10-18T00:00:00Z"
+  },
+  "soilMoistureVwc": {
+    "type": "Property",
+    "value": 0.285,
+    "observedAt": "2026-10-18T00:00:00Z",
+    "unitCode": "C62"
+  },
+  "soilTemperature": {
+    "type": "Property",
+    "value": 11.8,
+    "observedAt": "2026-10-18T00:00:00Z",
+    "unitCode": "CEL"
+  },
+  "dateObserved": {
+    "type": "Property",
+    "value": "2026-10-18T00:00:00Z",
+    "observedAt": "2026-10-18T00:00:00Z"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.4136,
+        39.605
+      ]
+    },
+    "observedAt": "2026-10-18T00:00:00Z"
+  },
+  "refDevice": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:Device:sonda-01",
+    "observedAt": "2026-10-18T00:00:00Z"
+  },
+  "refGreenspace": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:Greenspace:jardim-01",
+    "observedAt": "2026-10-18T00:00:00Z"
+  },
+  "areaServed": {
+    "type": "Property",
+    "value": "Setor 01 — Parque do Mouchão",
+    "observedAt": "2026-10-18T00:00:00Z"
+  },
+  "dataProvider": {
+    "type": "Property",
+    "value": "cimt",
+    "observedAt": "2026-10-18T00:00:00Z"
+  },
+  "source": {
+    "type": "Property",
+    "value": "Fornecedor das sondas de humidade (a definir)",
+    "observedAt": "2026-10-18T00:00:00Z"
+  },
+  "@context": [
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.ParksAndGardens/master/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}

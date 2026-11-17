@@ -1,0 +1,214 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schemaVersion": "0.0.1",
+  "modelTags": "CNMD",
+  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Gest%C3%A3o%20inteligente%20de%20irriga%C3%A7%C3%A3o/schema/WaterConsumptionObserved.schema.json",
+  "title": "Schema WaterConsumptionObserved da PGU do Médio Tejo",
+  "description": "Contador de água inteligente: consumo de água, alarmes de fuga do lado do cliente e caudal associado, provenientes dos contadores inteligentes. Derivado do schema WaterConsumptionObserved do CNMD (versão 0.0.3): waterConsumption é o volume consumido no intervalo de leitura, address não é obrigatória e são definidos os atributos refDevice e dateObserved.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+    },
+    {
+      "properties": {
+        "address": {
+          "type": "object",
+          "description": "Propriedade. Morada associada à observação. Modelo: 'https://schema.org/address'.",
+          "properties": {
+            "addressCountry": {
+              "type": "string",
+              "description": "Propriedade. O país. Modelo: 'https://schema.org/addressCountry'."
+            },
+            "addressLocality": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Propriedade. A localidade, que tem de coincidir com o município. Modelo: 'https://schema.org/addressLocality'."
+            },
+            "addressRegion": {
+              "type": "string",
+              "enum": [
+                "Norte",
+                "Centro",
+                "Oeste e Vale do Tejo",
+                "Grande Lisboa",
+                "Península de Setúbal",
+                "Alentejo",
+                "Algarve",
+                "Região Autónoma dos Açores",
+                "Região Autónoma da Madeira"
+              ],
+              "description": "Propriedade. A região NUTS 2 em que se situa a localidade. Modelo: 'https://schema.org/addressRegion'."
+            },
+            "district": {
+              "type": "string",
+              "enum": [
+                "Açores",
+                "Aveiro",
+                "Beja",
+                "Braga",
+                "Bragança",
+                "Castelo Branco",
+                "Coimbra",
+                "Évora",
+                "Faro",
+                "Guarda",
+                "Madeira",
+                "Leiria",
+                "Lisboa",
+                "Portalegre",
+                "Porto",
+                "Santarém",
+                "Setúbal",
+                "Viana do Castelo",
+                "Vila Real",
+                "Viseu"
+              ],
+              "description": "Propriedade. O distrito em que se situa a localidade."
+            },
+            "postalCode": {
+              "type": "string",
+              "description": "Propriedade. Código postal. Modelo: 'https://schema.org/postalCode'."
+            },
+            "streetAddress": {
+              "type": "string",
+              "description": "Propriedade. Endereço da rua. Modelo: 'https://schema.org/streetAddress'."
+            },
+            "streetNr": {
+              "type": "string",
+              "description": "Propriedade. Número de polícia. Modelo: 'https://schema.org/Text'."
+            }
+          },
+          "required": [
+            "addressLocality",
+            "addressRegion",
+            "district"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "WaterConsumptionObserved"
+          ],
+          "description": "Propriedade. Tipo de entidade NGSI. Tem de ser WaterConsumptionObserved."
+        },
+        "acquisitionStageFailure": {
+          "type": "integer",
+          "description": "Propriedade. Ausência de resposta indutiva do dispositivo de medição."
+        },
+        "alarmFlowPersistence": {
+          "type": "string",
+          "description": "Propriedade. Alarme que indica um uso contínuo de água.",
+          "enum": [
+            "Nothing to report",
+            "No persistence",
+            "In progress impacting persistence",
+            "In progress persistence",
+            "Past Persistence during the period"
+          ]
+        },
+        "alarmInProgress": {
+          "type": "integer",
+          "description": "Propriedade. Indica que um ou mais alarmes estão em curso.",
+          "enum": [
+            0,
+            1
+          ]
+        },
+        "alarmStopsLeaks": {
+          "type": "integer",
+          "description": "Propriedade. Alarme que indica a possibilidade de uma fuga intermitente.",
+          "enum": [
+            0,
+            1
+          ]
+        },
+        "alarmTamper": {
+          "type": "integer",
+          "description": "Propriedade. Alarme que indica a possibilidade de adulteração mecânica do dispositivo.",
+          "enum": [
+            0,
+            1
+          ]
+        },
+        "alarmWaterQuality": {
+          "type": "integer",
+          "description": "Propriedade. Alarme que indica a possibilidade de ocorrência de refluxos.",
+          "enum": [
+            0,
+            1
+          ]
+        },
+        "maxFlow": {
+          "type": "integer",
+          "description": "Propriedade. Caudal máximo observado durante a última semana. Unidade: litros por hora."
+        },
+        "minFlow": {
+          "type": "integer",
+          "description": "Propriedade. Caudal mínimo observado durante a última semana. Unidade: litros por hora."
+        },
+        "moduleTampered": {
+          "type": "integer",
+          "description": "Propriedade. Remoção do módulo do dispositivo de medição."
+        },
+        "persistenceFlowDuration": {
+          "type": "string",
+          "description": "Propriedade. Duração do caudal persistente (contínuo) registado pelo contador. Texto com a duração em minutos (m), horas (h) ou dias (d).",
+          "enum": [
+            "15m < 60m",
+            "60m < 3h",
+            "3h < 6h",
+            "6h < 12h",
+            "12h < 24h",
+            "24h < 2d",
+            "2d < 4d",
+            "4d < 8d",
+            "8d < 15d",
+            "15d < 30d",
+            "30d < 90d",
+            "90d < 180d",
+            "> 180d"
+          ]
+        },
+        "waterConsumption": {
+          "type": "number",
+          "description": "Propriedade. Volume de água consumido no intervalo de leitura (uma hora). No modelo do CNMD é a leitura acumulada do contador. Unidade: metros cúbicos."
+        },
+        "waterType": {
+          "type": "string",
+          "description": "Propriedade. Tipo de água segundo a sua temperatura; as faturas distinguem a água quente.",
+          "enum": [
+            "hot",
+            "cold",
+            "serviceWater"
+          ]
+        },
+        "refDevice": {
+          "type": "string",
+          "format": "uri",
+          "description": "Relação. Contador de água (Device) que efetuou a leitura. Modelo: 'https://schema.org/URL'."
+        },
+        "dateObserved": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Data e hora da leitura, em ISO 8601 e UTC. Modelo: 'https://schema.org/DateTime'."
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "type",
+    "name",
+    "dateObserved",
+    "waterConsumption",
+    "location",
+    "refDevice",
+    "areaServed",
+    "dataProvider",
+    "source"
+  ]
+}

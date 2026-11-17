@@ -1,0 +1,55 @@
+{
+  "id": "urn:ngsi-ld:WaterConsumptionObserved:contador-01",
+  "type": "WaterConsumptionObserved",
+  "name": {
+    "type": "Property",
+    "value": "Contador de água — Setor 01 — Parque do Mouchão",
+    "observedAt": "2026-10-18T00:00:00Z"
+  },
+  "waterConsumption": {
+    "type": "Property",
+    "value": 3.057,
+    "observedAt": "2026-10-19T05:00:00Z",
+    "unitCode": "MTQ"
+  },
+  "dateObserved": {
+    "type": "Property",
+    "value": "2026-10-19T05:00:00Z",
+    "observedAt": "2026-10-19T05:00:00Z"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.4142,
+        39.6047
+      ]
+    },
+    "observedAt": "2026-10-19T05:00:00Z"
+  },
+  "refDevice": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:Device:contador-01",
+    "observedAt": "2026-10-18T00:00:00Z"
+  },
+  "areaServed": {
+    "type": "Property",
+    "value": "Setor 01 — Parque do Mouchão",
+    "observedAt": "2026-10-18T00:00:00Z"
+  },
+  "dataProvider": {
+    "type": "Property",
+    "value": "cimt",
+    "observedAt": "2026-10-18T00:00:00Z"
+  },
+  "source": {
+    "type": "Property",
+    "value": "Fornecedor dos contadores de água (a definir)",
+    "observedAt": "2026-10-18T00:00:00Z"
+  },
+  "@context": [
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.WaterConsumption/master/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}
