@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schemaVersion": "0.0.1",
+  "modelTags": "SDM",
+  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Gest%C3%A3o%20de%20incidentes/schema/services.schema.json",
+  "title": "Schema services da PGU do Médio Tejo",
+  "description": "Tipologia de pedido de serviço Open311 (service type): a lista de tipologias de ocorrências, que pode ser própria de cada município. Derivado do schema services dos Smart Data Models (dataModel.IssueTracking, versão 0.1.0), com o atributo slaHours.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "services"
+          ],
+          "description": "Propriedade. Tipo de entidade NGSI. Tem de ser services."
+        },
+        "jurisdiction_id": {
+          "type": "string",
+          "description": "Propriedade. Identificador único da entidade responsável pelo serviço (por exemplo, o município)."
+        },
+        "open311:type": {
+          "type": "string",
+          "enum": [
+            "batch",
+            "blackbox",
+            "realtime"
+          ],
+          "description": "Propriedade. Enumerado: 'realtime, batch, blackbox'. realtime: o identificador do pedido é devolvido logo após a submissão; batch: é devolvido um código que permite obter mais tarde o identificador do pedido; blackbox: não é devolvido nenhum identificador."
+        },
+        "service_code": {
+          "type": "string",
+          "description": "Propriedade. Identificador único da tipologia."
+        },
+        "service_name": {
+          "type": "string",
+          "description": "Propriedade. Designação legível da tipologia."
+        },
+        "keywords": {
+          "type": "string",
+          "description": "Propriedade. Lista de palavras-chave separadas por vírgulas, que ajudam a identificar a tipologia; pode incluir sinónimos de service_name e de group."
+        },
+        "group": {
+          "type": "string",
+          "description": "Propriedade. Grupo em que se inclui a tipologia, que permite agrupar várias tipologias numa categoria (por exemplo, higiene urbana)."
+        },
+        "open311:metadata": {
+          "type": "boolean",
+          "description": "Propriedade. Indica se a tipologia tem atributos adicionais: true quando attributes existe e não está vazio, false nos restantes casos. Não é estritamente necessário, porque a entidade já inclui a definição dos atributos."
+        },
+        "attributes": {
+          "type": "array",
+          "description": "Propriedade. Atributos adicionais da tipologia, conforme a estrutura de definição de serviço do Open311 (http://wiki.open311.org/GeoReport_v2/#get-service-definition).",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object"
+              },
+              {
+                "type": "array"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "number"
+              }
+            ]
+          }
+        },
+        "provider": {
+          "type": "string",
+          "description": "Propriedade. Equipa ou serviço que presta o serviço, atribuído por omissão às ocorrências da tipologia. Modelo: 'http://schema.org/provider'."
+        },
+        "effectiveSince": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Data de criação da tipologia, que pode ser diferente da data de criação da entidade. Modelo: 'http://schema.org/DateTime'."
+        },
+        "slaHours": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Propriedade. Prazo de resolução da tipologia, em horas, usado para calcular expected_datetime e o cumprimento do prazo. Atributo adicional, não existente no modelo de referência."
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "type",
+    "service_code",
+    "service_name",
+    "group",
+    "description",
+    "source"
+  ]
+}

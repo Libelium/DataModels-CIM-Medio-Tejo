@@ -1,0 +1,33 @@
+{
+  "id": "urn:ngsi-ld:services:ourem-jardins-e-espacos-verdes--queda-de-ramos-ou-arvores",
+  "type": "services",
+  "service_code": {
+    "type": "Property",
+    "value": "jardins-e-espacos-verdes--queda-de-ramos-ou-arvores",
+    "observedAt": "2019-01-01T15:12:36Z"
+  },
+  "service_name": {
+    "type": "Property",
+    "value": "Queda de ramos ou árvores",
+    "observedAt": "2019-01-01T15:12:36Z"
+  },
+  "description": {
+    "type": "Property",
+    "value": "Jardins e espaços verdes: Queda de ramos ou árvores",
+    "observedAt": "2019-01-01T15:12:36Z"
+  },
+  "group": {
+    "type": "Property",
+    "value": "Jardins e espaços verdes",
+    "observedAt": "2019-01-01T15:12:36Z"
+  },
+  "source": {
+    "type": "Property",
+    "value": "enti:servicos.ourem.pt",
+    "observedAt": "2019-01-01T15:12:36Z"
+  },
+  "@context": [
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.IssueTracking/master/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}
