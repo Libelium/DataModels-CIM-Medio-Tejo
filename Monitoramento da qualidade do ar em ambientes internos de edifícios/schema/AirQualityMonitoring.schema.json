@@ -1,0 +1,445 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schemaVersion": "0.0.1",
+  "modelTags": "CNMD",
+  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Monitoramento%20da%20qualidade%20do%20ar%20em%20ambientes%20internos%20de%20edif%C3%ADcios/schema/AirQualityMonitoring.schema.json",
+  "title": "Schema AirQualityMonitoring da PGU do Médio Tejo",
+  "description": "Monitorização da qualidade do ar (AQM). Derivado do schema AirQualityMonitoring do CNMD (versão 0.0.3) para os relatórios periódicos de cada sensor de qualidade do ar interior: airQualityIndex e airQualityLevel não são obrigatórios, por não serem calculados, e são acrescentados os atributos refDevice, aggregationPeriod, periodStart, periodEnd, pm1TSA, volatileOrganicCompoundsTotalTSA e ventilationAlertTime.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+    },
+    {
+      "properties": {
+        "address": {
+          "type": "object",
+          "description": "Propriedade. Morada do edifício onde está o sensor. Modelo: 'https://schema.org/address'.",
+          "properties": {
+            "addressCountry": {
+              "type": "string",
+              "description": "Propriedade. O país. Modelo: 'https://schema.org/addressCountry'."
+            },
+            "addressLocality": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Propriedade. A localidade, que tem de coincidir com o município. Modelo: 'https://schema.org/addressLocality'."
+            },
+            "addressRegion": {
+              "type": "string",
+              "enum": [
+                "Norte",
+                "Centro",
+                "Oeste e Vale do Tejo",
+                "Grande Lisboa",
+                "Península de Setúbal",
+                "Alentejo",
+                "Algarve",
+                "Região Autónoma dos Açores",
+                "Região Autónoma da Madeira"
+              ],
+              "description": "Propriedade. A região NUTS 2 em que se situa a localidade. Modelo: 'https://schema.org/addressRegion'."
+            },
+            "district": {
+              "type": "string",
+              "enum": [
+                "Açores",
+                "Aveiro",
+                "Beja",
+                "Braga",
+                "Bragança",
+                "Castelo Branco",
+                "Coimbra",
+                "Évora",
+                "Faro",
+                "Guarda",
+                "Madeira",
+                "Leiria",
+                "Lisboa",
+                "Portalegre",
+                "Porto",
+                "Santarém",
+                "Setúbal",
+                "Viana do Castelo",
+                "Vila Real",
+                "Viseu"
+              ],
+              "description": "Propriedade. O distrito em que se situa a localidade."
+            },
+            "postalCode": {
+              "type": "string",
+              "description": "Propriedade. Código postal. Modelo: 'https://schema.org/postalCode'."
+            },
+            "streetAddress": {
+              "type": "string",
+              "description": "Propriedade. Endereço da rua. Modelo: 'https://schema.org/streetAddress'."
+            },
+            "streetNr": {
+              "type": "string",
+              "description": "Propriedade. Número de polícia. Modelo: 'https://schema.org/Text'."
+            }
+          },
+          "required": [
+            "addressLocality",
+            "addressRegion",
+            "district"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Propriedade. Nome deste elemento. Modelo: 'https://schema.org/Text'.",
+          "examples": [
+            "Estação de Entrecampos"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "AirQualityMonitoring"
+          ],
+          "description": "Propriedade. Tipo de entidade NGSI. Tem de ser AirQualityMonitoring."
+        },
+        "deviceInfo": {
+          "type": "object",
+          "description": "Propriedade. Informação sobre o dispositivo associado às observações.",
+          "properties": {
+            "deviceList": {
+              "type": "string",
+              "description": "Propriedade. Modelo: 'https://schema.org/Text'. Referência do dispositivo e dos subdispositivos correspondentes a esta observação."
+            },
+            "deviceBatteryStatus": {
+              "type": "string",
+              "description": "Propriedade. Modelo: 'https://schema.org/Text'. Estado de carga da bateria do dispositivo (Connected, Disconnected)."
+            },
+            "deviceName": {
+              "type": "string",
+              "description": "Propriedade. Modelo: 'https://schema.org/Text'. Nome do dispositivo ou da estação de medição correspondente a esta observação."
+            },
+            "deviceID": {
+              "type": "string",
+              "description": "Propriedade. Modelo: 'https://schema.org/Text'. Identificador do sensor físico ou da estação de medição correspondente a esta observação."
+            },
+            "RFID": {
+              "type": "string",
+              "description": "Propriedade. Modelo: 'https://schema.org/Text'. Identificador do leitor RFID."
+            },
+            "measurand": {
+              "type": "string",
+              "description": "Propriedade. Modelo: 'https://schema.org/Text'. Propriedade ou propriedades detetadas, observadas ou medidas pelo dispositivo."
+            },
+            "deviceSimNumber": {
+              "type": "string",
+              "description": "Propriedade. Modelo: 'https://schema.org/Text'. Número do cartão SIM do dispositivo."
+            },
+            "deviceModel": {
+              "type": "object",
+              "description": "Propriedade. Informação sobre o dispositivo, o sensor ou o sistema considerado.",
+              "properties": {
+                "brandName": {
+                  "type": "string",
+                  "description": "Propriedade. Modelo: 'https://schema.org/Text'. Nome da marca associada a uma entidade (sensor, dispositivo, etc.)."
+                },
+                "manufacturerName": {
+                  "type": "string",
+                  "description": "Propriedade. Modelo: 'https://schema.org/Text'. Nome do fabricante associado a uma entidade (sensor, dispositivo, etc.)."
+                },
+                "modelName": {
+                  "type": "string",
+                  "description": "Propriedade. Modelo: 'https://schema.org/Text'. Nome do modelo concreto associado a uma entidade (sensor, dispositivo, etc.)."
+                },
+                "modelURL": {
+                  "type": "string",
+                  "description": "Propriedade. Modelo: 'https://schema.org/Text'. URL com mais informação sobre o modelo concreto associado a uma entidade (sensor, dispositivo, etc.)."
+                },
+                "areaServed": {
+                  "type": "string",
+                  "description": "Propriedade. Modelo: 'https://schema.org/Text'. Área servida pela entidade ou por um serviço."
+                }
+              }
+            },
+            "refDevice": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 256,
+                  "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+                  "description": "Propriedade. Formato de identificador de qualquer entidade NGSI."
+                },
+                {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "Propriedade. Formato de identificador de qualquer entidade NGSI."
+                }
+              ],
+              "description": "Relação. Identificador único da entidade."
+            }
+          }
+        },
+        "observationDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Data e hora da última observação comunicada. Na PGU, a da última leitura do período agregado. Modelo: 'https://schema.org/DateTime'.",
+          "examples": [
+            "2024-10-20T04:00:00Z"
+          ]
+        },
+        "deviceStatus": {
+          "type": "string",
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Estado do dispositivo ou dispositivos físicos."
+        },
+        "atmosphericPressure": {
+          "type": "number",
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Pressão do ar (atmosférica ou barométrica) observada."
+        },
+        "airQualityIndex": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Índice de qualidade do ar (AQI): número usado para comunicar a qualidade do ar num determinado dia. Modelo: 'https://schema.org/Number'.",
+          "examples": [
+            8
+          ]
+        },
+        "airQualityLevel": {
+          "type": "string",
+          "enum": [
+            "Good",
+            "Moderate",
+            "Poor",
+            "Unhealthy",
+            "Severe",
+            "Hazardous"
+          ],
+          "description": "Propriedade. Categoria da qualidade do ar: nível qualitativo definido pelas autoridades de saúde locais. Modelo: 'https://schema.org/Text'.",
+          "examples": [
+            "Good"
+          ]
+        },
+        "aqiMajorPollutant": {
+          "type": "string",
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Poluente principal no índice de qualidade do ar (AQI). Enumerado: 'arsenic, bap, benzene, co2, nh3, no, no2, o2, o3, so2, pb'.",
+          "enum": [
+            "arsenic",
+            "bap",
+            "benzene",
+            "co2",
+            "nh3",
+            "no",
+            "no2",
+            "o2",
+            "o3",
+            "so2",
+            "pb"
+          ]
+        },
+        "airTemperatureTSA": {
+          "type": "object",
+          "description": "Propriedade. Agregação em série temporal da temperatura do ar.",
+          "$ref": "https://smart-data-models.github.io/dataModel.Environment/Environment-schema.json#/definitions/TimeSeriesAggregation"
+        },
+        "ambientNoiseTSA": {
+          "type": "object",
+          "description": "Propriedade. Agregação em série temporal do ruído ambiente.",
+          "$ref": "https://smart-data-models.github.io/dataModel.Environment/Environment-schema.json#/definitions/TimeSeriesAggregation"
+        },
+        "arsenicTSA": {
+          "type": "object",
+          "description": "Propriedade. Agregação em série temporal do arsénio.",
+          "$ref": "https://smart-data-models.github.io/dataModel.Environment/Environment-schema.json#/definitions/TimeSeriesAggregation"
+        },
+        "atmosphericPressureTSA": {
+          "type": "object",
+          "description": "Propriedade. Agregação em série temporal da pressão atmosférica.",
+          "$ref": "https://smart-data-models.github.io/dataModel.Environment/Environment-schema.json#/definitions/TimeSeriesAggregation"
+        },
+        "bapTSA": {
+          "type": "object",
+          "description": "Propriedade. Agregação em série temporal do benzo(a)pireno.",
+          "$ref": "https://smart-data-models.github.io/dataModel.Environment/Environment-schema.json#/definitions/TimeSeriesAggregation"
+        },
+        "benzeneTSA": {
+          "type": "object",
+          "description": "Propriedade. Agregação em série temporal do benzeno.",
+          "$ref": "https://smart-data-models.github.io/dataModel.Environment/Environment-schema.json#/definitions/TimeSeriesAggregation"
+        },
+        "coTSA": {
+          "type": "object",
+          "description": "Propriedade. Agregação em série temporal do monóxido de carbono.",
+          "$ref": "https://smart-data-models.github.io/dataModel.Environment/Environment-schema.json#/definitions/TimeSeriesAggregation"
+        },
+        "co2TSA": {
+          "type": "object",
+          "description": "Propriedade. Agregação em série temporal do dióxido de carbono.",
+          "$ref": "https://smart-data-models.github.io/dataModel.Environment/Environment-schema.json#/definitions/TimeSeriesAggregation"
+        },
+        "nh3TSA": {
+          "type": "object",
+          "description": "Propriedade. Agregação em série temporal do amoníaco.",
+          "$ref": "https://smart-data-models.github.io/dataModel.Environment/Environment-schema.json#/definitions/TimeSeriesAggregation"
+        },
+        "nickelTSA": {
+          "type": "object",
+          "description": "Propriedade. Agregação em série temporal do níquel.",
+          "$ref": "https://smart-data-models.github.io/dataModel.Environment/Environment-schema.json#/definitions/TimeSeriesAggregation"
+        },
+        "noTSA": {
+          "type": "object",
+          "description": "Propriedade. Agregação em série temporal do monóxido de azoto.",
+          "$ref": "https://smart-data-models.github.io/dataModel.Environment/Environment-schema.json#/definitions/TimeSeriesAggregation"
+        },
+        "no2TSA": {
+          "type": "object",
+          "description": "Propriedade. Agregação em série temporal do dióxido de azoto.",
+          "$ref": "https://smart-data-models.github.io/dataModel.Environment/Environment-schema.json#/definitions/TimeSeriesAggregation"
+        },
+        "o2TSA": {
+          "type": "object",
+          "description": "Propriedade. Agregação em série temporal do oxigénio.",
+          "$ref": "https://smart-data-models.github.io/dataModel.Environment/Environment-schema.json#/definitions/TimeSeriesAggregation"
+        },
+        "o3TSA": {
+          "type": "object",
+          "description": "Propriedade. Agregação em série temporal do ozono.",
+          "$ref": "https://smart-data-models.github.io/dataModel.Environment/Environment-schema.json#/definitions/TimeSeriesAggregation"
+        },
+        "pm10TSA": {
+          "type": "object",
+          "description": "Propriedade. Agregação em série temporal das partículas em suspensão com diâmetro igual ou inferior a 10 micrómetros.",
+          "$ref": "https://smart-data-models.github.io/dataModel.Environment/Environment-schema.json#/definitions/TimeSeriesAggregation"
+        },
+        "pm25TSA": {
+          "type": "object",
+          "description": "Propriedade. Agregação em série temporal das partículas em suspensão com diâmetro igual ou inferior a 2,5 micrómetros.",
+          "$ref": "https://smart-data-models.github.io/dataModel.Environment/Environment-schema.json#/definitions/TimeSeriesAggregation"
+        },
+        "relativeHumidityTSA": {
+          "type": "object",
+          "description": "Propriedade. Agregação em série temporal da humidade relativa.",
+          "$ref": "https://smart-data-models.github.io/dataModel.Environment/Environment-schema.json#/definitions/TimeSeriesAggregation"
+        },
+        "so2TSA": {
+          "type": "object",
+          "description": "Propriedade. Agregação em série temporal do dióxido de enxofre.",
+          "$ref": "https://smart-data-models.github.io/dataModel.Environment/Environment-schema.json#/definitions/TimeSeriesAggregation"
+        },
+        "pbTSA": {
+          "type": "object",
+          "description": "Propriedade. Agregação em série temporal do chumbo.",
+          "$ref": "https://smart-data-models.github.io/dataModel.Environment/Environment-schema.json#/definitions/TimeSeriesAggregation"
+        },
+        "uvTSA": {
+          "type": "object",
+          "description": "Propriedade. Agregação em série temporal da radiação ultravioleta.",
+          "$ref": "https://smart-data-models.github.io/dataModel.Environment/Environment-schema.json#/definitions/TimeSeriesAggregation"
+        },
+        "illuminance": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Iluminância medida."
+        },
+        "solarRadiation": {
+          "type": "number",
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Radiação solar instantânea, em kW/m2. Unidade: kW/m2."
+        },
+        "precipitation": {
+          "type": "number",
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Precipitação observada durante um determinado período."
+        },
+        "versionInfo": {
+          "type": "object",
+          "description": "Propriedade. Informação de versão correspondente a esta observação.",
+          "properties": {
+            "startDateTime": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Propriedade. Modelo: 'https://schema.org/DateTime'. Hora de início comunicada para esta observação."
+            },
+            "endDateTime": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Propriedade. Modelo: 'https://schema.org/DateTime'. Hora de fim comunicada para esta observação."
+            },
+            "versionName": {
+              "type": "string",
+              "description": "Propriedade. Modelo: 'https://schema.org/Text'. Nome da versão correspondente a esta observação."
+            },
+            "comments": {
+              "type": "string",
+              "description": "Propriedade. Modelo: 'https://schema.org/Text'. Comentários do utilizador sobre esta observação."
+            },
+            "windType": {
+              "type": "string",
+              "description": "Propriedade. Tipo de vento dominante nas últimas 24 horas."
+            }
+          }
+        },
+        "refDevice": {
+          "type": "string",
+          "format": "uri",
+          "description": "Relação. Sensor (Device) cujas observações são agregadas neste relatório. Atributo adicional, não existente no CNMD."
+        },
+        "aggregationPeriod": {
+          "type": "string",
+          "enum": [
+            "day",
+            "week",
+            "month"
+          ],
+          "description": "Propriedade. Granularidade do relatório: day (dia), week (semana) ou month (mês). Atributo adicional, não existente no CNMD."
+        },
+        "periodStart": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Modelo: 'https://schema.org/DateTime'. Início do período agregado, em ISO 8601 e UTC. Atributo adicional, não existente no CNMD."
+        },
+        "periodEnd": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Modelo: 'https://schema.org/DateTime'. Fim do período agregado (exclusivo), em ISO 8601 e UTC. Atributo adicional, não existente no CNMD."
+        },
+        "pm1TSA": {
+          "type": "object",
+          "description": "Propriedade. Agregação em série temporal das partículas em suspensão com diâmetro igual ou inferior a 1 micrómetro. Atributo adicional, não existente no CNMD.",
+          "$ref": "https://smart-data-models.github.io/dataModel.Environment/Environment-schema.json#/definitions/TimeSeriesAggregation"
+        },
+        "volatileOrganicCompoundsTotalTSA": {
+          "type": "object",
+          "description": "Propriedade. Agregação em série temporal dos compostos orgânicos voláteis totais. Atributo adicional, não existente no CNMD.",
+          "$ref": "https://smart-data-models.github.io/dataModel.Environment/Environment-schema.json#/definitions/TimeSeriesAggregation"
+        },
+        "ventilationAlertTime": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Propriedade. Percentagem do período com um alerta de ventilação (Alert) ativo, de 0 a 100. Atributo adicional, não existente no CNMD."
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "type",
+    "name",
+    "observationDateTime",
+    "location",
+    "address",
+    "refDevice",
+    "aggregationPeriod",
+    "periodStart",
+    "periodEnd",
+    "co2TSA",
+    "pm10TSA",
+    "pm25TSA",
+    "pm1TSA",
+    "volatileOrganicCompoundsTotalTSA",
+    "airTemperatureTSA",
+    "relativeHumidityTSA",
+    "ventilationAlertTime",
+    "dataProvider",
+    "source"
+  ]
+}

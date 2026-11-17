@@ -1,0 +1,152 @@
+{
+  "id": "urn:ngsi-ld:AirQualityMonitoring:iaq-08-2026-11-09",
+  "type": "AirQualityMonitoring",
+  "name": {
+    "type": "Property",
+    "value": "Relatório IAQ diário — Escola Básica — Sala 15 — 2026-11-09",
+    "observedAt": "2026-11-09T23:45:00Z"
+  },
+  "refDevice": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:Device:iaq-08",
+    "observedAt": "2026-11-09T23:45:00Z"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.5392,
+        39.4813
+      ]
+    },
+    "observedAt": "2026-11-09T23:45:00Z"
+  },
+  "address": {
+    "type": "Property",
+    "value": {
+      "streetAddress": "Rua 25 de Abril",
+      "addressLocality": "Torres Novas",
+      "addressRegion": "Oeste e Vale do Tejo",
+      "district": "Santarém",
+      "addressCountry": "Portugal"
+    },
+    "observedAt": "2026-11-09T23:45:00Z"
+  },
+  "observationDateTime": {
+    "type": "Property",
+    "value": "2026-11-09T23:45:00Z",
+    "observedAt": "2026-11-09T23:45:00Z"
+  },
+  "aggregationPeriod": {
+    "type": "Property",
+    "value": "day",
+    "observedAt": "2026-11-09T23:45:00Z"
+  },
+  "periodStart": {
+    "type": "Property",
+    "value": "2026-11-09T00:00:00Z",
+    "observedAt": "2026-11-09T23:45:00Z"
+  },
+  "periodEnd": {
+    "type": "Property",
+    "value": "2026-11-10T00:00:00Z",
+    "observedAt": "2026-11-09T23:45:00Z"
+  },
+  "co2TSA": {
+    "type": "Property",
+    "value": {
+      "instValue": 440.8,
+      "minOverTime": 400.0,
+      "maxOverTime": 2178.4,
+      "averageValue": 855.076
+    },
+    "observedAt": "2026-11-09T23:45:00Z",
+    "unitCode": "59"
+  },
+  "pm10TSA": {
+    "type": "Property",
+    "value": {
+      "instValue": 10.7,
+      "minOverTime": 8.7,
+      "maxOverTime": 20.8,
+      "averageValue": 13.35
+    },
+    "observedAt": "2026-11-09T23:45:00Z",
+    "unitCode": "GQ"
+  },
+  "pm25TSA": {
+    "type": "Property",
+    "value": {
+      "instValue": 6.2,
+      "minOverTime": 3.0,
+      "maxOverTime": 12.1,
+      "averageValue": 7.636
+    },
+    "observedAt": "2026-11-09T23:45:00Z",
+    "unitCode": "GQ"
+  },
+  "pm1TSA": {
+    "type": "Property",
+    "value": {
+      "instValue": 3.1,
+      "minOverTime": 1.0,
+      "maxOverTime": 8.6,
+      "averageValue": 4.816
+    },
+    "observedAt": "2026-11-09T23:45:00Z",
+    "unitCode": "GQ"
+  },
+  "volatileOrganicCompoundsTotalTSA": {
+    "type": "Property",
+    "value": {
+      "instValue": 139.7,
+      "minOverTime": 60.1,
+      "maxOverTime": 223.3,
+      "averageValue": 138.398
+    },
+    "observedAt": "2026-11-09T23:45:00Z",
+    "unitCode": "GQ"
+  },
+  "airTemperatureTSA": {
+    "type": "Property",
+    "value": {
+      "instValue": 19.6,
+      "minOverTime": 18.9,
+      "maxOverTime": 22.6,
+      "averageValue": 20.502
+    },
+    "observedAt": "2026-11-09T23:45:00Z",
+    "unitCode": "CEL"
+  },
+  "relativeHumidityTSA": {
+    "type": "Property",
+    "value": {
+      "instValue": 0.503,
+      "minOverTime": 0.468,
+      "maxOverTime": 0.558,
+      "averageValue": 0.512
+    },
+    "observedAt": "2026-11-09T23:45:00Z",
+    "unitCode": "C62"
+  },
+  "dataProvider": {
+    "type": "Property",
+    "value": "cimt",
+    "observedAt": "2026-11-09T23:45:00Z"
+  },
+  "source": {
+    "type": "Property",
+    "value": "Fornecedor dos sensores de qualidade do ar interior (a definir)",
+    "observedAt": "2026-11-09T23:45:00Z"
+  },
+  "ventilationAlertTime": {
+    "type": "Property",
+    "value": 31.25,
+    "observedAt": "2026-11-09T23:45:00Z"
+  },
+  "@context": [
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.Environment/master/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}
