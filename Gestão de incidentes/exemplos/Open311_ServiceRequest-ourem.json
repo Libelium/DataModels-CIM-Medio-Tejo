@@ -1,0 +1,105 @@
+{
+  "id": "urn:ngsi-ld:Open311_ServiceRequest:ourem-1920",
+  "type": "Open311_ServiceRequest",
+  "service_request_id": {
+    "type": "Property",
+    "value": "1920",
+    "observedAt": "2026-07-09T14:43:36Z"
+  },
+  "incidentCode": {
+    "type": "Property",
+    "value": "30_2026",
+    "observedAt": "2026-07-09T14:43:36Z"
+  },
+  "service_code": {
+    "type": "Property",
+    "value": "jardins-e-espacos-verdes--queda-de-ramos-ou-arvores",
+    "observedAt": "2026-07-09T14:43:36Z"
+  },
+  "service_name": {
+    "type": "Property",
+    "value": "Queda de ramos ou árvores",
+    "observedAt": "2026-07-09T14:43:36Z"
+  },
+  "jurisdiction_id": {
+    "type": "Property",
+    "value": "ourem",
+    "observedAt": "2026-07-09T14:43:36Z"
+  },
+  "description": {
+    "type": "Property",
+    "value": "Eucalipto no fim da estrada de Pinhel a tombar para a estrada",
+    "observedAt": "2026-07-09T14:43:36Z"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.6211048,
+        39.6550492
+      ]
+    },
+    "observedAt": "2026-07-09T14:43:36Z"
+  },
+  "address": {
+    "type": "Property",
+    "value": {
+      "streetAddress": "Estrada De Leiria",
+      "addressLocality": "Pinhel",
+      "district": "Atouguia",
+      "addressRegion": "Ourém",
+      "addressCountry": "PT"
+    },
+    "observedAt": "2026-07-09T14:43:36Z"
+  },
+  "status": {
+    "type": "Property",
+    "value": "closed",
+    "observedAt": "2026-07-09T14:43:36Z"
+  },
+  "incidentStatus": {
+    "type": "Property",
+    "value": "resolvida",
+    "observedAt": "2026-07-09T14:43:36Z"
+  },
+  "sourceStatus": {
+    "type": "Property",
+    "value": "Concluido",
+    "observedAt": "2026-07-09T14:43:36Z"
+  },
+  "status_notes": {
+    "type": "Property",
+    "value": "Foi dado conhecimento da situação à Infraestruturas de Portugal, dado tratar-se de uma via sob a sua responsabilidade.",
+    "observedAt": "2026-07-09T14:43:36Z"
+  },
+  "requested_datetime": {
+    "type": "Property",
+    "value": "2026-04-01T08:57:46Z",
+    "observedAt": "2026-07-09T14:43:36Z"
+  },
+  "updated_datetime": {
+    "type": "Property",
+    "value": "2026-07-09T14:43:36Z",
+    "observedAt": "2026-07-09T14:43:36Z"
+  },
+  "dateModified": {
+    "type": "Property",
+    "value": "2026-07-09T14:43:36Z",
+    "observedAt": "2026-07-09T14:43:36Z"
+  },
+  "documentRecord": {
+    "type": "Property",
+    "value": "MGD Nª. 32002/2026",
+    "observedAt": "2026-07-09T14:43:36Z"
+  },
+  "source": {
+    "type": "Property",
+    "value": "enti:servicos.ourem.pt",
+    "observedAt": "2026-07-09T14:43:36Z"
+  },
+  "@context": [
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.IssueTracking/master/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}

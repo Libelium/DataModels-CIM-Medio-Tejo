@@ -1,0 +1,267 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schemaVersion": "0.0.1",
+  "modelTags": "SDM",
+  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Gest%C3%A3o%20de%20incidentes/schema/Open311_ServiceRequest.schema.json",
+  "title": "Schema Open311_ServiceRequest da PGU do Médio Tejo",
+  "description": "Pedido de serviço Open311 (GeoReport v2): uma ocorrência municipal de não emergência, com todas as propriedades definidas pelo Open311 para criar e consultar pedidos de serviço. Derivado do schema service_requests dos Smart Data Models (dataModel.IssueTracking, versão 0.1.0): o tipo é Open311_ServiceRequest e são acrescentados os atributos da PGU.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "Open311_ServiceRequest"
+          ],
+          "description": "Propriedade. Tipo de entidade NGSI. Tem de ser Open311_ServiceRequest."
+        },
+        "service_request_id": {
+          "type": "string",
+          "description": "Propriedade. Identificador único do pedido de serviço."
+        },
+        "jurisdiction_id": {
+          "type": "string",
+          "description": "Propriedade. Identificador único da entidade responsável pelo serviço (por exemplo, o município)."
+        },
+        "service_code": {
+          "type": "string",
+          "description": "Propriedade. Identificador único da tipologia do pedido (entidade services)."
+        },
+        "service_name": {
+          "type": "string",
+          "description": "Propriedade. Designação legível da tipologia do pedido."
+        },
+        "agency_responsible": {
+          "type": "string",
+          "description": "Propriedade. Equipa ou serviço responsável pelo pedido; semanticamente equivalente ao nome do fornecedor (provider) da schema.org. Modelo: 'http://schema.org/provider'."
+        },
+        "service_notice": {
+          "type": "string",
+          "description": "Propriedade. Informação sobre a ação prevista para dar resposta ao pedido."
+        },
+        "status": {
+          "type": "string",
+          "description": "Propriedade. Estado do pedido: open (aberto) ou closed (fechado).",
+          "enum": [
+            "open",
+            "closed"
+          ]
+        },
+        "status_notes": {
+          "type": "string",
+          "description": "Propriedade. Justificação da mudança para o estado atual, ou mais detalhe sobre o estado do que o dado por status."
+        },
+        "requested_datetime": {
+          "type": "string",
+          "description": "Propriedade. Data e hora em que o pedido foi feito, em ISO 8601 e UTC. Modelo: 'https://schema.org/DateTime'.",
+          "format": "date-time"
+        },
+        "updated_datetime": {
+          "type": "string",
+          "description": "Propriedade. Data e hora da última alteração do pedido, em ISO 8601 e UTC. Nos pedidos com status closed, é a data e hora do fecho. Modelo: 'https://schema.org/DateTime'.",
+          "format": "date-time"
+        },
+        "expected_datetime": {
+          "type": "string",
+          "description": "Propriedade. Data e hora em que se prevê que o pedido esteja resolvido, que pode resultar do prazo (SLA) da tipologia. Modelo: 'https://schema.org/DateTime'.",
+          "format": "date-time"
+        },
+        "media_url": {
+          "type": "string",
+          "description": "Propriedade. URL de um ficheiro multimédia associado ao pedido, por exemplo uma imagem. Modelo: 'https://schema.org/URL'."
+        },
+        "email": {
+          "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/email"
+        },
+        "first_name": {
+          "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Person-Commons/properties/person/properties/givenName"
+        },
+        "last_name": {
+          "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Person-Commons/properties/person/properties/familyName"
+        },
+        "phone": {
+          "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Person-Commons/properties/person/properties/telephone"
+        },
+        "device_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Propriedade. Formato de identificador de qualquer entidade NGSI."
+            },
+            {
+              "type": "string",
+              "format": "uri",
+              "description": "Propriedade. Formato de identificador de qualquer entidade NGSI."
+            }
+          ],
+          "description": "Relação. Identificador único do dispositivo que submeteu o pedido; normalmente só se usa com dispositivos móveis. Modelo: 'https://schema.org/URL'."
+        },
+        "account_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Propriedade. Formato de identificador de qualquer entidade NGSI."
+            },
+            {
+              "type": "string",
+              "format": "uri",
+              "description": "Propriedade. Formato de identificador de qualquer entidade NGSI."
+            }
+          ],
+          "description": "Relação. Identificador único da conta da pessoa que submeteu o pedido. Modelo: 'https://schema.org/URL'."
+        },
+        "address_string": {
+          "type": "string",
+          "description": "Propriedade. Morada ou descrição livre do local indicada por quem reporta. Escreve-se da unidade geográfica mais específica para a mais geral: número de porta ou cruzamento, rua, bairro, localidade, concelho, código postal."
+        },
+        "attributes": {
+          "type": "array",
+          "description": "Propriedade. Atributos variáveis da resposta ao pedido.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "variable": {
+                "type": "boolean"
+              },
+              "code": {
+                "type": "string"
+              },
+              "datatype": {
+                "type": "string",
+                "enum": [
+                  "string",
+                  "number",
+                  "datetime",
+                  "singlevaluelist",
+                  "multivaluelist"
+                ]
+              },
+              "required": {
+                "type": "boolean"
+              },
+              "datatype_description": {
+                "type": "string"
+              },
+              "order": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "description": {
+                "type": "string"
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "number"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "address": {
+          "type": "object",
+          "description": "Propriedade. Morada da ocorrência, tal como a PGU a publica. Modelo: 'https://schema.org/address'.",
+          "properties": {
+            "streetAddress": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Propriedade. Endereço da rua."
+            },
+            "postalCode": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Propriedade. Código postal."
+            },
+            "addressLocality": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Propriedade. Localidade: o lugar (Ourém) ou o município (Abrantes)."
+            },
+            "district": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Propriedade. Freguesia (Ourém)."
+            },
+            "addressRegion": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Propriedade. Município (Ourém)."
+            },
+            "addressCountry": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Propriedade. País, em código ISO 3166-1 alfa-2 (PT)."
+            }
+          }
+        },
+        "incidentCode": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Código da ocorrência no sistema municipal. Atributo adicional, não existente no modelo de referência."
+        },
+        "incidentStatus": {
+          "type": "string",
+          "enum": [
+            "reportada",
+            "em_curso",
+            "resolvida"
+          ],
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Estado detalhado do fluxo municipal: reportada, em_curso ou resolvida; omitido nas ocorrências fechadas sem resolução. Atributo adicional, não existente no modelo de referência."
+        },
+        "sourceStatus": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Estado tal como a origem o indica. Atributo adicional, não existente no modelo de referência."
+        },
+        "sourceCategory": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Categoria tal como a origem a indica. Atributo adicional, não existente no modelo de referência."
+        },
+        "documentRecord": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Número de registo no sistema de gestão documental do município. Atributo adicional, não existente no modelo de referência."
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "type",
+    "service_request_id",
+    "incidentCode",
+    "service_code",
+    "service_name",
+    "jurisdiction_id",
+    "location",
+    "address",
+    "status",
+    "sourceStatus",
+    "requested_datetime",
+    "updated_datetime",
+    "dateModified",
+    "source"
+  ]
+}

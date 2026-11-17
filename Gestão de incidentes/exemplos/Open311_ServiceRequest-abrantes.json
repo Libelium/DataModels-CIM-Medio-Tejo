@@ -1,0 +1,94 @@
+{
+  "id": "urn:ngsi-ld:Open311_ServiceRequest:abrantes-2026-X22",
+  "type": "Open311_ServiceRequest",
+  "service_request_id": {
+    "type": "Property",
+    "value": "abrantes-2026-X22",
+    "observedAt": "2026-10-26T12:00:00Z"
+  },
+  "incidentCode": {
+    "type": "Property",
+    "value": "2026-X22",
+    "observedAt": "2026-10-26T12:00:00Z"
+  },
+  "service_code": {
+    "type": "Property",
+    "value": "cleanliness",
+    "observedAt": "2026-10-26T12:00:00Z"
+  },
+  "service_name": {
+    "type": "Property",
+    "value": "Limpeza",
+    "observedAt": "2026-10-26T12:00:00Z"
+  },
+  "jurisdiction_id": {
+    "type": "Property",
+    "value": "abrantes",
+    "observedAt": "2026-10-26T12:00:00Z"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.2016417,
+        39.4623533
+      ]
+    },
+    "observedAt": "2026-10-26T12:00:00Z"
+  },
+  "address": {
+    "type": "Property",
+    "value": {
+      "streetAddress": "R. de Angola 26, 2200-390, Abrantes",
+      "postalCode": "2200-390",
+      "addressLocality": "Abrantes",
+      "addressCountry": "PT"
+    },
+    "observedAt": "2026-10-26T12:00:00Z"
+  },
+  "status": {
+    "type": "Property",
+    "value": "closed",
+    "observedAt": "2026-10-26T12:00:00Z"
+  },
+  "incidentStatus": {
+    "type": "Property",
+    "value": "resolvida",
+    "observedAt": "2026-10-26T12:00:00Z"
+  },
+  "sourceStatus": {
+    "type": "Property",
+    "value": "resolved",
+    "observedAt": "2026-10-26T12:00:00Z"
+  },
+  "sourceCategory": {
+    "type": "Property",
+    "value": "cleanliness",
+    "observedAt": "2026-10-26T12:00:00Z"
+  },
+  "requested_datetime": {
+    "type": "Property",
+    "value": "2026-04-20T19:01:46Z",
+    "observedAt": "2026-10-26T12:00:00Z"
+  },
+  "updated_datetime": {
+    "type": "Property",
+    "value": "2026-10-26T12:00:00Z",
+    "observedAt": "2026-10-26T12:00:00Z"
+  },
+  "dateModified": {
+    "type": "Property",
+    "value": "2026-10-26T12:00:00Z",
+    "observedAt": "2026-10-26T12:00:00Z"
+  },
+  "source": {
+    "type": "Property",
+    "value": "entiservices:entiservices-dev.cm-abrantes.pt",
+    "observedAt": "2026-10-26T12:00:00Z"
+  },
+  "@context": [
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.IssueTracking/master/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}
