@@ -1,0 +1,326 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schemaVersion": "0.0.1",
+  "modelTags": "CNMD",
+  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Gest%C3%A3o%20de%20res%C3%ADduos%20urbanos/schema/WasteContainerExtended.schema.json",
+  "title": "Schema WasteContainerExtended da PGU do Médio Tejo",
+  "description": "Contentor de resíduos urbanos com o seu nível de enchimento e as recolhas mais recentes. Tipo WasteContainerExtended da PGU, derivado do schema WasteContainer do CNMD (versão 0.3.0): a morada é texto e são acrescentados os atributos da ilha, do município e da última recolha.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "location": {
+          "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons/properties/location"
+        },
+        "areaServed": {
+          "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons/properties/areaServed"
+        }
+      }
+    },
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/PhysicalObject-Commons"
+    },
+    {
+      "properties": {
+        "address": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Morada do contentor como texto: rua e localidade (freguesia). No CNMD é um objeto com a morada estruturada."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "WasteContainerExtended"
+          ],
+          "description": "Propriedade. Tipo de entidade NGSI. Tem de ser WasteContainerExtended."
+        },
+        "fillingLevel": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Nível de enchimento do contentor."
+        },
+        "category": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "fixed",
+              "ground",
+              "other",
+              "portable",
+              "underground"
+            ]
+          },
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Categoria do contentor: fixed, ground, other, portable ou underground."
+        },
+        "cargoWeight": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Peso da carga do contentor."
+        },
+        "temperature": {
+          "type": "number",
+          "description": "Propriedade. Temperatura no interior do contentor. Modelo: 'http://schema.org/Number'."
+        },
+        "methaneConcentration": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Concentração de metano (CH4) no interior do contentor."
+        },
+        "storedWasteKind": {
+          "type": "string",
+          "enum": [
+            "organic",
+            "inorganic",
+            "glass",
+            "oil",
+            "plastic",
+            "metal",
+            "paper",
+            "batteries",
+            "electronics",
+            "hazardous",
+            "other"
+          ],
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Tipo de resíduos armazenados: organic, inorganic, glass, oil, plastic, metal, paper, batteries, electronics, hazardous ou other."
+        },
+        "storedWasteOrigin": {
+          "type": "string",
+          "enum": [
+            "household",
+            "municipal",
+            "industrial",
+            "construction",
+            "hostelry",
+            "agriculture",
+            "other"
+          ],
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Origem dos resíduos armazenados: household, municipal, industrial, construction, hostelry, agriculture ou other."
+        },
+        "storedWasteCode": {
+          "type": "string",
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Códigos de resíduos, conforme a regulamentação aplicável (na Europa, a Lista Europeia de Resíduos)."
+        },
+        "serialNumber": {
+          "type": "string",
+          "description": "Propriedade. Modelo: 'https://schema.org/serialNumber'. Número de série do contentor."
+        },
+        "regulation": {
+          "type": "string",
+          "description": "Propriedade. Regulamentação a que o contentor está sujeito. Modelo: 'http://schema.org/Text'."
+        },
+        "responsible": {
+          "type": "string",
+          "description": "Propriedade. Entidade responsável pelo contentor, isto é, pelas operações de esvaziamento, recolha, etc. Modelo: 'https://schema.org/Text'."
+        },
+        "dateServiceStarted": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Modelo: 'https://schema.org/Date'. Data de entrada em serviço do contentor."
+        },
+        "dateLastEmptying": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Modelo: 'https://schema.org/DateTime'. Data e hora do último esvaziamento do contentor."
+        },
+        "nextActuationDeadline": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Modelo: 'https://schema.org/DateTime'. Prazo para a próxima operação (esvaziamento, recolha, etc.)."
+        },
+        "actuationHours": {
+          "type": "string",
+          "description": "Propriedade. Modelo: 'openingHours'. Horário adequado para as operações sobre o contentor."
+        },
+        "dateLastCleaning": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Data da última limpeza do contentor. Modelo: 'https://schema.org/DateTime'."
+        },
+        "nextCleaningDeadline": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Modelo: 'https://schema.org/DateTime'. Prazo para a próxima limpeza."
+        },
+        "isleId": {
+          "type": "string",
+          "description": "Propriedade. Identificador ou nome da ilha onde está o contentor, quando as ilhas não são modeladas como WasteContainerIsle."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "ok",
+            "lidOpen",
+            "dropped",
+            "moved",
+            "vandalized",
+            "burning",
+            "unknown"
+          ],
+          "description": "Propriedade. Estado do contentor do ponto de vista da segurança: ok, lidOpen, dropped, moved, vandalized, burning ou unknown."
+        },
+        "refWasteContainerModel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Propriedade. Formato de identificador de qualquer entidade NGSI."
+            },
+            {
+              "type": "string",
+              "format": "uri",
+              "description": "Propriedade. Formato de identificador de qualquer entidade NGSI."
+            }
+          ],
+          "description": "Relação. Modelo do contentor (WasteContainerModel). Modelo: 'http://schema.org/URL'."
+        },
+        "refWasteContainerIsle": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Propriedade. Formato de identificador de qualquer entidade NGSI."
+            },
+            {
+              "type": "string",
+              "format": "uri",
+              "description": "Propriedade. Formato de identificador de qualquer entidade NGSI."
+            }
+          ],
+          "description": "Propriedade. Identificador da ilha onde está o contentor, tal como a origem o indica (URN do sistema municipal). No CNMD é uma relação com uma entidade WasteContainerIsle, que a PGU não publica."
+        },
+        "refDevice": {
+          "type": "array",
+          "items": {
+            "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/EntityIdentifierType"
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Relação. Dispositivo ou dispositivos que monitorizam o contentor. Modelo: 'http://schema.org/URL'."
+        },
+        "timeInstant": {
+          "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/timeInstant"
+        },
+        "binCapacity": {
+          "type": "number",
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Capacidade total do contentor, em volume de resíduos."
+        },
+        "binColor": {
+          "type": "string",
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Cor do contentor, que pode indicar o tipo de resíduos conforme as convenções locais."
+        },
+        "wardId": {
+          "type": "string",
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Identificador da zona administrativa da entidade."
+        },
+        "license_plate": {
+          "type": "string",
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Matrícula do veículo, como o campo homónimo do GTFS Realtime."
+        },
+        "RFID": {
+          "type": "string",
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Identificador do leitor RFID."
+        },
+        "binFullnessThreshold": {
+          "type": "number",
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Nível de enchimento, em percentagem, a partir do qual é gerado o alerta de contentor cheio."
+        },
+        "binRecommendedLoad": {
+          "type": "number",
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Carga (peso) recomendada para o contentor."
+        },
+        "binId": {
+          "type": "string",
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Identificador do contentor."
+        },
+        "binMaxLoad": {
+          "type": "number",
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Carga (peso) máxima do contentor."
+        },
+        "binLoggedTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Hora do último registo do nível do contentor."
+        },
+        "fillingPercent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Nível de enchimento em percentagem (0–100), igual a fillingLevel × 100. Atributo adicional, não existente no CNMD."
+        },
+        "capacity": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Capacidade do contentor, em litros, tal como a origem a indica (binCapacity). Atributo adicional, não existente no CNMD."
+        },
+        "parish": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Freguesia (localidade) onde está o contentor. Atributo adicional, não existente no CNMD."
+        },
+        "municipality": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Município onde está o contentor. Atributo adicional, não existente no CNMD."
+        },
+        "isleCode": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Código da ilha onde está o contentor, no inventário municipal. Atributo adicional, não existente no CNMD."
+        },
+        "sourceId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Identificador do contentor na origem (URN do sistema municipal). Atributo adicional, não existente no CNMD."
+        },
+        "weightCollectedKg": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Peso recolhido na última recolha do contentor, tal como a origem o indica (unidade por confirmar com a origem). Atributo adicional, não existente no CNMD."
+        },
+        "emptyingsInPeriod": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Número de esvaziamentos do contentor no instante da última recolha. Atributo adicional, não existente no CNMD."
+        },
+        "lastEmptyingDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Modelo: 'https://schema.org/DateTime'. Data e hora da última recolha, igual a dateLastEmptying. Atributo adicional, não existente no CNMD."
+        },
+        "vehicleId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Identificador do veículo de recolha na origem. Atributo adicional, não existente no CNMD."
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "type",
+    "name",
+    "location",
+    "fillingLevel",
+    "fillingPercent",
+    "capacity",
+    "status",
+    "storedWasteKind",
+    "municipality",
+    "refWasteContainerIsle",
+    "isleCode",
+    "sourceId",
+    "source"
+  ]
+}
