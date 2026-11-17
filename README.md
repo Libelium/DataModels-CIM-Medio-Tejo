@@ -21,7 +21,7 @@ A PGU integra, para a CIMT e para os seus 11 municípios (Abrantes, Alcanena, Co
 | V2 | Fluxo de pessoas e turistas |  |  |
 | V3 | Monitoramento do Meio Ambiente e Proteção Civil |  |  |
 | V4 | Eficiência energética em edifícios públicos municipais e iluminação pública |  |  |
-| V5 | Gestão de auxílios sociais |  |  |
+| V5 | Gestão de auxílios sociais | `SocialSupportObservation` | [CNMD — Gestão de apoio social](https://github.com/amagovpt/CATALOGO_MODELOS_DADOS_TI/tree/main/Governo%20e%20setor%20p%C3%BAblico/Gest%C3%A3o%20de%20apoio%20social) |
 | V7 | Gestão de ativos |  |  |
 | V8 | Gestão inteligente de irrigação |  |  |
 | V9 | Gestão de resíduos urbanos |  |  |
