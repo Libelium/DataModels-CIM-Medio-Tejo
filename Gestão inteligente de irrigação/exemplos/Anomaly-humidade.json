@@ -1,0 +1,65 @@
+{
+  "id": "urn:ngsi-ld:Anomaly:sonda-04-20261030T130000Z",
+  "type": "Anomaly",
+  "name": {
+    "type": "Property",
+    "value": "Anomalia de humidade do solo — Sonda 04 — 2026-10-30T13:00:00Z",
+    "observedAt": "2026-10-30T13:00:00Z"
+  },
+  "detectedBy": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:Device:sonda-04",
+    "observedAt": "2026-10-30T13:00:00Z"
+  },
+  "anomalousProperty": {
+    "type": "Property",
+    "value": "soilMoistureVwc",
+    "observedAt": "2026-10-30T13:00:00Z"
+  },
+  "thresholdBreach": {
+    "type": "Property",
+    "value": {
+      "observedAt": "2026-10-30T13:00:00Z",
+      "value": 0.148,
+      "threshold": 0.15,
+      "thresholdType": "lower",
+      "unitCode": "C62"
+    },
+    "observedAt": "2026-10-30T13:00:00Z"
+  },
+  "dateDetected": {
+    "type": "Property",
+    "value": "2026-10-30T13:00:00Z",
+    "observedAt": "2026-10-30T13:00:00Z"
+  },
+  "description": {
+    "type": "Property",
+    "value": "Humidade do solo abaixo do limiar configurado (15%) durante 32 h; mínimo 12.1%.",
+    "observedAt": "2026-10-30T13:00:00Z"
+  },
+  "areaServed": {
+    "type": "Property",
+    "value": "Setor 02 — Jardim da Várzea Grande",
+    "observedAt": "2026-10-30T13:00:00Z"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.4134,
+        39.6004
+      ]
+    },
+    "observedAt": "2026-10-30T13:00:00Z"
+  },
+  "dataProvider": {
+    "type": "Property",
+    "value": "cimt",
+    "observedAt": "2026-10-30T13:00:00Z"
+  },
+  "@context": [
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.Alert/master/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}

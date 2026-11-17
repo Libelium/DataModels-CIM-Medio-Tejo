@@ -1,0 +1,65 @@
+{
+  "id": "urn:ngsi-ld:Anomaly:contador-03-20261108T010000Z",
+  "type": "Anomaly",
+  "name": {
+    "type": "Property",
+    "value": "Anomalia de consumo de água — Setor 03 — Jardim do Castelo de Abrantes — 2026-11-08T01:00:00Z",
+    "observedAt": "2026-11-08T01:00:00Z"
+  },
+  "detectedBy": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:Device:contador-03",
+    "observedAt": "2026-11-08T01:00:00Z"
+  },
+  "anomalousProperty": {
+    "type": "Property",
+    "value": "waterConsumption",
+    "observedAt": "2026-11-08T01:00:00Z"
+  },
+  "thresholdBreach": {
+    "type": "Property",
+    "value": {
+      "observedAt": "2026-11-08T01:00:00Z",
+      "value": 0.486,
+      "threshold": 0.1,
+      "thresholdType": "upper",
+      "unitCode": "MTQ"
+    },
+    "observedAt": "2026-11-08T01:00:00Z"
+  },
+  "dateDetected": {
+    "type": "Property",
+    "value": "2026-11-08T01:00:00Z",
+    "observedAt": "2026-11-08T01:00:00Z"
+  },
+  "description": {
+    "type": "Property",
+    "value": "Consumo de água fora do horário de rega: 1.88 m³ em 4 h (possível fuga).",
+    "observedAt": "2026-11-08T01:00:00Z"
+  },
+  "areaServed": {
+    "type": "Property",
+    "value": "Setor 03 — Jardim do Castelo de Abrantes",
+    "observedAt": "2026-11-08T01:00:00Z"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.1968,
+        39.4662
+      ]
+    },
+    "observedAt": "2026-11-08T01:00:00Z"
+  },
+  "dataProvider": {
+    "type": "Property",
+    "value": "cimt",
+    "observedAt": "2026-11-08T01:00:00Z"
+  },
+  "@context": [
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.Alert/master/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}

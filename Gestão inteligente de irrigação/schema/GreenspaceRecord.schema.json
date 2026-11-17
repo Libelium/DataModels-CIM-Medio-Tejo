@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schemaVersion": "0.0.1",
+  "modelTags": "CNMD",
+  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Gest%C3%A3o%20inteligente%20de%20irriga%C3%A7%C3%A3o/schema/GreenspaceRecord.schema.json",
+  "title": "Schema GreenspaceRecord da PGU do Médio Tejo",
+  "description": "Descrição harmonizada das condições registadas numa zona ou num ponto de um espaço verde (canteiro, jardim, etc.). Derivado do schema GreenspaceRecord do CNMD (versão 0.1.0): address não é obrigatória, por não ser publicada pela PGU.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+    },
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/PhysicalObject-Commons"
+    },
+    {
+      "properties": {
+        "address": {
+          "type": "object",
+          "description": "Propriedade. Morada associada à observação. Modelo: 'https://schema.org/address'.",
+          "properties": {
+            "addressCountry": {
+              "type": "string",
+              "description": "Propriedade. O país. Modelo: 'https://schema.org/addressCountry'."
+            },
+            "addressLocality": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Propriedade. A localidade, que tem de coincidir com o município. Modelo: 'https://schema.org/addressLocality'."
+            },
+            "addressRegion": {
+              "type": "string",
+              "enum": [
+                "Norte",
+                "Centro",
+                "Oeste e Vale do Tejo",
+                "Grande Lisboa",
+                "Península de Setúbal",
+                "Alentejo",
+                "Algarve",
+                "Região Autónoma dos Açores",
+                "Região Autónoma da Madeira"
+              ],
+              "description": "Propriedade. A região NUTS 2 em que se situa a localidade. Modelo: 'https://schema.org/addressRegion'."
+            },
+            "district": {
+              "type": "string",
+              "enum": [
+                "Açores",
+                "Aveiro",
+                "Beja",
+                "Braga",
+                "Bragança",
+                "Castelo Branco",
+                "Coimbra",
+                "Évora",
+                "Faro",
+                "Guarda",
+                "Madeira",
+                "Leiria",
+                "Lisboa",
+                "Portalegre",
+                "Porto",
+                "Santarém",
+                "Setúbal",
+                "Viana do Castelo",
+                "Vila Real",
+                "Viseu"
+              ],
+              "description": "Propriedade. O distrito em que se situa a localidade."
+            },
+            "postalCode": {
+              "type": "string",
+              "description": "Propriedade. Código postal. Modelo: 'https://schema.org/postalCode'."
+            },
+            "streetAddress": {
+              "type": "string",
+              "description": "Propriedade. Endereço da rua. Modelo: 'https://schema.org/streetAddress'."
+            },
+            "streetNr": {
+              "type": "string",
+              "description": "Propriedade. Número de polícia. Modelo: 'https://schema.org/Text'."
+            }
+          },
+          "required": [
+            "addressLocality",
+            "addressRegion",
+            "district"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "GreenspaceRecord"
+          ],
+          "description": "Propriedade. Tipo de entidade NGSI. Tem de ser GreenspaceRecord."
+        },
+        "dateObserved": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Data e hora da observação, em ISO 8601 e UTC. Modelo: 'https://schema.org/DateTime'."
+        },
+        "soilTemperature": {
+          "type": "number",
+          "description": "Propriedade. Temperatura do solo observada, em graus Celsius. Unidade: graus Celsius. Modelo: 'https://schema.org/Number'."
+        },
+        "soilMoistureVwc": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Propriedade. Humidade do solo observada, medida como conteúdo volumétrico de água (VWC), em percentagem expressa como fração de 0 a 1. Modelo: 'https://schema.org/Number'."
+        },
+        "soilMoistureEc": {
+          "type": "number",
+          "description": "Propriedade. Humidade do solo observada, medida como condutividade elétrica (EC), em siemens por metro (S/m). Unidade: siemens por metro. Modelo: 'https://schema.org/Number'."
+        },
+        "soilMoisturePressure": {
+          "type": "number",
+          "description": "Propriedade. Humidade do solo observada, medida como pressão, em quilopascais (kPa). Unidade: kPa. Modelo: 'https://schema.org/Number'."
+        },
+        "refGreenspace": {
+          "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/EntityIdentifierType",
+          "description": "Relação. Jardim ou canteiro a que se refere este registo. Modelo: 'https://schema.org/URL'."
+        },
+        "refDevice": {
+          "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/EntityIdentifierType",
+          "description": "Relação. Dispositivo ou dispositivos utilizados para obter os dados deste registo. Modelo: 'https://schema.org/URL'."
+        },
+        "refWeatherObserved": {
+          "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/EntityIdentifierType",
+          "description": "Relação. Observação meteorológica associada às medições descritas por esta entidade. Modelo: 'https://schema.org/URL'."
+        },
+        "litterCoverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Percentagem da superfície coberta por lixo ou outros resíduos."
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "type",
+    "name",
+    "dateObserved",
+    "location",
+    "refGreenspace",
+    "refDevice",
+    "soilMoistureVwc",
+    "soilTemperature",
+    "areaServed",
+    "dataProvider",
+    "source"
+  ],
+  "anyOf": [
+    {
+      "required": [
+        "soilMoistureEc"
+      ]
+    },
+    {
+      "required": [
+        "soilMoisturePressure"
+      ]
+    },
+    {
+      "required": [
+        "soilTemperature"
+      ]
+    }
+  ]
+}

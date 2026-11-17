@@ -1,0 +1,227 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schemaVersion": "0.0.1",
+  "modelTags": "CNMD",
+  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Gest%C3%A3o%20inteligente%20de%20irriga%C3%A7%C3%A3o/schema/WeatherObserved.schema.json",
+  "title": "Schema WeatherObserved da PGU do Médio Tejo",
+  "description": "Observação das condições meteorológicas num determinado local e momento. Modelo desenvolvido em cooperação com operadores móveis e a GSMA. Derivado do schema WeatherObserved do CNMD (versão 0.3.5): temperature e refPointOfInterest não são obrigatórios, por não serem publicados pela PGU.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+    },
+    {
+      "$ref": "https://smart-data-models.github.io/dataModel.Weather/weather-schema.json#/definitions/Weather-Commons"
+    },
+    {
+      "properties": {
+        "address": {
+          "type": "object",
+          "description": "Propriedade. Morada associada à observação. Modelo: 'https://schema.org/address'.",
+          "properties": {
+            "addressCountry": {
+              "type": "string",
+              "description": "Propriedade. O país. Modelo: 'https://schema.org/addressCountry'."
+            },
+            "addressLocality": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Propriedade. A localidade, que tem de coincidir com o município. Modelo: 'https://schema.org/addressLocality'."
+            },
+            "addressRegion": {
+              "type": "string",
+              "enum": [
+                "Norte",
+                "Centro",
+                "Oeste e Vale do Tejo",
+                "Grande Lisboa",
+                "Península de Setúbal",
+                "Alentejo",
+                "Algarve",
+                "Região Autónoma dos Açores",
+                "Região Autónoma da Madeira"
+              ],
+              "description": "Propriedade. A região NUTS 2 em que se situa a localidade. Modelo: 'https://schema.org/addressRegion'."
+            },
+            "district": {
+              "type": "string",
+              "enum": [
+                "Açores",
+                "Aveiro",
+                "Beja",
+                "Braga",
+                "Bragança",
+                "Castelo Branco",
+                "Coimbra",
+                "Évora",
+                "Faro",
+                "Guarda",
+                "Madeira",
+                "Leiria",
+                "Lisboa",
+                "Portalegre",
+                "Porto",
+                "Santarém",
+                "Setúbal",
+                "Viana do Castelo",
+                "Vila Real",
+                "Viseu"
+              ],
+              "description": "Propriedade. O distrito em que se situa a localidade."
+            },
+            "postalCode": {
+              "type": "string",
+              "description": "Propriedade. Código postal. Modelo: 'https://schema.org/postalCode'."
+            },
+            "streetAddress": {
+              "type": "string",
+              "description": "Propriedade. Endereço da rua. Modelo: 'https://schema.org/streetAddress'."
+            },
+            "streetNr": {
+              "type": "string",
+              "description": "Propriedade. Número de polícia. Modelo: 'https://schema.org/Text'."
+            }
+          },
+          "required": [
+            "addressLocality",
+            "addressRegion",
+            "district"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "WeatherObserved"
+          ],
+          "description": "Propriedade. Tipo de entidade NGSI. Tem de ser WeatherObserved."
+        },
+        "dateObserved": {
+          "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/dateObserved"
+        },
+        "precipitation": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Quantidade de precipitação registada. Unidade: litros por metro quadrado."
+        },
+        "solarRadiation": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Radiação solar observada, em watts por metro quadrado. Unidade: W/m2."
+        },
+        "directIrradiation": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Irradiância direta: parte da irradiância solar que atinge diretamente uma superfície. Unidade: W/m2."
+        },
+        "diffuseIrradiation": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Irradiância difusa: parte da irradiância solar dispersa pela atmosfera. Unidade: W/m2."
+        },
+        "pressureTendency": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "falling",
+                "raising",
+                "steady"
+              ]
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "description": "Propriedade. Enumerado: 'falling, raising, steady'. Indica se a pressão está a subir ou a descer. Pode ser expressa em termos quantitativos ou qualitativos."
+        },
+        "dewPoint": {
+          "type": "number",
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Unidade: graus Celsius. Ponto de orvalho: temperatura a que o ar tem de arrefecer para ficar saturado de vapor de água."
+        },
+        "refDevice": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Propriedade. Formato de identificador de qualquer entidade NGSI."
+            },
+            {
+              "type": "string",
+              "format": "uri",
+              "description": "Propriedade. Formato de identificador de qualquer entidade NGSI."
+            }
+          ],
+          "description": "Relação. Modelo: 'https://schema.org/URL'. Referência ao dispositivo ou dispositivos que efetuaram esta observação."
+        },
+        "streamGauge": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Nível da superfície da água observado por sensores de medição hidrométrica, nomeadamente uma [escala hidrométrica](https://en.wikipedia.org/wiki/Stream_gauge), em centímetros. Unidade: centímetros."
+        },
+        "snowHeight": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Altura da neve observada por sensores genéricos de medição da profundidade da neve, em centímetros. Unidade: centímetros."
+        },
+        "uVIndexMax": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Índice UV máximo do período, com base no índice UV da Organização Mundial da Saúde ([http://www.who.int/uv/intersunprogramme/activities/uv_index/en/](http://www.who.int/uv/intersunprogramme/activities/uv_index/en/)). Os valores entre 1 e 11 são o intervalo válido do índice; o valor 0 indica que não foi detetado sinal, pelo que não é guardado nenhum valor."
+        },
+        "aqiMajorPollutant": {
+          "type": "string",
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Poluente principal no índice de qualidade do ar (AQI)."
+        },
+        "aqiMajorPollutantForecast": {
+          "type": "string",
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Poluente principal previsto no índice de qualidade do ar (AQI) durante um período futuro."
+        },
+        "airTemperatureForecast": {
+          "type": "number",
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Valor previsto da temperatura do ar durante um período futuro."
+        },
+        "precipitationForecast": {
+          "type": "number",
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Precipitação prevista durante um período futuro."
+        },
+        "airQualityIndex": {
+          "type": "number",
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Índice de qualidade do ar: número usado para comunicar a qualidade do ar num determinado dia."
+        },
+        "relativeHumidityForecast": {
+          "type": "number",
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Humidade relativa (vapor de água no ar) prevista durante um período futuro."
+        },
+        "airQualityIndexForecast": {
+          "type": "number",
+          "description": "Propriedade. Modelo: 'https://schema.org/Number'. Índice de qualidade do ar (AQI) global previsto durante um período futuro."
+        },
+        "airTemperatureTSA": {
+          "type": "object",
+          "description": "Propriedade. Agregação em série temporal da temperatura do ar.",
+          "$ref": "https://smart-data-models.github.io/dataModel.Environment/Environment-schema.json#/definitions/TimeSeriesAggregation"
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "type",
+    "name",
+    "dateObserved",
+    "location",
+    "address",
+    "precipitation",
+    "relativeHumidity",
+    "windSpeed",
+    "windDirection",
+    "refDevice",
+    "dataProvider",
+    "source"
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "id": "urn:ngsi-ld:Device:ctrl-rega-01",
+  "type": "Device",
+  "name": {
+    "type": "Property",
+    "value": "Controlador de rega — Setor 01 — Parque do Mouchão",
+    "observedAt": "2026-10-18T00:00:00Z"
+  },
+  "deviceState": {
+    "type": "Property",
+    "value": "parado",
+    "observedAt": "2026-11-02T09:00:00Z"
+  },
+  "dateLastValueReported": {
+    "type": "Property",
+    "value": "2026-11-02T09:00:00Z",
+    "observedAt": "2026-11-02T09:00:00Z"
+  },
+  "waterBudget": {
+    "type": "Property",
+    "value": 80,
+    "observedAt": "2026-11-02T09:00:00Z",
+    "unitCode": "P1"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.4142,
+        39.6047
+      ]
+    },
+    "observedAt": "2026-11-02T09:00:00Z"
+  },
+  "category": {
+    "type": "Property",
+    "value": [
+      "actuator"
+    ],
+    "observedAt": "2026-10-18T00:00:00Z"
+  },
+  "areaServed": {
+    "type": "Property",
+    "value": "Setor 01 — Parque do Mouchão",
+    "observedAt": "2026-10-18T00:00:00Z"
+  },
+  "irrigationSchedule": {
+    "type": "Property",
+    "value": {
+      "days": [
+        "mon",
+        "wed",
+        "fri"
+      ],
+      "startTimes": [
+        "06:00"
+      ],
+      "durationMin": 25
+    },
+    "observedAt": "2026-10-18T00:00:00Z"
+  },
+  "dataProvider": {
+    "type": "Property",
+    "value": "cimt",
+    "observedAt": "2026-10-18T00:00:00Z"
+  },
+  "source": {
+    "type": "Property",
+    "value": "Fornecedor dos controladores de rega (a definir)",
+    "observedAt": "2026-10-18T00:00:00Z"
+  },
+  "irrigationCommand": {
+    "type": "Property",
+    "value": "changeBudget",
+    "observedAt": "2026-11-02T09:00:00Z"
+  },
+  "irrigationCommand_status": {
+    "type": "Property",
+    "value": "OK",
+    "observedAt": "2026-11-02T09:00:00Z"
+  },
+  "@context": [
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.Device/master/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}
