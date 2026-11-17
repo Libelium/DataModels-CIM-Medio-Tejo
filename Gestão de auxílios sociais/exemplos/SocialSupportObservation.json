@@ -1,0 +1,52 @@
+{
+  "id": "urn:ngsi-ld:SocialSupportObservation:abrantes-social-2026-1000245641",
+  "type": "SocialSupportObservation",
+  "indicator": {
+    "type": "Property",
+    "value": "atendimento",
+    "observedAt": "2026-09-15T15:23:16Z"
+  },
+  "aggregationLevel": {
+    "type": "Property",
+    "value": "individual",
+    "observedAt": "2026-09-15T15:23:16Z"
+  },
+  "indicatorValue": {
+    "type": "Property",
+    "value": 0,
+    "observedAt": "2026-09-15T15:23:16Z"
+  },
+  "validFrom": {
+    "type": "Property",
+    "value": "2026-09-15T15:23:16Z",
+    "observedAt": "2026-09-15T15:23:16Z"
+  },
+  "validTo": {
+    "type": "Property",
+    "value": "2026-09-15T15:23:17Z",
+    "observedAt": "2026-09-15T15:23:16Z"
+  },
+  "address": {
+    "type": "Property",
+    "value": {
+      "addressLocality": "Abrantes",
+      "addressRegion": "Oeste e Vale do Tejo",
+      "district": "Santarém",
+      "addressCountry": "Portugal"
+    },
+    "observedAt": "2026-09-15T15:23:16Z"
+  },
+  "sourceId": {
+    "type": "Property",
+    "value": "urn:ngsi-ld:SocialAction:abrantes-2026-1000245641",
+    "observedAt": "2026-09-15T15:23:16Z"
+  },
+  "source": {
+    "type": "Property",
+    "value": "entiservices:entiservices-dev.cm-abrantes.pt",
+    "observedAt": "2026-09-15T15:23:16Z"
+  },
+  "@context": [
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}

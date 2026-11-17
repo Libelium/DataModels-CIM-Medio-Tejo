@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schemaVersion": "0.0.1",
+  "modelTags": "CNMD",
+  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Gest%C3%A3o%20de%20aux%C3%ADlios%20sociais/schema/SocialSupportObservation.schema.json",
+  "title": "Schema SocialSupportObservation da PGU do Médio Tejo",
+  "description": "Observação de um indicador de apoio social num período de referência. Derivado do schema SocialSupportObservation do CNMD (versão 0.0.2): o valor do indicador é publicado em indicatorValue, e não em value, e são acrescentados os atributos sourceId e source.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "SocialSupportObservation",
+          "description": "Propriedade. Tipo de entidade NGSI. Tem de ser SocialSupportObservation."
+        },
+        "publicService": {
+          "type": "string",
+          "description": "Propriedade. Designação do serviço público ou programa de apoio social a que a observação se refere. Não publicada atualmente: a origem não a disponibiliza."
+        },
+        "observedBy": {
+          "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/EntityIdentifierType",
+          "description": "Relação. Organização responsável pela recolha ou reporte dos dados. Não publicada atualmente: a origem não a disponibiliza."
+        },
+        "address": {
+          "type": "object",
+          "description": "Propriedade. Morada associada à observação. Modelo: 'https://schema.org/address'.",
+          "properties": {
+            "addressCountry": {
+              "type": "string",
+              "description": "Propriedade. O país. Modelo: 'https://schema.org/addressCountry'."
+            },
+            "addressLocality": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Propriedade. A localidade, que tem de coincidir com o município. Modelo: 'https://schema.org/addressLocality'."
+            },
+            "addressRegion": {
+              "type": "string",
+              "enum": [
+                "Norte",
+                "Centro",
+                "Oeste e Vale do Tejo",
+                "Grande Lisboa",
+                "Península de Setúbal",
+                "Alentejo",
+                "Algarve",
+                "Região Autónoma dos Açores",
+                "Região Autónoma da Madeira"
+              ],
+              "description": "Propriedade. A região NUTS 2 em que se situa a localidade. Modelo: 'https://schema.org/addressRegion'."
+            },
+            "district": {
+              "type": "string",
+              "enum": [
+                "Açores",
+                "Aveiro",
+                "Beja",
+                "Braga",
+                "Bragança",
+                "Castelo Branco",
+                "Coimbra",
+                "Évora",
+                "Faro",
+                "Guarda",
+                "Madeira",
+                "Leiria",
+                "Lisboa",
+                "Portalegre",
+                "Porto",
+                "Santarém",
+                "Setúbal",
+                "Viana do Castelo",
+                "Vila Real",
+                "Viseu"
+              ],
+              "description": "Propriedade. O distrito em que se situa a localidade."
+            },
+            "postalCode": {
+              "type": "string",
+              "description": "Propriedade. Código postal. Modelo: 'https://schema.org/postalCode'."
+            },
+            "streetAddress": {
+              "type": "string",
+              "description": "Propriedade. Endereço da rua. Modelo: 'https://schema.org/streetAddress'."
+            },
+            "streetNr": {
+              "type": "string",
+              "description": "Propriedade. Número de polícia. Modelo: 'https://schema.org/Text'."
+            }
+          },
+          "required": [
+            "addressLocality",
+            "addressRegion",
+            "district"
+          ]
+        },
+        "areaServed": {
+          "type": "string",
+          "description": "Propriedade. Área geográfica a que os dados dizem respeito."
+        },
+        "aggregationLevel": {
+          "type": "string",
+          "description": "Propriedade. Nível de agregação dos dados, por exemplo individual, facility, parish ou municipality."
+        },
+        "facilityRef": {
+          "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/EntityIdentifierType",
+          "description": "Relação. Equipamento social a que a observação se refere."
+        },
+        "supportType": {
+          "type": "string",
+          "enum": ["financial", "goods", "facility", "mixed", "other"],
+          "description": "Propriedade. Tipo de apoio social."
+        },
+        "financialPurpose": {
+          "type": "string",
+          "enum": [
+            "housingRent",
+            "institutionAttendance",
+            "medicalTravel",
+            "educationTravel",
+            "pedagogicMaterials",
+            "emergencyFinancialAid",
+            "foodAssistance",
+            "frequencyInstitutions",
+            "other"
+          ],
+          "description": "Propriedade. Objetivo do apoio financeiro."
+        },
+        "facilityType": {
+          "type": "string",
+          "description": "Propriedade. Tipo de equipamento social."
+        },
+        "indicator": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Propriedade. Indicador observado, por exemplo atendimento, studentsCount ou mealsDailyCount."
+        },
+        "indicatorValue": {
+          "type": "number",
+          "description": "Propriedade. Valor numérico do indicador. Corresponde à propriedade value do CNMD, que não pode ser usada como nome de atributo porque o core context NGSI-LD associa value a ngsi-ld:hasValue."
+        },
+        "validFrom": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Início do período de referência dos dados, em ISO 8601 e UTC."
+        },
+        "validTo": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Fim do período de referência dos dados, em ISO 8601 e UTC."
+        },
+        "description": {
+          "type": "string",
+          "description": "Propriedade. Descrição adicional da observação."
+        },
+        "sourceId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Propriedade. Identificador do registo na origem dos dados. Atributo adicional, não existente no CNMD."
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "type",
+    "address",
+    "validFrom",
+    "validTo",
+    "aggregationLevel",
+    "indicator",
+    "indicatorValue"
+  ]
+}
