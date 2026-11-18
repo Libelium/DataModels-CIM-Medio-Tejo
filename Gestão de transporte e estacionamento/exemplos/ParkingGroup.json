@@ -1,0 +1,39 @@
+{
+  "id": "urn:ngsi-ld:ParkingGroup:abrantes:111",
+  "type": "ParkingGroup",
+  "name": {
+    "type": "Property",
+    "value": "Zona 111 — Centro",
+    "observedAt": "2026-11-18T07:45:00Z"
+  },
+  "totalSpotNumber": {
+    "type": "Property",
+    "value": 42,
+    "observedAt": "2026-11-18T07:45:00Z"
+  },
+  "occupiedSpotNumber": {
+    "type": "Property",
+    "value": 17,
+    "observedAt": "2026-11-18T07:45:00Z"
+  },
+  "availableSpotNumber": {
+    "type": "Property",
+    "value": 25,
+    "observedAt": "2026-11-18T07:45:00Z"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.1981,
+        39.4639
+      ]
+    },
+    "observedAt": "2026-11-18T07:45:00Z"
+  },
+  "@context": [
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.7.jsonld",
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.Parking/master/context.jsonld"
+  ]
+}

@@ -1,0 +1,294 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schemaVersion": "0.0.1",
+  "modelTags": "CNMD",
+  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Gest%C3%A3o%20de%20transporte%20e%20estacionamento/schema/ParkingGroup.schema.json",
+  "title": "Schema ParkingGroup da PGU do Médio Tejo",
+  "description": "Zona de estacionamento: conjunto de lugares (ParkingSpot) cuja ocupação é agregada. Derivado do schema ParkingGroup do CNMD (versão 0.4.0): address, category, refParkingSite e dataProvider não são obrigatórios, são obrigatórios name e availableSpotNumber, e é acrescentado o atributo obrigatório occupiedSpotNumber.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+    },
+    {
+      "properties": {
+        "address": {
+          "type": "object",
+          "description": "Propriedade. Morada associada à entidade. Modelo: 'https://schema.org/address'.",
+          "properties": {
+            "addressCountry": {
+              "type": "string",
+              "description": "Propriedade. O país. Modelo: 'https://schema.org/addressCountry'."
+            },
+            "addressLocality": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Propriedade. A localidade, que tem de coincidir com o município. Modelo: 'https://schema.org/addressLocality'."
+            },
+            "addressRegion": {
+              "type": "string",
+              "enum": [
+                "Norte",
+                "Centro",
+                "Oeste e Vale do Tejo",
+                "Grande Lisboa",
+                "Península de Setúbal",
+                "Alentejo",
+                "Algarve",
+                "Região Autónoma dos Açores",
+                "Região Autónoma da Madeira"
+              ],
+              "description": "Propriedade. A região NUTS 2 em que se situa a localidade. Modelo: 'https://schema.org/addressRegion'."
+            },
+            "district": {
+              "type": "string",
+              "enum": [
+                "Açores",
+                "Aveiro",
+                "Beja",
+                "Braga",
+                "Bragança",
+                "Castelo Branco",
+                "Coimbra",
+                "Évora",
+                "Faro",
+                "Guarda",
+                "Madeira",
+                "Leiria",
+                "Lisboa",
+                "Portalegre",
+                "Porto",
+                "Santarém",
+                "Setúbal",
+                "Viana do Castelo",
+                "Vila Real",
+                "Viseu"
+              ],
+              "description": "Propriedade. O distrito em que se situa a localidade."
+            },
+            "postalCode": {
+              "type": "string",
+              "description": "Propriedade. Código postal. Modelo: 'https://schema.org/postalCode'."
+            },
+            "streetAddress": {
+              "type": "string",
+              "description": "Propriedade. Endereço da rua. Modelo: 'https://schema.org/streetAddress'."
+            },
+            "streetNr": {
+              "type": "string",
+              "description": "Propriedade. Número de polícia. Modelo: 'https://schema.org/Text'."
+            }
+          },
+          "required": [
+            "addressLocality",
+            "addressRegion",
+            "district"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "const": "ParkingGroup",
+          "description": "Propriedade. Tipo de entidade NGSI. Tem de ser ParkingGroup."
+        },
+        "allowedVehicleType": {
+          "type": "string",
+          "enum": [
+            "bicycle",
+            "bus",
+            "car",
+            "caravan",
+            "motorcycle",
+            "motorscooter",
+            "truck"
+          ],
+          "description": "Propriedade. Tipo de veículo permitido. Um grupo de estacionamento só permite um tipo de veículo."
+        },
+        "areBordersMarked": {
+          "type": "boolean",
+          "description": "Propriedade. Indica se os lugares de estacionamento estão delimitados."
+        },
+        "availableSpotNumber": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Propriedade. Número de lugares livres do grupo (total menos ocupados). Calculado pela plataforma. Tem de ser inferior ou igual a totalSpotNumber."
+        },
+        "averageSpotLength": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Propriedade. Comprimento médio dos lugares de estacionamento."
+        },
+        "averageSpotWidth": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Propriedade. Largura média dos lugares de estacionamento."
+        },
+        "category": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "adjacentSpaces",
+              "blueZone",
+              "completeFloor",
+              "free",
+              "feeCharged",
+              "greenZone",
+              "loadUnloadZone",
+              "nonAdjacentSpaces",
+              "offStreet",
+              "onlyDisabled",
+              "onlyElectricalCharging",
+              "onlyResidents",
+              "onlyWithPermit",
+              "onStreet",
+              "particularConditionsSpaces",
+              "shortTermMediumTermLongTerm",
+              "statisticsOnly",
+              "vehicleTypeSpaces"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Propriedade. Categoria(s) do grupo de estacionamento."
+        },
+        "chargeType": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "additionalIntervalPrice",
+              "annualPayment",
+              "firstIntervalPrice",
+              "flat",
+              "free",
+              "minimum",
+              "maximum",
+              "monthlyPayment",
+              "seasonTicket",
+              "temporaryFee",
+              "temporaryPrice",
+              "unknown",
+              "other"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Propriedade. Tipo(s) de cobrança do estacionamento."
+        },
+        "maximumAllowedHeight": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Propriedade. Altura máxima permitida para os veículos."
+        },
+        "maximumAllowedWidth": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Propriedade. Largura máxima permitida para os veículos."
+        },
+        "maximumParkingDuration": {
+          "type": "string",
+          "pattern": "^(|P(?!$)(?:\\d+Y)?(?:\\d+M)?(?:\\d+D)?(?:T(?=\\d)(?:\\d+H)?(?:\\d+M)?(?:\\d+(?:\\.\\d+)?S)?)?)$",
+          "description": "Propriedade. Duração máxima de estadia, codificada como duração ISO 8601. Vazia ou ausente significa indefinida."
+        },
+        "occupancyDetectionType": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "balancing",
+              "manual",
+              "modelBased",
+              "none",
+              "singleSpaceDetection"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Propriedade. Forma como é detetada a ocupação dos lugares do grupo."
+        },
+        "parkingMode": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "echelonParking",
+              "parallelParking",
+              "perpendicularParking"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Propriedade. Modo de estacionamento: em espinha, paralelo ou perpendicular."
+        },
+        "permitActiveHours": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Propriedade. Horário em que o dístico é exigido, por dia da semana."
+        },
+        "refParkingSite": {
+          "type": "string",
+          "format": "uri",
+          "description": "Relação. Referência ao parque de estacionamento a que o grupo pertence. Não publicado pela PGU."
+        },
+        "refParkingSpot": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Relação. Referências aos lugares (entidades ParkingSpot) do grupo. Não publicado pela PGU."
+        },
+        "requiredPermit": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "description": "Propriedade. Dísticos exigidos para estacionar no grupo."
+        },
+        "reservationType": {
+          "type": "string",
+          "enum": [
+            "mandatory",
+            "notAvailable",
+            "optional",
+            "partly"
+          ],
+          "description": "Propriedade. Tipo de reserva do grupo."
+        },
+        "totalSpotNumber": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Propriedade. Número total de lugares do grupo. Calculado pela plataforma."
+        },
+        "name": {
+          "type": "string",
+          "description": "Propriedade. Nome da zona de estacionamento, fornecido pelo município. Modelo: 'https://schema.org/Text'."
+        },
+        "occupiedSpotNumber": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Propriedade. Número de lugares ocupados do grupo (lugares com r_prk_slot igual a 1). Calculado pela plataforma. Atributo adicional, não existente no CNMD."
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "type",
+    "name",
+    "location",
+    "totalSpotNumber",
+    "occupiedSpotNumber",
+    "availableSpotNumber"
+  ]
+}

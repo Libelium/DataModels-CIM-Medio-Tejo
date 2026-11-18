@@ -1,0 +1,61 @@
+{
+  "id": "urn:ngsi-ld:ParkingSpot:abrantes-parking-spot-260",
+  "type": "ParkingSpot",
+  "status": {
+    "type": "Property",
+    "value": "occupied",
+    "observedAt": "2026-11-18T07:42:10Z"
+  },
+  "r_prk_slot": {
+    "type": "Property",
+    "value": 1,
+    "observedAt": "2026-11-18T07:42:10Z"
+  },
+  "TimeInstant": {
+    "type": "Property",
+    "value": "2026-11-18T07:42:10Z",
+    "observedAt": "2026-11-18T07:42:10Z"
+  },
+  "category": {
+    "type": "Property",
+    "value": [
+      "onStreet"
+    ],
+    "observedAt": "2026-11-18T07:42:10Z"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.1979,
+        39.4641
+      ]
+    },
+    "observedAt": "2026-11-18T07:42:10Z"
+  },
+  "refParkingGroup": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:ParkingGroup:abrantes:111",
+    "observedAt": "2026-11-18T07:42:10Z"
+  },
+  "refDevice": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:Device:abrantes-parking-sensor-SNS-0260",
+    "observedAt": "2026-11-18T07:42:10Z"
+  },
+  "sourceId": {
+    "type": "Property",
+    "value": "urn:ngsi-ld:ParkingSpot:260",
+    "observedAt": "2026-11-18T07:42:10Z"
+  },
+  "source": {
+    "type": "Property",
+    "value": "entiservices:entiservices-dev.cm-abrantes.pt",
+    "observedAt": "2026-11-18T07:42:10Z"
+  },
+  "@context": [
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.7.jsonld",
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.Parking/master/context.jsonld"
+  ]
+}
