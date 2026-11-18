@@ -1,0 +1,62 @@
+{
+  "id": "urn:ngsi-ld:CrowdFlowObserved:abrantes-people-00000007-passage-unspecified",
+  "type": "CrowdFlowObserved",
+  "name": {
+    "type": "Property",
+    "value": "Rua Direita",
+    "observedAt": "2026-11-17T10:30:00Z"
+  },
+  "peopleCount": {
+    "type": "Property",
+    "value": 2,
+    "observedAt": "2026-11-17T10:30:00Z"
+  },
+  "countType": {
+    "type": "Property",
+    "value": "passage",
+    "observedAt": "2026-11-17T10:30:00Z"
+  },
+  "direction": {
+    "type": "Property",
+    "value": "unspecified",
+    "observedAt": "2026-11-17T10:30:00Z"
+  },
+  "dateObserved": {
+    "type": "Property",
+    "value": "2026-11-17T10:30:00Z",
+    "observedAt": "2026-11-17T10:30:00Z"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.1989,
+        39.4642
+      ]
+    },
+    "observedAt": "2026-11-17T10:30:00Z"
+  },
+  "address": {
+    "type": "Property",
+    "value": {
+      "addressLocality": "Abrantes",
+      "addressCountry": "PT"
+    },
+    "observedAt": "2026-11-17T10:30:00Z"
+  },
+  "dataProvider": {
+    "type": "Property",
+    "value": "abrantes",
+    "observedAt": "2026-11-17T10:30:00Z"
+  },
+  "source": {
+    "type": "Property",
+    "value": "entiservices:entiservices-dev.cm-abrantes.pt",
+    "observedAt": "2026-11-17T10:30:00Z"
+  },
+  "@context": [
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.7.jsonld",
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.Transportation/master/context.jsonld"
+  ]
+}

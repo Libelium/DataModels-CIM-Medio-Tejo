@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schemaVersion": "0.0.1",
+  "modelTags": "SDM",
+  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Fluxo%20de%20pessoas%20e%20tur%C3%ADstas/schema/CrowdFlowObserved.schema.json",
+  "title": "Schema CrowdFlowObserved da PGU do Médio Tejo",
+  "description": "Observação do fluxo de pessoas numa via pedonal, num determinado local e momento. Derivado do schema CrowdFlowObserved dos Smart Data Models (dataModel.Transportation, versão 0.0.3): direction admite também unspecified, são obrigatórios peopleCount, direction, countType, location, dataProvider e source, e são acrescentados os atributos countType, aggregationPeriod e crowdPattern. Todos os atributos que a PGU ainda não publica são opcionais.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "CrowdFlowObserved"
+          ],
+          "description": "Propriedade. Tipo de entidade NGSI. Tem de ser CrowdFlowObserved."
+        },
+        "refRoadSegment": {
+          "type": "string",
+          "format": "uri",
+          "description": "Relação. Segmento de via em que foi feita a observação. Modelo: 'https://schema.org/URL'."
+        },
+        "dateObserved": {
+          "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/dateObserved"
+        },
+        "dateObservedFrom": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Data e hora de início do período de observação. Ver dateObserved. Modelo: 'https://schema.org/DateTime'."
+        },
+        "dateObservedTo": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Data e hora de fim do período de observação. Ver dateObserved. Modelo: 'https://schema.org/DateTime'."
+        },
+        "peopleCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Propriedade. Número total de pessoas detetadas durante a observação. Inteiro maior ou igual a 0."
+        },
+        "peopleCountTowards": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Propriedade. Número de pessoas detetadas na direção indicada em direction. Não publicado pela PGU."
+        },
+        "peopleCountAway": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Propriedade. Número de pessoas detetadas na direção oposta à indicada em direction. Não publicado pela PGU."
+        },
+        "occupancy": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Propriedade. Fração do tempo de observação em que uma pessoa ocupou a via pedonal observada. Valor entre 0 e 1. Modelo: 'https://schema.org/Number'. Não publicado pela PGU."
+        },
+        "averageCrowdSpeed": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Velocidade média da multidão durante o período de observação. Modelo: 'https://schema.org/Number'. Unidade: quilómetros por hora (KMH). Não publicado pela PGU."
+        },
+        "congested": {
+          "type": "boolean",
+          "description": "Propriedade. Indica se houve congestionamento de pessoas na via pedonal durante o período de observação. A ausência do atributo significa que não houve congestionamento. Modelo: 'https://schema.org/Boolean'. Não publicado pela PGU."
+        },
+        "averageHeadwayTime": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Tempo médio de intervalo entre pessoas consecutivas. Modelo: 'https://schema.org/Number'. Unidade: segundos (SEC). Não publicado pela PGU."
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "inbound",
+            "outbound",
+            "unspecified"
+          ],
+          "description": "Propriedade. Sentido habitual de deslocação na via pedonal a que se refere a observação, em relação ao centro da cidade. Modelo: 'https://schema.org/Text'. Enumerado do modelo: inbound, outbound; a PGU acrescenta unspecified, porque a origem não indica o sentido."
+        },
+        "address": {
+          "type": "object",
+          "description": "Propriedade. Morada do ponto de contagem. Modelo: 'https://schema.org/address'.",
+          "properties": {
+            "streetAddress": {
+              "type": "string",
+              "description": "Propriedade. Rua do ponto de contagem. Modelo: 'https://schema.org/streetAddress'."
+            },
+            "addressLocality": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Propriedade. A localidade, que tem de coincidir com o município. Modelo: 'https://schema.org/addressLocality'."
+            },
+            "addressRegion": {
+              "type": "string",
+              "description": "Propriedade. A região NUTS 2 em que se situa a localidade. Modelo: 'https://schema.org/addressRegion'."
+            },
+            "district": {
+              "type": "string",
+              "description": "Propriedade. O distrito em que se situa a localidade."
+            },
+            "addressCountry": {
+              "type": "string",
+              "description": "Propriedade. O país. Modelo: 'https://schema.org/addressCountry'."
+            }
+          }
+        },
+        "name": {
+          "type": "string",
+          "description": "Propriedade. Nome do ponto de contagem (a rua). Modelo: 'https://schema.org/Text'."
+        },
+        "countType": {
+          "type": "string",
+          "description": "Propriedade. Tipo de contagem do ponto: passage (passagem) ou dwell (permanência, em praças e largos). É fixo por ponto, e as contagens dos dois tipos não são somáveis entre si. Atributo adicional, não existente nos Smart Data Models.",
+          "examples": [
+            "passage",
+            "dwell"
+          ]
+        },
+        "aggregationPeriod": {
+          "type": "string",
+          "enum": [
+            "hour",
+            "day"
+          ],
+          "description": "Propriedade. Período de agregação dos dados de contagem: hour (hora) ou day (dia). Atributo adicional, não existente nos Smart Data Models. Atributo previsto, ainda não publicado pela PGU.",
+          "examples": [
+            "hour",
+            "day"
+          ]
+        },
+        "crowdPattern": {
+          "type": "object",
+          "description": "Propriedade. Tendências sazonais e padrões de comportamento do fluxo de pessoas, calculados na camada de relatórios a partir do histórico. Atributo adicional, não existente nos Smart Data Models. Atributo previsto, ainda não publicado pela PGU."
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "type",
+    "peopleCount",
+    "direction",
+    "countType",
+    "dateObserved",
+    "location",
+    "dataProvider",
+    "source"
+  ]
+}
