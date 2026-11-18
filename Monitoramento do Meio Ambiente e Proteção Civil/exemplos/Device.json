@@ -1,5 +1,5 @@
 {
-  "id": "urn:ngsi-ld:Device:cimt:tomar-01",
+  "id": "urn:ngsi-ld:Device:tomar:est-01",
   "type": "Device",
   "location": {
     "type": "GeoProperty",
@@ -46,7 +46,7 @@
   },
   "dataProvider": {
     "type": "Property",
-    "value": "cimt",
+    "value": "tomar",
     "observedAt": "2026-11-17T09:00:00Z"
   },
   "source": {

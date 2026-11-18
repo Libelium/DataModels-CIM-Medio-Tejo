@@ -1,9 +1,9 @@
 {
-  "id": "urn:ngsi-ld:AirQualityObserved:cimt:tomar-01",
+  "id": "urn:ngsi-ld:AirQualityObserved:tomar:est-01",
   "type": "AirQualityObserved",
   "refDevice": {
     "type": "Relationship",
-    "object": "urn:ngsi-ld:Device:cimt:tomar-01",
+    "object": "urn:ngsi-ld:Device:tomar:est-01",
     "observedAt": "2026-11-17T09:00:00Z"
   },
   "dateObserved": {
@@ -89,7 +89,7 @@
   },
   "dataProvider": {
     "type": "Property",
-    "value": "cimt",
+    "value": "tomar",
     "observedAt": "2026-11-17T09:00:00Z"
   },
   "source": {

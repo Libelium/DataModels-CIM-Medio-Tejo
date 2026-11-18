@@ -35,19 +35,19 @@ Os campos de origem correspondem aos atributos seguintes:
 | `estado_comunicacao` | `Device` | `deviceState`, `dateLastValueReported`, `simState` e `batteryLevel` |
 | `alerta_risco` | `Alert` | `id`, `category`, `subCategory`, `severity`, `description`, `dateIssued`, `validFrom`, `validTo` e `location` |
 
-**Os exemplos deste diretório são ilustrativos:** têm o mesmo formato com que as entidades serão publicadas, mas as coordenadas, o identificador da estação e os valores não correspondem a dados reais. Os exemplos referem a estação `tomar-01`.
+**Os exemplos deste diretório são ilustrativos:** têm o mesmo formato com que as entidades serão publicadas, mas as coordenadas, o identificador da estação e os valores não correspondem a dados reais. Os exemplos referem a estação `est-01` do município de Tomar.
 
 ## Modelo `AirQualityObserved`
 
-Cada estação tem uma entidade, com o identificador `urn:ngsi-ld:AirQualityObserved:cimt:<estação>`, em que `<estação>` é o identificador da estação, normalizado para ASCII; cada observação atualiza os seus atributos. O identificador é estável, pelo que a ingestão é idempotente, e o histórico obtém-se pela API temporal NGSI-LD.
+Cada estação tem uma entidade, com o identificador `urn:ngsi-ld:AirQualityObserved:<fonte>:<estação>`, em que `<fonte>` é a entidade que publica os dados da estação (o município, ex.: `tomar`, ou a CIMT, `cimt`, conforme a estação) e `<estação>` é o identificador da estação, normalizado para ASCII; cada observação atualiza os seus atributos. O identificador é estável, pelo que a ingestão é idempotente, e o histórico obtém-se pela API temporal NGSI-LD.
 
 ### Propriedades
 
 | Propriedade | Tipo | Descrição | Nota |
 |-------------|------|-----------|------|
-| id | URI | Identificador único da entidade | `urn:ngsi-ld:AirQualityObserved:cimt:<estação>`. Segue a convenção de identificadores deste repositório. |
+| id | URI | Identificador único da entidade | `urn:ngsi-ld:AirQualityObserved:<fonte>:<estação>`. Segue a convenção de identificadores deste repositório. |
 | type | String | Tipo de entidade | Valor constante igual a `AirQualityObserved`. |
-| refDevice | Relationship | Estação que efetuou a observação | Entidade `Device` da estação, ex.: `urn:ngsi-ld:Device:cimt:tomar-01`. |
+| refDevice | Relationship | Estação que efetuou a observação | Entidade `Device` da estação, ex.: `urn:ngsi-ld:Device:tomar:est-01`. |
 | dateObserved | DateTime | Data e hora da observação | De acordo com a norma [ISO 8601-1:2019](https://www.iso.org/standard/70907.html), em UTC. Instante ou intervalo ISO 8601. |
 | location | GeoJSON | Localização da estação | `Point`. |
 | address | Object | Morada da estação | `addressLocality` (município), `addressRegion`, `district` e `addressCountry`, atribuídos por estação. |
@@ -60,7 +60,7 @@ Cada estação tem uma entidade, com o identificador `urn:ngsi-ld:AirQualityObse
 | nox | Number | Óxidos de azoto | `unitCode` `61` (ppb). Se a origem enviar NO e NO₂ em separado, são também publicados `no` e `no2`. |
 | co | Number | Monóxido de carbono | `unitCode` `59` (ppm). |
 | volatileOrganicCompoundsTotal | Number | Compostos orgânicos voláteis totais | `unitCode` `61` (ppb). |
-| dataProvider | String | Fornecedor dos dados | `cimt` (CIM Médio Tejo). |
+| dataProvider | String | Fornecedor dos dados | A entidade que publica os dados: o município (ex.: `tomar`) ou `cimt` (CIM Médio Tejo), conforme a estação. |
 | source | String | Origem dos dados da entidade | O fornecedor das estações (por definir). |
 
 O modelo do CNMD tem ainda outros poluentes e atributos que a PGU não publica, como `o3`, `no2`, `so2`, `c6h6`, `name`, `refPointOfInterest`, `airQualityIndex` e `airQualityLevel`. Estão previstos no [JSON Schema](schema/AirQualityObserved.schema.json), como opcionais.
@@ -91,13 +91,13 @@ O [JSON Schema](schema/AirQualityObserved.schema.json) deste repositório não e
 
 ## Modelo `NoiseLevelObserved`
 
-Cada estação tem uma entidade, com o identificador `urn:ngsi-ld:NoiseLevelObserved:cimt:<estação>`; cada observação atualiza os seus atributos, e o histórico obtém-se pela API temporal NGSI-LD.
+Cada estação tem uma entidade, com o identificador `urn:ngsi-ld:NoiseLevelObserved:<fonte>:<estação>`; cada observação atualiza os seus atributos, e o histórico obtém-se pela API temporal NGSI-LD.
 
 ### Propriedades
 
 | Propriedade | Tipo | Descrição | Nota |
 |-------------|------|-----------|------|
-| id | URI | Identificador único da entidade | `urn:ngsi-ld:NoiseLevelObserved:cimt:<estação>`. Segue a convenção de identificadores deste repositório. |
+| id | URI | Identificador único da entidade | `urn:ngsi-ld:NoiseLevelObserved:<fonte>:<estação>`. Segue a convenção de identificadores deste repositório. |
 | type | String | Tipo de entidade | Valor constante igual a `NoiseLevelObserved`. |
 | refDevice | Relationship | Estação que efetuou a observação | Entidade `Device` da estação. |
 | dateObserved | DateTime | Data e hora da observação | De acordo com a norma [ISO 8601-1:2019](https://www.iso.org/standard/70907.html), em UTC. Instante ou intervalo ISO 8601. |
@@ -105,7 +105,7 @@ Cada estação tem uma entidade, com o identificador `urn:ngsi-ld:NoiseLevelObse
 | address | Object | Morada da estação | Igual à do `AirQualityObserved`. |
 | LAeq | Number | Nível sonoro contínuo equivalente ponderado A no período (média) | `unitCode` `2N` (dB). |
 | LAmax | Number | Nível sonoro máximo no período (picos) | `unitCode` `2N` (dB). |
-| dataProvider | String | Fornecedor dos dados | `cimt` (CIM Médio Tejo). |
+| dataProvider | String | Fornecedor dos dados | A entidade que publica os dados: o município (ex.: `tomar`) ou `cimt` (CIM Médio Tejo), conforme a estação. |
 | source | String | Origem dos dados da entidade | O fornecedor das estações (por definir). |
 
 O modelo do CNMD tem ainda `dateObservedFrom`, `dateObservedTo`, `sonometerClass`, `LAS`, `LAeq_d`, `refPointOfInterest`, `refWeatherObserved`, `obstacles`, `heightAverage` e `distanceAverage`, que a PGU não publica. Estão previstos no [JSON Schema](schema/NoiseLevelObserved.schema.json), como opcionais.
@@ -131,7 +131,7 @@ O [JSON Schema](schema/NoiseLevelObserved.schema.json) deste repositório não e
 
 ## Modelo `Alert`
 
-Cada alerta tem uma entidade, com o identificador `urn:ngsi-ld:Alert:cimt:<alerta>`, em que `<alerta>` é o identificador do alerta na origem, normalizado para ASCII. Se a origem não o fornecer, constrói-se com o identificador da estação e a data de emissão: `<estação>-<data de emissão>` (ex.: `tomar-01-20261117T142000Z`).
+Cada alerta tem uma entidade, com o identificador `urn:ngsi-ld:Alert:<fonte>:<alerta>`, em que `<alerta>` é o identificador do alerta na origem, normalizado para ASCII. Se a origem não o fornecer, constrói-se com o identificador da estação e a data de emissão: `<estação>-<data de emissão>` (ex.: `est-01-20261117T142000Z`).
 
 ### Propriedades
 
@@ -139,7 +139,7 @@ Os atributos seguintes são garantidos mesmo com um alerta mínimo:
 
 | Propriedade | Tipo | Descrição | Nota |
 |-------------|------|-----------|------|
-| id | URI | Identificador único da entidade | `urn:ngsi-ld:Alert:cimt:<alerta>`. Segue a convenção de identificadores deste repositório. |
+| id | URI | Identificador único da entidade | `urn:ngsi-ld:Alert:<fonte>:<alerta>`. Segue a convenção de identificadores deste repositório. |
 | type | String | Tipo de entidade | Valor constante igual a `Alert`. |
 | category | String | Categoria do alerta | O tipo de risco da origem, traduzido para a lista do modelo (`traffic`, `naturalDisaster`, `weather`, `environment`, `health`, `security` ou `agriculture`). Se a origem não o indicar, `environment`. |
 | dateIssued | DateTime | Data e hora de emissão do alerta | De acordo com a norma [ISO 8601-1:2019](https://www.iso.org/standard/70907.html), em UTC. É o único campo imprescindível da origem. |
@@ -154,7 +154,7 @@ Os atributos seguintes só são publicados se a origem os fornecer; caso contrá
 | subCategory | String | Subcategoria do alerta | O subtipo de risco, se a origem o distinguir. Valor da lista do modelo (ex.: `airPollution`, `heatWave`, `forestFire`). |
 | validFrom, validTo | DateTime | Período de validade do alerta | Em UTC. |
 | location | GeoJSON | Zona afetada | Se não vier, herda a localização da estação que originou o alerta. |
-| dataProvider | String | Fornecedor dos dados | `cimt` (CIM Médio Tejo). |
+| dataProvider | String | Fornecedor dos dados | A entidade que publica os dados: o município (ex.: `tomar`) ou `cimt` (CIM Médio Tejo), conforme a estação. |
 
 ### Propriedades obrigatórias
 
@@ -173,13 +173,13 @@ O [JSON Schema](schema/Alert.schema.json) deste repositório não exige `address
 
 ## Modelo `Device`
 
-Cada estação de monitorização tem uma entidade, com o identificador `urn:ngsi-ld:Device:cimt:<estação>`. É a entidade referida por `refDevice` no `AirQualityObserved` e no `NoiseLevelObserved`, e publica o estado de comunicação do equipamento: o estado operacional, a última comunicação, o estado do cartão SIM e o nível da bateria.
+Cada estação de monitorização tem uma entidade, com o identificador `urn:ngsi-ld:Device:<fonte>:<estação>`. É a entidade referida por `refDevice` no `AirQualityObserved` e no `NoiseLevelObserved`, e publica o estado de comunicação do equipamento: o estado operacional, a última comunicação, o estado do cartão SIM e o nível da bateria.
 
 ### Propriedades
 
 | Propriedade | Tipo | Descrição | Nota |
 |-------------|------|-----------|------|
-| id | URI | Identificador único da entidade | `urn:ngsi-ld:Device:cimt:<estação>`. Segue a convenção de identificadores deste repositório. |
+| id | URI | Identificador único da entidade | `urn:ngsi-ld:Device:<fonte>:<estação>`. Segue a convenção de identificadores deste repositório. |
 | type | String | Tipo de entidade | Valor constante igual a `Device`. |
 | location | GeoJSON | Localização da estação | `Point`. |
 | address | Object | Morada da estação | Atribuída por estação. |
@@ -187,7 +187,7 @@ Cada estação de monitorização tem uma entidade, com o identificador `urn:ngs
 | dateLastValueReported | DateTime | Data e hora da última comunicação da estação à plataforma | De acordo com a norma [ISO 8601-1:2019](https://www.iso.org/standard/70907.html), em UTC. |
 | simState | String | Estado do cartão SIM da estação | Enumerado: `active` (ativo) ou `inactive` (inativo). Atributo adicional. |
 | batteryLevel | Number | Nível da bateria da estação | Fração de 0 a 1 (91 % → 0,91): 1,0 com a bateria cheia e 0,0 com a bateria vazia. |
-| dataProvider | String | Fornecedor dos dados | `cimt` (CIM Médio Tejo). |
+| dataProvider | String | Fornecedor dos dados | A entidade que publica os dados: o município (ex.: `tomar`) ou `cimt` (CIM Médio Tejo), conforme a estação. |
 | source | String | Origem dos dados da entidade | O fornecedor das estações (por definir). |
 
 ### Propriedades obrigatórias
