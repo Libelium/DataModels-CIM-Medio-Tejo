@@ -167,7 +167,12 @@
         },
         "deviceState": {
           "type": "string",
-          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Estado operacional do dispositivo. O seu valor pode depender do fornecedor; nas câmaras de tráfego é ativo, falha ou comunicação. Atributo previsto, ainda não publicado pela PGU."
+          "enum": [
+            "active",
+            "communication",
+            "fault"
+          ],
+          "description": "Propriedade. Modelo: 'https://schema.org/Text'. Estado operacional do dispositivo. Nas câmaras de tráfego: active (ativa), communication (problema de comunicação) ou fault (avaria). Atributo previsto, ainda não publicado pela PGU."
         },
         "dateLastValueReported": {
           "type": "string",

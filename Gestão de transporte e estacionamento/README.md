@@ -23,7 +23,7 @@ Os dados provêm da API EntiServices do município de Abrantes (servidor de dese
 | `/analitica/estacionamentos/historico` | Cada mudança de estado de cada lugar | `ParkingSpot` | A cada 5 minutos |
 | `/analitica/fluxos-pessoas` | Eventos de contagem; só os de veículos pertencem a esta vertical | `TrafficFlowObserved` | A cada 15 minutos |
 
-A ingestão é feita através do IoT Agent JSON da plataforma iris360. Os grupos de estacionamento (`ParkingGroup`) não vêm da API: são criados na PGU, e a plataforma calcula os seus valores agregados a partir dos lugares que os compõem. A API de Abrantes não indica o estado dos sensores nem das câmaras.
+Nos identificadores, `<fonte>` é o município de origem dos dados (hoje, `abrantes`). A ingestão é feita através do IoT Agent JSON da plataforma iris360. Os grupos de estacionamento (`ParkingGroup`) não vêm da API: são criados na PGU, e a plataforma calcula os seus valores agregados a partir dos lugares que os compõem. A API de Abrantes não indica o estado dos sensores nem das câmaras.
 
 Os campos de origem correspondem aos atributos seguintes:
 
@@ -47,13 +47,13 @@ Os campos de origem correspondem aos atributos seguintes:
 
 ## Modelo `TrafficFlowObserved`
 
-Cada ponto de contagem tem uma entidade por tipo de contagem, com o identificador `urn:ngsi-ld:TrafficFlowObserved:abrantes-traffic-<ponto>_TFO`, em que `<ponto>` é o identificador do ponto de contagem na origem (`idRua`; se for numérico, com 8 dígitos, ex.: `00000012`). Quando a contagem não é uma passagem, o tipo de contagem fica antes do sufixo: `abrantes-traffic-<ponto>-dwell_TFO`. O identificador é estável, pelo que a ingestão é idempotente; cada evento de contagem atualiza os atributos da entidade, e o histórico obtém-se pela API temporal NGSI-LD. Cada evento é publicado tal como chega, sem ser somado: as agregações são feitas na consulta.
+Cada ponto de contagem tem uma entidade por tipo de contagem, com o identificador `urn:ngsi-ld:TrafficFlowObserved:<fonte>-traffic-<ponto>_TFO`, em que `<ponto>` é o identificador do ponto de contagem na origem (`idRua`; se for numérico, com 8 dígitos, ex.: `00000012`). Quando a contagem não é uma passagem, o tipo de contagem fica antes do sufixo: `<fonte>-traffic-<ponto>-dwell_TFO`. O identificador é estável, pelo que a ingestão é idempotente; cada evento de contagem atualiza os atributos da entidade, e o histórico obtém-se pela API temporal NGSI-LD. Cada evento é publicado tal como chega, sem ser somado: as agregações são feitas na consulta.
 
 ### Propriedades
 
 | Propriedade | Tipo | Descrição | Nota |
 |-------------|------|-----------|------|
-| id | URI | Identificador único da entidade | `urn:ngsi-ld:TrafficFlowObserved:abrantes-traffic-<ponto>_TFO`. Segue a convenção de identificadores deste repositório. |
+| id | URI | Identificador único da entidade | `urn:ngsi-ld:TrafficFlowObserved:<fonte>-traffic-<ponto>_TFO`. Segue a convenção de identificadores deste repositório. |
 | type | String | Tipo de entidade | Valor constante igual a `TrafficFlowObserved`. |
 | name | String | Nome do ponto de contagem | A rua da câmara. |
 | intensity | Number | Número de veículos detetados no evento | Inteiro maior ou igual a 0. |
@@ -65,7 +65,7 @@ Cada ponto de contagem tem uma entidade por tipo de contagem, com o identificado
 | laneDirection | String | Sentido habitual de circulação na faixa | Enumerado: `forward` ou `backward`. Atributo previsto, ainda não publicado. |
 | aggregationPeriod | String | Período de agregação dos dados de contagem | Enumerado: `hour` (hora) ou `day` (dia). Atributo adicional, previsto e ainda não publicado. |
 | trafficPattern | Object | Indicadores agregados de padrões horários e sazonais do fluxo de tráfego | Atributo adicional, previsto e ainda não publicado. |
-| dataProvider | String | Fornecedor dos dados | O município (`abrantes`). |
+| dataProvider | String | Fornecedor dos dados | Município de origem dos dados (hoje, `abrantes`). Está previsto passar a `cimt` (CIM Médio Tejo) quando houver dados de vários municípios. |
 | source | String | Origem dos dados da entidade | `entiservices:<servidor da API>`. |
 
 O modelo do CNMD tem ainda propriedades que a PGU não publica, como `occupancy`, `averageVehicleSpeed`, `averageVehicleLength`, `averageGapDistance`, `averageHeadwayTime`, `congested`, `reversedLane`, `laneId`, `refRoadSegment` e `vehicleSubType`. Estão previstas no [JSON Schema](schema/TrafficFlowObserved.schema.json), como opcionais.
@@ -88,13 +88,13 @@ O [JSON Schema](schema/TrafficFlowObserved.schema.json) deste repositório não 
 
 ## Modelo `ParkingSpot`
 
-Cada lugar de estacionamento com sensor tem uma entidade, com o identificador `urn:ngsi-ld:ParkingSpot:abrantes-parking-spot-<n>`, em que `<n>` é o número do lugar na origem. A cada mudança de estado são atualizados `status`, `r_prk_slot` e `TimeInstant`; os restantes atributos só voltam a ser enviados se mudarem. O histórico obtém-se pela API temporal NGSI-LD.
+Cada lugar de estacionamento com sensor tem uma entidade, com o identificador `urn:ngsi-ld:ParkingSpot:<fonte>-parking-spot-<n>`, em que `<n>` é o número do lugar na origem. A cada mudança de estado são atualizados `status`, `r_prk_slot` e `TimeInstant`; os restantes atributos só voltam a ser enviados se mudarem. O histórico obtém-se pela API temporal NGSI-LD.
 
 ### Propriedades
 
 | Propriedade | Tipo | Descrição | Nota |
 |-------------|------|-----------|------|
-| id | URI | Identificador único da entidade | `urn:ngsi-ld:ParkingSpot:abrantes-parking-spot-<n>`, normalizado para ASCII. Segue a convenção de identificadores deste repositório. |
+| id | URI | Identificador único da entidade | `urn:ngsi-ld:ParkingSpot:<fonte>-parking-spot-<n>`, normalizado para ASCII. Segue a convenção de identificadores deste repositório. |
 | type | String | Tipo de entidade | Valor constante igual a `ParkingSpot`. |
 | status | String | Estado de ocupação do lugar | Enumerado: `free`, `occupied`, `closed` ou `unknown`. |
 | r_prk_slot | Number | Ocupação do lugar: 0 (livre) ou 1 (ocupado) | Atributo adicional, usado pela plataforma para calcular a ocupação dos grupos. Só é publicado com `free` ou `occupied`; ver [Notas](#notas). |
@@ -128,13 +128,13 @@ O [JSON Schema](schema/ParkingSpot.schema.json) deste repositório não exige `a
 
 ## Modelo `ParkingGroup`
 
-Cada zona de estacionamento tem uma entidade, com o identificador `urn:ngsi-ld:ParkingGroup:abrantes:<zona>` (zonas 111 a 119). A entidade é criada na PGU, com o nome da zona fornecido pelo município; os valores agregados são calculados periodicamente pela plataforma a partir do `r_prk_slot` dos lugares da zona.
+Cada zona de estacionamento tem uma entidade, com o identificador `urn:ngsi-ld:ParkingGroup:<fonte>:<zona>` (zonas 111 a 119). A entidade é criada na PGU, com o nome da zona fornecido pelo município; os valores agregados são calculados periodicamente pela plataforma a partir do `r_prk_slot` dos lugares da zona.
 
 ### Propriedades
 
 | Propriedade | Tipo | Descrição | Nota |
 |-------------|------|-----------|------|
-| id | URI | Identificador único da entidade | `urn:ngsi-ld:ParkingGroup:abrantes:<zona>`. Segue a convenção de identificadores deste repositório. |
+| id | URI | Identificador único da entidade | `urn:ngsi-ld:ParkingGroup:<fonte>:<zona>`. Segue a convenção de identificadores deste repositório. |
 | type | String | Tipo de entidade | Valor constante igual a `ParkingGroup`. |
 | name | String | Nome da zona | Fornecido pelo município. |
 | totalSpotNumber | Number | Número de lugares da zona | Calculado pela plataforma. |
@@ -164,20 +164,20 @@ O [JSON Schema](schema/ParkingGroup.schema.json) deste repositório não exige `
 
 A vertical tem dois tipos de dispositivo, ambos com o tipo `Device`:
 
-- **Sensores dos lugares de estacionamento**, com o identificador `urn:ngsi-ld:Device:abrantes-parking-sensor-<sensor>`, em que `<sensor>` é o identificador do sensor na origem. Só têm a identidade, a localização e o lugar que monitorizam.
+- **Sensores dos lugares de estacionamento**, com o identificador `urn:ngsi-ld:Device:<fonte>-parking-sensor-<sensor>`, em que `<sensor>` é o identificador do sensor na origem. Só têm a identidade, a localização e o lugar que monitorizam.
 - **Câmaras de contagem de tráfego**, cujos atributos estão previstos mas ainda não são publicados (ver [Notas](#notas)).
 
 ### Propriedades
 
 | Propriedade | Tipo | Descrição | Nota |
 |-------------|------|-----------|------|
-| id | URI | Identificador único da entidade | `urn:ngsi-ld:Device:abrantes-parking-sensor-<sensor>`. Segue a convenção de identificadores deste repositório. |
+| id | URI | Identificador único da entidade | `urn:ngsi-ld:Device:<fonte>-parking-sensor-<sensor>`. Segue a convenção de identificadores deste repositório. |
 | type | String | Tipo de entidade | Valor constante igual a `Device`. |
 | serialNumber | String | Identificador do sensor na origem | Ex.: `SNS-0260`. |
 | controlledAsset | Array | Lugar que o sensor monitoriza | Lista com a entidade `ParkingSpot`, ex.: `["urn:ngsi-ld:ParkingSpot:abrantes-parking-spot-260"]`. |
 | location | GeoJSON | Localização do dispositivo | `Point`. |
-| deviceState | String | Estado operacional | Nas câmaras: `ativo`, `falha` ou `comunicação`. Atributo previsto, ainda não publicado. |
-| dataProvider | String | Fornecedor dos dados | `cimt` (CIM Médio Tejo). Atributo previsto, ainda não publicado. |
+| deviceState | String | Estado operacional | Nas câmaras: `active` (ativa), `fault` (avaria) ou `communication` (problema de comunicação). Atributo previsto, ainda não publicado. |
+| dataProvider | String | Fornecedor dos dados | Município de origem dos dados (hoje, `abrantes`). Atributo previsto, ainda não publicado. |
 | source | String | Origem dos dados da entidade | `entiservices:<servidor da API>` nos sensores de estacionamento; o fornecedor das câmaras (por definir) nas câmaras. |
 
 ### Propriedades obrigatórias
