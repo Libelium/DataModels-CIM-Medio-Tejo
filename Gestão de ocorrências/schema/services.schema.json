@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$schemaVersion": "0.0.1",
   "modelTags": "SDM",
-  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Gest%C3%A3o%20de%20incidentes/schema/services.schema.json",
+  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Gest%C3%A3o%20de%20ocorr%C3%AAncias/schema/services.schema.json",
   "title": "Schema services da PGU do Médio Tejo",
   "description": "Tipologia de pedido de serviço Open311 (service type): a lista de tipologias de ocorrências, que pode ser própria de cada município. Derivado do schema services dos Smart Data Models (dataModel.IssueTracking, versão 0.1.0), com o atributo slaHours.",
   "type": "object",
