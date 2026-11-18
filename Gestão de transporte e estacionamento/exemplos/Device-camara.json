@@ -1,0 +1,41 @@
+{
+  "id": "urn:ngsi-ld:Device:abrantes-traffic-camera-00000012",
+  "type": "Device",
+  "deviceState": {
+    "type": "Property",
+    "value": "active",
+    "observedAt": "2026-11-18T07:00:00Z"
+  },
+  "controlledAsset": {
+    "type": "Property",
+    "value": [
+      "urn:ngsi-ld:TrafficFlowObserved:abrantes-traffic-00000012_TFO"
+    ],
+    "observedAt": "2026-11-18T07:00:00Z"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.1985,
+        39.4636
+      ]
+    },
+    "observedAt": "2026-11-18T07:00:00Z"
+  },
+  "dataProvider": {
+    "type": "Property",
+    "value": "abrantes",
+    "observedAt": "2026-11-18T07:00:00Z"
+  },
+  "source": {
+    "type": "Property",
+    "value": "Fornecedor das câmaras (a definir)",
+    "observedAt": "2026-11-18T07:00:00Z"
+  },
+  "@context": [
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.7.jsonld",
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.Device/master/context.jsonld"
+  ]
+}

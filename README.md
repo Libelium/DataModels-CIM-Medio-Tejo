@@ -17,7 +17,7 @@ A PGU integra, para a CIMT e para os seus 11 municípios (Abrantes, Alcanena, Co
 
 | Vertical | Área temática | Modelo(s) de dados | Referência |
 |---|---|---|---|
-| V1 | Gestão de transporte e estacionamento |  |  |
+| V1 | Gestão de transporte e estacionamento | `TrafficFlowObserved`, `ParkingSpot`, `ParkingGroup`, `Device` | CNMD ([Contadores de viaturas](https://github.com/amagovpt/CATALOGO_MODELOS_DADOS_TI/tree/main/Transportes%20e%20infraestruturas/Tr%C3%A1fego/Contadores%20de%20viaturas), [Estacionamento — Lugar](https://github.com/amagovpt/CATALOGO_MODELOS_DADOS_TI/tree/main/Transportes%20e%20infraestruturas/Mobilidade/Estacionamento%20-%20Lugar), [Estacionamento — Parque](https://github.com/amagovpt/CATALOGO_MODELOS_DADOS_TI/tree/main/Transportes%20e%20infraestruturas/Mobilidade/Estacionamento%20-%20Parque), [Sensores](https://github.com/amagovpt/CATALOGO_MODELOS_DADOS_TI/tree/main/Comuns/Sensores)) |
 | V2 | Fluxo de pessoas e turistas | `CrowdFlowObserved` | Smart Data Models ([CrowdFlowObserved](https://github.com/smart-data-models/dataModel.Transportation/tree/master/CrowdFlowObserved)) |
 | V3 | Monitoramento do Meio Ambiente e Proteção Civil |  |  |
 | V4 | Eficiência energética em edifícios públicos municipais e iluminação pública | `ACMeasurement`, `Anomaly`, `KeyPerformanceIndicator` | [CNMD — Consumo de eletricidade](https://github.com/amagovpt/CATALOGO_MODELOS_DADOS_TI/tree/main/Energia/Consumo%20de%20electricidade); Smart Data Models ([Anomaly](https://github.com/smart-data-models/dataModel.Alert/tree/master/Anomaly), [KeyPerformanceIndicator](https://github.com/smart-data-models/dataModel.KeyPerformanceIndicator/tree/master/KeyPerformanceIndicator)) |

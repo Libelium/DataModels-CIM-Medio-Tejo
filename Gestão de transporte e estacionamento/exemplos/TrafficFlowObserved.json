@@ -1,0 +1,54 @@
+{
+  "id": "urn:ngsi-ld:TrafficFlowObserved:abrantes-traffic-00000012_TFO",
+  "type": "TrafficFlowObserved",
+  "name": {
+    "type": "Property",
+    "value": "Avenida 25 de Abril",
+    "observedAt": "2026-11-17T08:15:00Z"
+  },
+  "intensity": {
+    "type": "Property",
+    "value": 1,
+    "observedAt": "2026-11-17T08:15:00Z"
+  },
+  "vehicleType": {
+    "type": "Property",
+    "value": "car",
+    "observedAt": "2026-11-17T08:15:00Z"
+  },
+  "countType": {
+    "type": "Property",
+    "value": "passage",
+    "observedAt": "2026-11-17T08:15:00Z"
+  },
+  "dateObserved": {
+    "type": "Property",
+    "value": "2026-11-17T08:15:00Z",
+    "observedAt": "2026-11-17T08:15:00Z"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.1985,
+        39.4636
+      ]
+    },
+    "observedAt": "2026-11-17T08:15:00Z"
+  },
+  "dataProvider": {
+    "type": "Property",
+    "value": "abrantes",
+    "observedAt": "2026-11-17T08:15:00Z"
+  },
+  "source": {
+    "type": "Property",
+    "value": "entiservices:entiservices-dev.cm-abrantes.pt",
+    "observedAt": "2026-11-17T08:15:00Z"
+  },
+  "@context": [
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.7.jsonld",
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.Transportation/master/context.jsonld"
+  ]
+}
