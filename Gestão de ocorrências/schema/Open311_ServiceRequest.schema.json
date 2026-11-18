@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$schemaVersion": "0.0.1",
   "modelTags": "SDM",
-  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Gest%C3%A3o%20de%20incidentes/schema/Open311_ServiceRequest.schema.json",
+  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Gest%C3%A3o%20de%20ocorr%C3%AAncias/schema/Open311_ServiceRequest.schema.json",
   "title": "Schema Open311_ServiceRequest da PGU do Médio Tejo",
   "description": "Pedido de serviço Open311 (GeoReport v2): uma ocorrência municipal de não emergência, com todas as propriedades definidas pelo Open311 para criar e consultar pedidos de serviço. Derivado do schema service_requests dos Smart Data Models (dataModel.IssueTracking, versão 0.1.0): o tipo é Open311_ServiceRequest e são acrescentados os atributos da PGU.",
   "type": "object",

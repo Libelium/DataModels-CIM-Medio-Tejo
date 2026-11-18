@@ -1,8 +1,8 @@
-# Gestão de incidentes (V11)
+# Gestão de ocorrências (V11)
 
 ## Descrição
 
-A **gestão de incidentes** (ocorrências municipais de não emergência) é representada na PGU com dois modelos dos [Smart Data Models](https://github.com/smart-data-models/dataModel.IssueTracking), que transpõem para NGSI o standard [Open311 GeoReport v2](http://wiki.open311.org/GeoReport_v2/), usado por vários municípios para gerir ocorrências:
+A **gestão de ocorrências** municipais de não emergência é representada na PGU com dois modelos dos [Smart Data Models](https://github.com/smart-data-models/dataModel.IssueTracking), que transpõem para NGSI o standard [Open311 GeoReport v2](http://wiki.open311.org/GeoReport_v2/), usado por vários municípios para gerir ocorrências:
 
 | Modelo | Representa | Modelo de referência |
 |--------|------------|----------------------|
