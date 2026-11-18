@@ -35,13 +35,13 @@ Os campos de origem correspondem aos atributos seguintes:
 
 ## Modelo `CrowdFlowObserved`
 
-Cada ponto de contagem tem uma entidade por tipo de contagem, com o identificador `urn:ngsi-ld:CrowdFlowObserved:abrantes-people-<ponto>-<tipo de contagem>-unspecified`, em que `<ponto>` é o identificador do ponto de contagem na origem (`idRua`; se for numérico, com 8 dígitos, ex.: `00000007`) e `<tipo de contagem>` é `passage` ou `dwell`. O identificador é estável, pelo que a ingestão é idempotente; cada evento atualiza os atributos da entidade, e o histórico obtém-se pela API temporal NGSI-LD. As passagens e as permanências de um ponto são entidades diferentes, porque as contagens dos dois tipos não são somáveis entre si.
+Cada ponto de contagem tem uma entidade por tipo de contagem, com o identificador `urn:ngsi-ld:CrowdFlowObserved:<fonte>-people-<ponto>-<tipo de contagem>-<sentido>`, em que `<fonte>` é o município de origem dos dados (hoje, `abrantes`), `<sentido>` é o sentido de deslocação (hoje, `unspecified`) e `<ponto>` é o identificador do ponto de contagem na origem (`idRua`; se for numérico, com 8 dígitos, ex.: `00000007`) e `<tipo de contagem>` é `passage` ou `dwell`. O identificador é estável, pelo que a ingestão é idempotente; cada evento atualiza os atributos da entidade, e o histórico obtém-se pela API temporal NGSI-LD. As passagens e as permanências de um ponto são entidades diferentes, porque as contagens dos dois tipos não são somáveis entre si.
 
 ### Propriedades
 
 | Propriedade | Tipo | Descrição | Nota |
 |-------------|------|-----------|------|
-| id | URI | Identificador único da entidade | `urn:ngsi-ld:CrowdFlowObserved:abrantes-people-<ponto>-<tipo de contagem>-unspecified`. Segue a convenção de identificadores deste repositório. |
+| id | URI | Identificador único da entidade | `urn:ngsi-ld:CrowdFlowObserved:<fonte>-people-<ponto>-<tipo de contagem>-<sentido>`. Segue a convenção de identificadores deste repositório. |
 | type | String | Tipo de entidade | Valor constante igual a `CrowdFlowObserved`. |
 | name | String | Nome do ponto de contagem | A rua do ponto. |
 | peopleCount | Number | Número de pessoas detetadas no evento | Inteiro maior ou igual a 0. |
@@ -50,7 +50,7 @@ Cada ponto de contagem tem uma entidade por tipo de contagem, com o identificado
 | dateObserved | DateTime | Data e hora da observação | De acordo com a norma [ISO 8601-1:2019](https://www.iso.org/standard/70907.html), em UTC. Instante ou intervalo ISO 8601. |
 | location | GeoJSON | Localização do ponto de contagem | `Point`. O modelo admite também `LineString`, `Polygon`, `MultiPoint`, `MultiLineString` e `MultiPolygon`. |
 | address | Object | Morada do ponto de contagem | `addressLocality` (o município) e `addressCountry` (`PT`), atribuídos por ponto. Só é publicada se o município estiver configurado. |
-| aggregationPeriod | String | Período com que a plataforma agrega os eventos | Duração ISO 8601, ex.: `PT1H`. A origem não o fornece: é definido na integração. Atributo adicional, previsto e ainda não publicado. |
+| aggregationPeriod | String | Período de agregação dos dados de contagem | Enumerado: `hour` (hora) ou `day` (dia). Atributo adicional, previsto e ainda não publicado. |
 | crowdPattern | Object | Tendências sazonais e padrões de comportamento do fluxo de pessoas | Calculado na camada de relatórios a partir do histórico. Atributo adicional, previsto e ainda não publicado. |
 | dataProvider | String | Fornecedor dos dados | `abrantes`. Está previsto passar a `cimt` (CIM Médio Tejo) quando houver dados de outros municípios. |
 | source | String | Origem dos dados da entidade | `entiservices:<servidor da API>`. |

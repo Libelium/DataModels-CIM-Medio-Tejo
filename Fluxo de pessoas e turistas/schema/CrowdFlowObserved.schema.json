@@ -125,11 +125,14 @@
         },
         "aggregationPeriod": {
           "type": "string",
-          "pattern": "^P(?!$)(\\d+Y)?(\\d+M)?(\\d+W)?(\\d+D)?(T(?=\\d)(\\d+H)?(\\d+M)?(\\d+(\\.\\d+)?S)?)?$",
-          "description": "Propriedade. Período com que a plataforma agrega os eventos, como duração ISO 8601 (ex.: PT1H). A origem não o fornece: é definido na integração. Atributo adicional, não existente nos Smart Data Models. Atributo previsto, ainda não publicado pela PGU.",
+          "enum": [
+            "hour",
+            "day"
+          ],
+          "description": "Propriedade. Período de agregação dos dados de contagem: hour (hora) ou day (dia). Atributo adicional, não existente nos Smart Data Models. Atributo previsto, ainda não publicado pela PGU.",
           "examples": [
-            "PT1H",
-            "P1D"
+            "hour",
+            "day"
           ]
         },
         "crowdPattern": {
