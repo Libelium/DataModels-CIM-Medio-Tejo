@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schemaVersion": "0.0.1",
+  "modelTags": "SDM",
+  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Sa%C3%BAde%20e%20bem-estar%20inteligente/schema/DeviceMeasurement.schema.json",
+  "title": "Schema DeviceMeasurement da PGU do Médio Tejo",
+  "description": "Medidas de um relógio inteligente. Derivado do schema DeviceMeasurement dos Smart Data Models (dataModel.Device, versão 0.1.0): em vez de uma medida genérica por entidade (controlledProperty, numValue e unit), cada sinal vital e cada dado de movimento é um atributo adicional da entidade do relógio, que é atualizada com cada leitura. São obrigatórios refDevice e dateObserved.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Propriedade. Tipo de entidade NGSI. Tem de ser DeviceMeasurement.",
+          "enum": [
+            "DeviceMeasurement"
+          ]
+        },
+        "numValue": {
+          "type": "number",
+          "description": "Propriedade. Valor numérico de uma medida genérica. Modelo: 'https://schema.org/Number'. Não publicado pela PGU, que publica um atributo por sinal vital."
+        },
+        "textValue": {
+          "type": "string",
+          "description": "Propriedade. Valor textual de uma medida genérica. Modelo: 'https://schema.org/Text'. Não publicado pela PGU."
+        },
+        "controlledProperty": {
+          "type": "string",
+          "description": "Propriedade. Grandeza medida pelo dispositivo. Modelo: 'https://schema.org/Text'. Não publicado pela PGU, que publica um atributo por sinal vital."
+        },
+        "refDevice": {
+          "type": "string",
+          "format": "uri",
+          "description": "Relação. Relógio (entidade Device) que efetuou a medição."
+        },
+        "deviceType": {
+          "type": "string",
+          "description": "Propriedade. Tipo do dispositivo que efetuou a medição. Modelo: 'https://schema.org/Text'. Não publicado pela PGU."
+        },
+        "measurementType": {
+          "type": "string",
+          "description": "Propriedade. Tipo de medição. Não publicado pela PGU."
+        },
+        "dateObserved": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Data e hora da leitura, em ISO 8601 UTC (a origem envia segundos Unix)."
+        },
+        "outlier": {
+          "type": "boolean",
+          "description": "Propriedade. Marca a medição para tratamento especial. Modelo: 'https://schema.org/Boolean'. Não publicado pela PGU."
+        },
+        "unit": {
+          "type": "string",
+          "description": "Propriedade. Unidade da medida, em código UN/CEFACT. Não publicado pela PGU, que indica a unidade nas notas de cada atributo."
+        },
+        "heartRate": {
+          "type": "number",
+          "description": "Propriedade. Frequência cardíaca, em batimentos por minuto (bpm). Equivalente LOINC 8867-4. Atributo adicional, não existente nos Smart Data Models.",
+          "minimum": 0
+        },
+        "bloodPressureSystolic": {
+          "type": "number",
+          "description": "Propriedade. Pressão arterial sistólica, em mmHg (unidade assumida, por confirmar). Equivalente LOINC 8480-6. Atributo adicional.",
+          "minimum": 0
+        },
+        "bloodPressureDiastolic": {
+          "type": "number",
+          "description": "Propriedade. Pressão arterial diastólica, em mmHg (unidade assumida, por confirmar). Equivalente LOINC 8462-4. Atributo adicional.",
+          "minimum": 0
+        },
+        "bodyTemperature": {
+          "type": "number",
+          "description": "Propriedade. Temperatura corporal, em graus Celsius (unitCode CEL). Equivalente LOINC 8310-5. Atributo adicional."
+        },
+        "spo2": {
+          "type": "number",
+          "description": "Propriedade. Saturação de oxigénio no sangue (SpO2), em percentagem. Equivalente LOINC 59408-5. Atributo adicional.",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "steps": {
+          "type": "number",
+          "description": "Propriedade. Número de passos. Equivalente LOINC 55423-8. Por confirmar se é o acumulado diário ou o de cada leitura. Atributo adicional.",
+          "minimum": 0
+        },
+        "altitude": {
+          "type": "number",
+          "description": "Propriedade. Altitude. Unidade por confirmar (previsivelmente metros). Atributo adicional."
+        },
+        "locationAccuracy": {
+          "type": "number",
+          "description": "Propriedade. Precisão da localização. Unidade por confirmar (previsivelmente metros). Atributo adicional.",
+          "minimum": 0
+        },
+        "speed": {
+          "type": "number",
+          "description": "Propriedade. Velocidade de deslocação. Unidade por confirmar. Atributo adicional.",
+          "minimum": 0
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "type",
+    "refDevice",
+    "dateObserved"
+  ]
+}

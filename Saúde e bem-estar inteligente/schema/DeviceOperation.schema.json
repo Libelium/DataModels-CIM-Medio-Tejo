@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schemaVersion": "0.0.1",
+  "modelTags": "SDM",
+  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Sa%C3%BAde%20e%20bem-estar%20inteligente/schema/DeviceOperation.schema.json",
+  "title": "Schema DeviceOperation da PGU do Médio Tejo",
+  "description": "Registo de funcionamento de um relógio. Derivado do schema DeviceOperation dos Smart Data Models (dataModel.Device, versão 0.0.1): o relógio é indicado em refDevice (em vez de device) e operationType é texto livre, em vez de uma lista fechada. São obrigatórios refDevice, startedAt e operationType.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Propriedade. Tipo de entidade NGSI. Tem de ser DeviceOperation.",
+          "enum": [
+            "DeviceOperation"
+          ]
+        },
+        "device": {
+          "type": "string",
+          "format": "uri",
+          "description": "Relação. Dispositivo a que se refere a operação. Não publicado pela PGU, que usa refDevice."
+        },
+        "operationType": {
+          "type": "string",
+          "description": "Propriedade. Tipo do registo, em texto livre tal como vem da origem (ex.: início de sessão, SOS, relógio não colocado). A origem não tem uma lista de valores; no modelo é uma lista fechada."
+        },
+        "result": {
+          "type": "string",
+          "description": "Propriedade. Resultado da operação: ok, aborted ou failed. Não publicado pela PGU.",
+          "enum": [
+            "aborted",
+            "failed",
+            "ok"
+          ]
+        },
+        "plannedStartAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Data e hora previstas para o início da operação. Não publicado pela PGU."
+        },
+        "plannedEndAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Data e hora previstas para o fim da operação. Não publicado pela PGU."
+        },
+        "status": {
+          "type": "string",
+          "description": "Propriedade. Estado da operação: planned, ongoing, finished, scheduled ou cancelled. Não publicado pela PGU.",
+          "enum": [
+            "cancelled",
+            "finished",
+            "ongoing",
+            "planned",
+            "scheduled"
+          ]
+        },
+        "operator": {
+          "type": "string",
+          "format": "uri",
+          "description": "Relação. Operador da operação. Não publicado pela PGU."
+        },
+        "startedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Data e hora do registo, em ISO 8601 UTC (a origem envia segundos Unix, por confirmar)."
+        },
+        "endedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Data e hora em que a operação terminou. Não publicado pela PGU."
+        },
+        "reportedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Data e hora em que o evento ou a avaria foi comunicado. Não publicado pela PGU."
+        },
+        "addressedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Data e hora em que o evento ou a avaria foi tratado. Não publicado pela PGU."
+        },
+        "refDevice": {
+          "type": "string",
+          "format": "uri",
+          "description": "Relação. Relógio (entidade Device) a que se refere o registo. Atributo adicional, que substitui device."
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "type",
+    "refDevice",
+    "startedAt",
+    "operationType"
+  ]
+}

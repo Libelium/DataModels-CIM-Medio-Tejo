@@ -1,0 +1,18 @@
+{
+  "id": "urn:ngsi-ld:Person:idicare:102",
+  "type": "Person",
+  "name": {
+    "type": "Property",
+    "value": "Rcn7g6ipNBH9SR0Fbl6fNWrJ8vrgBE2YNFI/6WldbaPTTYYol+ZfEe0=",
+    "observedAt": "2026-11-17T00:30:00Z"
+  },
+  "email": {
+    "type": "Property",
+    "value": "71WolM4az8uo1/vG2ABJ5W6OEZpzzThgWx9yRtiSnyQM44lbG8f4b7+//8BuEYzqkY/Nqw==",
+    "observedAt": "2026-11-17T00:30:00Z"
+  },
+  "@context": [
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.7.jsonld",
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.Organization/master/context.jsonld"
+  ]
+}

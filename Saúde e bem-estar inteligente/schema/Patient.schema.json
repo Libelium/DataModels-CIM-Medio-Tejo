@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schemaVersion": "0.0.1",
+  "modelTags": "SDM",
+  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Sa%C3%BAde%20e%20bem-estar%20inteligente/schema/Patient.schema.json",
+  "title": "Schema Patient da PGU do Médio Tejo",
+  "description": "Dados administrativos de uma pessoa que recebe cuidados ou serviços de saúde. Derivado do schema Patient dos Smart Data Models (dataModel.HL7, versão 0.0.2, baseado em HL7 FHIR R4B), reduzido aos atributos que a PGU publica: name e birthDate são dados pessoais cifrados pela PGU, pelo que deixam de ser a lista HumanName e a data do FHIR e passam a ser texto, e é acrescentado o atributo refAccount. Só id e type são obrigatórios.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "Patient",
+          "description": "Propriedade. Tipo de entidade NGSI. Tem de ser Patient."
+        },
+        "refAccount": {
+          "type": "string",
+          "format": "uri",
+          "description": "Relação. Conta (entidade Person) responsável pelo paciente. O schema Patient dos Smart Data Models não tem atributo de conta. Atributo adicional."
+        },
+        "name": {
+          "type": "string",
+          "minLength": 40,
+          "pattern": "^[A-Za-z0-9+/]+={0,2}$",
+          "description": "Propriedade. Nome do paciente. Dado pessoal: cifrado pela PGU (AES-256-GCM, em base64 de IV, etiqueta e texto cifrado), pelo que é um texto e não a lista HumanName do FHIR. Publicação sujeita a validação do DPO (RGPD)."
+        },
+        "birthDate": {
+          "type": "string",
+          "minLength": 40,
+          "pattern": "^[A-Za-z0-9+/]+={0,2}$",
+          "description": "Propriedade. Data de nascimento do paciente (AAAA-MM-DD). Dado pessoal: cifrado pela PGU, pelo que é um texto e não uma data. Publicação sujeita a validação do DPO (RGPD)."
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "type"
+  ]
+}
