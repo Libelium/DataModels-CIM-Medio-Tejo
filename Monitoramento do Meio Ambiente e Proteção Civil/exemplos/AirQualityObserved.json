@@ -1,0 +1,104 @@
+{
+  "id": "urn:ngsi-ld:AirQualityObserved:tomar:est-01",
+  "type": "AirQualityObserved",
+  "refDevice": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:Device:tomar:est-01",
+    "observedAt": "2026-11-17T09:00:00Z"
+  },
+  "dateObserved": {
+    "type": "Property",
+    "value": "2026-11-17T09:00:00Z",
+    "observedAt": "2026-11-17T09:00:00Z"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.4126,
+        39.6022
+      ]
+    },
+    "observedAt": "2026-11-17T09:00:00Z"
+  },
+  "address": {
+    "type": "Property",
+    "value": {
+      "streetAddress": "Rua Dr. Joaquim Jacinto",
+      "addressLocality": "Tomar",
+      "addressRegion": "Oeste e Vale do Tejo",
+      "district": "Santarém",
+      "addressCountry": "Portugal"
+    },
+    "observedAt": "2026-11-17T09:00:00Z"
+  },
+  "temperature": {
+    "type": "Property",
+    "value": 14.6,
+    "observedAt": "2026-11-17T09:00:00Z",
+    "unitCode": "CEL"
+  },
+  "relativeHumidity": {
+    "type": "Property",
+    "value": 0.68,
+    "observedAt": "2026-11-17T09:00:00Z",
+    "unitCode": "C62"
+  },
+  "atmosphericPressure": {
+    "type": "Property",
+    "value": 1018.4,
+    "observedAt": "2026-11-17T09:00:00Z",
+    "unitCode": "A97"
+  },
+  "pm1": {
+    "type": "Property",
+    "value": 6.2,
+    "observedAt": "2026-11-17T09:00:00Z",
+    "unitCode": "GQ"
+  },
+  "pm25": {
+    "type": "Property",
+    "value": 11.8,
+    "observedAt": "2026-11-17T09:00:00Z",
+    "unitCode": "GQ"
+  },
+  "pm10": {
+    "type": "Property",
+    "value": 19.5,
+    "observedAt": "2026-11-17T09:00:00Z",
+    "unitCode": "GQ"
+  },
+  "nox": {
+    "type": "Property",
+    "value": 14.0,
+    "observedAt": "2026-11-17T09:00:00Z",
+    "unitCode": "61"
+  },
+  "co": {
+    "type": "Property",
+    "value": 0.3,
+    "observedAt": "2026-11-17T09:00:00Z",
+    "unitCode": "59"
+  },
+  "volatileOrganicCompoundsTotal": {
+    "type": "Property",
+    "value": 92.0,
+    "observedAt": "2026-11-17T09:00:00Z",
+    "unitCode": "61"
+  },
+  "dataProvider": {
+    "type": "Property",
+    "value": "tomar",
+    "observedAt": "2026-11-17T09:00:00Z"
+  },
+  "source": {
+    "type": "Property",
+    "value": "Fornecedor das estações (a definir)",
+    "observedAt": "2026-11-17T09:00:00Z"
+  },
+  "@context": [
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.7.jsonld",
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.Environment/master/context.jsonld"
+  ]
+}

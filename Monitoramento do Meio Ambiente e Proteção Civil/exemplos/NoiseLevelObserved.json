@@ -1,0 +1,62 @@
+{
+  "id": "urn:ngsi-ld:NoiseLevelObserved:tomar:est-01",
+  "type": "NoiseLevelObserved",
+  "refDevice": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:Device:tomar:est-01",
+    "observedAt": "2026-11-17T09:00:00Z"
+  },
+  "dateObserved": {
+    "type": "Property",
+    "value": "2026-11-17T09:00:00Z",
+    "observedAt": "2026-11-17T09:00:00Z"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.4126,
+        39.6022
+      ]
+    },
+    "observedAt": "2026-11-17T09:00:00Z"
+  },
+  "address": {
+    "type": "Property",
+    "value": {
+      "streetAddress": "Rua Dr. Joaquim Jacinto",
+      "addressLocality": "Tomar",
+      "addressRegion": "Oeste e Vale do Tejo",
+      "district": "Santarém",
+      "addressCountry": "Portugal"
+    },
+    "observedAt": "2026-11-17T09:00:00Z"
+  },
+  "LAeq": {
+    "type": "Property",
+    "value": 58.3,
+    "observedAt": "2026-11-17T09:00:00Z",
+    "unitCode": "2N"
+  },
+  "LAmax": {
+    "type": "Property",
+    "value": 81.7,
+    "observedAt": "2026-11-17T09:00:00Z",
+    "unitCode": "2N"
+  },
+  "dataProvider": {
+    "type": "Property",
+    "value": "tomar",
+    "observedAt": "2026-11-17T09:00:00Z"
+  },
+  "source": {
+    "type": "Property",
+    "value": "Fornecedor das estações (a definir)",
+    "observedAt": "2026-11-17T09:00:00Z"
+  },
+  "@context": [
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.7.jsonld",
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.Environment/master/context.jsonld"
+  ]
+}
