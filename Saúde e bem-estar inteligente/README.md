@@ -39,6 +39,7 @@ A conta, os pacientes e os relógios só são publicados quando mudam; as leitur
 Os dados de saúde, o nome, o email, a data de nascimento e a posição de pessoas idosas são dados pessoais, e a sua publicação está **sujeita à validação do encarregado de proteção de dados (DPO), nos termos do RGPD**. Nenhum município deve ser ativado sem essa validação. Em consequência:
 
 - A API do fornecedor devolve em claro o **nome e o email do titular** (`Person`) e o **nome e a data de nascimento do paciente** (`Patient`). A PGU **cifra-os antes de os guardar** (AES-256-GCM, em base64 de IV de 12 bytes, etiqueta de 16 bytes e texto cifrado), pelo que a plataforma só tem os valores cifrados. A chave é própria da PGU e não é conhecida pela plataforma: quem a conhece introduz-a no painel, e é o navegador que decifra os valores, que ficam em claro apenas na memória desse separador. Por serem cifrados, o `name` e o `birthDate` do `Patient` são texto, e não a lista `HumanName` nem a data do FHIR.
+- O nome, o email e a data de nascimento só se veem em claro com a chave (palavra-passe), que se introduz no painel; sem ela, só se veem os valores cifrados. A posição do relógio e os sinais vitais não são cifrados.
 - A **posição** (`location` do `Device`) é um dado pessoal, e só é gerada quando a latitude e a longitude vêm preenchidas e não são ambas zero (que se toma como «sem posição»).
 - Os registos da ingestão nunca mostram nomes, emails, datas de nascimento nem coordenadas.
 
