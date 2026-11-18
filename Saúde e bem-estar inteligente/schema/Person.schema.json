@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schemaVersion": "0.0.1",
+  "modelTags": "SDM",
+  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Sa%C3%BAde%20e%20bem-estar%20inteligente/schema/Person.schema.json",
+  "title": "Schema Person da PGU do Médio Tejo",
+  "description": "Pessoa (viva, morta ou fictícia), mapeada de schema.org. Derivado do schema Person dos Smart Data Models (dataModel.Organization, versão 0.0.1) para o titular da conta do relógio: name é um dado pessoal cifrado pela PGU e é acrescentado o atributo email, também cifrado. Só id e type são obrigatórios.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "Person",
+          "description": "Propriedade. Tipo de entidade NGSI. Tem de ser Person."
+        },
+        "name": {
+          "type": "string",
+          "minLength": 40,
+          "pattern": "^[A-Za-z0-9+/]+={0,2}$",
+          "description": "Propriedade. Nome do titular da conta. Dado pessoal: cifrado pela PGU (AES-256-GCM, em base64 de IV, etiqueta e texto cifrado). Publicação sujeita a validação do DPO (RGPD)."
+        },
+        "email": {
+          "type": "string",
+          "minLength": 40,
+          "pattern": "^[A-Za-z0-9+/]+={0,2}$",
+          "description": "Propriedade. Email do titular da conta. Dado pessoal: cifrado pela PGU, como o nome. Publicação sujeita a validação do DPO (RGPD). Atributo adicional, não existente nos Smart Data Models."
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "type"
+  ]
+}

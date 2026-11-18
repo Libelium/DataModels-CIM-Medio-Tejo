@@ -1,0 +1,23 @@
+{
+  "id": "urn:ngsi-ld:DeviceOperation:idicare:4521",
+  "type": "DeviceOperation",
+  "refDevice": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:Device:idicare:860000000000012",
+    "observedAt": "2026-11-17T14:06:40Z"
+  },
+  "startedAt": {
+    "type": "Property",
+    "value": "2026-11-17T14:06:40Z",
+    "observedAt": "2026-11-17T14:06:40Z"
+  },
+  "operationType": {
+    "type": "Property",
+    "value": "SOS",
+    "observedAt": "2026-11-17T14:06:40Z"
+  },
+  "@context": [
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.7.jsonld",
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.Device/master/context.jsonld"
+  ]
+}
