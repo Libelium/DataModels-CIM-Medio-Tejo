@@ -1,0 +1,64 @@
+{
+  "id": "urn:ngsi-ld:Alert:cimt:tomar-01-20261117T142000Z",
+  "type": "Alert",
+  "category": {
+    "type": "Property",
+    "value": "environment",
+    "observedAt": "2026-11-17T14:20:00Z"
+  },
+  "subCategory": {
+    "type": "Property",
+    "value": "airPollution",
+    "observedAt": "2026-11-17T14:20:00Z"
+  },
+  "severity": {
+    "type": "Property",
+    "value": "medium",
+    "observedAt": "2026-11-17T14:20:00Z"
+  },
+  "description": {
+    "type": "Property",
+    "value": "Concentração de partículas PM10 acima do valor de referência na estação de Tomar.",
+    "observedAt": "2026-11-17T14:20:00Z"
+  },
+  "dateIssued": {
+    "type": "Property",
+    "value": "2026-11-17T14:20:00Z",
+    "observedAt": "2026-11-17T14:20:00Z"
+  },
+  "validFrom": {
+    "type": "Property",
+    "value": "2026-11-17T14:20:00Z",
+    "observedAt": "2026-11-17T14:20:00Z"
+  },
+  "validTo": {
+    "type": "Property",
+    "value": "2026-11-17T18:20:00Z",
+    "observedAt": "2026-11-17T14:20:00Z"
+  },
+  "alertSource": {
+    "type": "Property",
+    "value": "Plataforma de gestão de riscos",
+    "observedAt": "2026-11-17T14:20:00Z"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.4126,
+        39.6022
+      ]
+    },
+    "observedAt": "2026-11-17T14:20:00Z"
+  },
+  "dataProvider": {
+    "type": "Property",
+    "value": "cimt",
+    "observedAt": "2026-11-17T14:20:00Z"
+  },
+  "@context": [
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.7.jsonld",
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.Alert/master/context.jsonld"
+  ]
+}

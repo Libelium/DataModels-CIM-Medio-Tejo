@@ -1,0 +1,61 @@
+{
+  "id": "urn:ngsi-ld:Device:cimt:tomar-01",
+  "type": "Device",
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -8.4126,
+        39.6022
+      ]
+    },
+    "observedAt": "2026-11-17T09:00:00Z"
+  },
+  "address": {
+    "type": "Property",
+    "value": {
+      "streetAddress": "Rua Dr. Joaquim Jacinto",
+      "addressLocality": "Tomar",
+      "addressRegion": "Oeste e Vale do Tejo",
+      "district": "Santarém",
+      "addressCountry": "Portugal"
+    },
+    "observedAt": "2026-11-17T09:00:00Z"
+  },
+  "deviceState": {
+    "type": "Property",
+    "value": "active",
+    "observedAt": "2026-11-17T09:00:00Z"
+  },
+  "dateLastValueReported": {
+    "type": "Property",
+    "value": "2026-11-17T08:55:00Z",
+    "observedAt": "2026-11-17T09:00:00Z"
+  },
+  "simState": {
+    "type": "Property",
+    "value": "active",
+    "observedAt": "2026-11-17T09:00:00Z"
+  },
+  "batteryLevel": {
+    "type": "Property",
+    "value": 0.91,
+    "observedAt": "2026-11-17T09:00:00Z",
+    "unitCode": "C62"
+  },
+  "dataProvider": {
+    "type": "Property",
+    "value": "cimt",
+    "observedAt": "2026-11-17T09:00:00Z"
+  },
+  "source": {
+    "type": "Property",
+    "value": "Fornecedor das estações (a definir)",
+    "observedAt": "2026-11-17T09:00:00Z"
+  },
+  "@context": [
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.7.jsonld",
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.Device/master/context.jsonld"
+  ]
+}
