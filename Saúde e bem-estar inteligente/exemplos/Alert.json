@@ -1,0 +1,33 @@
+{
+  "id": "urn:ngsi-ld:Alert:idicare:fall-318",
+  "type": "Alert",
+  "category": {
+    "type": "Property",
+    "value": "health",
+    "observedAt": "2026-11-17T14:05:12Z"
+  },
+  "subCategory": {
+    "type": "Property",
+    "value": "fallenPatient",
+    "observedAt": "2026-11-17T14:05:12Z"
+  },
+  "severity": {
+    "type": "Property",
+    "value": "high",
+    "observedAt": "2026-11-17T14:05:12Z"
+  },
+  "dateIssued": {
+    "type": "Property",
+    "value": "2026-11-17T14:05:12Z",
+    "observedAt": "2026-11-17T14:05:12Z"
+  },
+  "alertSource": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:Device:idicare:860000000000012",
+    "observedAt": "2026-11-17T14:05:12Z"
+  },
+  "@context": [
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.7.jsonld",
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.Alert/master/context.jsonld"
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "id": "urn:ngsi-ld:DeviceMeasurement:idicare:860000000000012",
+  "type": "DeviceMeasurement",
+  "refDevice": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:Device:idicare:860000000000012",
+    "observedAt": "2026-11-17T09:30:00Z"
+  },
+  "dateObserved": {
+    "type": "Property",
+    "value": "2026-11-17T09:30:00Z",
+    "observedAt": "2026-11-17T09:30:00Z"
+  },
+  "heartRate": {
+    "type": "Property",
+    "value": 72,
+    "observedAt": "2026-11-17T09:30:00Z"
+  },
+  "bloodPressureSystolic": {
+    "type": "Property",
+    "value": 128,
+    "observedAt": "2026-11-17T09:30:00Z"
+  },
+  "bloodPressureDiastolic": {
+    "type": "Property",
+    "value": 79,
+    "observedAt": "2026-11-17T09:30:00Z"
+  },
+  "bodyTemperature": {
+    "type": "Property",
+    "value": 36.4,
+    "observedAt": "2026-11-17T09:30:00Z",
+    "unitCode": "CEL"
+  },
+  "spo2": {
+    "type": "Property",
+    "value": 96,
+    "observedAt": "2026-11-17T09:30:00Z"
+  },
+  "steps": {
+    "type": "Property",
+    "value": 2140,
+    "observedAt": "2026-11-17T09:30:00Z"
+  },
+  "altitude": {
+    "type": "Property",
+    "value": 52,
+    "observedAt": "2026-11-17T09:30:00Z"
+  },
+  "locationAccuracy": {
+    "type": "Property",
+    "value": 18,
+    "observedAt": "2026-11-17T09:30:00Z"
+  },
+  "speed": {
+    "type": "Property",
+    "value": 0,
+    "observedAt": "2026-11-17T09:30:00Z"
+  },
+  "@context": [
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.7.jsonld",
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.Device/master/context.jsonld"
+  ]
+}
