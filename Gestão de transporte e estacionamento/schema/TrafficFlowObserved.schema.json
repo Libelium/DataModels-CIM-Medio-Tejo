@@ -1,0 +1,243 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schemaVersion": "0.0.1",
+  "modelTags": "CNMD",
+  "$id": "https://raw.githubusercontent.com/Libelium/DataModels-CIM-Medio-Tejo/main/Gest%C3%A3o%20de%20transporte%20e%20estacionamento/schema/TrafficFlowObserved.schema.json",
+  "title": "Schema TrafficFlowObserved da PGU do Médio Tejo",
+  "description": "Observação do fluxo de tráfego num determinado local e momento. Derivado do schema TrafficFlowObserved do CNMD (versão 0.3.1) para os contadores de viaturas das câmaras: address não é obrigatório, são obrigatórios vehicleType, countType e source, e são acrescentados os atributos countType, aggregationPeriod e trafficPattern. Todos os atributos que a PGU ainda não publica são opcionais.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+    },
+    {
+      "properties": {
+        "address": {
+          "type": "object",
+          "description": "Propriedade. Morada associada à entidade. Modelo: 'https://schema.org/address'.",
+          "properties": {
+            "addressCountry": {
+              "type": "string",
+              "description": "Propriedade. O país. Modelo: 'https://schema.org/addressCountry'."
+            },
+            "addressLocality": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Propriedade. A localidade, que tem de coincidir com o município. Modelo: 'https://schema.org/addressLocality'."
+            },
+            "addressRegion": {
+              "type": "string",
+              "enum": [
+                "Norte",
+                "Centro",
+                "Oeste e Vale do Tejo",
+                "Grande Lisboa",
+                "Península de Setúbal",
+                "Alentejo",
+                "Algarve",
+                "Região Autónoma dos Açores",
+                "Região Autónoma da Madeira"
+              ],
+              "description": "Propriedade. A região NUTS 2 em que se situa a localidade. Modelo: 'https://schema.org/addressRegion'."
+            },
+            "district": {
+              "type": "string",
+              "enum": [
+                "Açores",
+                "Aveiro",
+                "Beja",
+                "Braga",
+                "Bragança",
+                "Castelo Branco",
+                "Coimbra",
+                "Évora",
+                "Faro",
+                "Guarda",
+                "Madeira",
+                "Leiria",
+                "Lisboa",
+                "Portalegre",
+                "Porto",
+                "Santarém",
+                "Setúbal",
+                "Viana do Castelo",
+                "Vila Real",
+                "Viseu"
+              ],
+              "description": "Propriedade. O distrito em que se situa a localidade."
+            },
+            "postalCode": {
+              "type": "string",
+              "description": "Propriedade. Código postal. Modelo: 'https://schema.org/postalCode'."
+            },
+            "streetAddress": {
+              "type": "string",
+              "description": "Propriedade. Endereço da rua. Modelo: 'https://schema.org/streetAddress'."
+            },
+            "streetNr": {
+              "type": "string",
+              "description": "Propriedade. Número de polícia. Modelo: 'https://schema.org/Text'."
+            }
+          },
+          "required": [
+            "addressLocality",
+            "addressRegion",
+            "district"
+          ]
+        },
+        "dataProvider": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Propriedade. Fornecedor dos dados da entidade. Modelo: 'https://schema.org/Text'.",
+          "examples": [
+            "IP"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "const": "TrafficFlowObserved",
+          "description": "Propriedade. Tipo de entidade NGSI. Tem de ser TrafficFlowObserved."
+        },
+        "laneId": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Propriedade. Identificador da faixa. Modelo: 'https://schema.org/Number'. A identificação segue as convenções da entidade RoadSegment, baseadas no [OpenStreetMap](http://wiki.openstreetmap.org/wiki/Forward_%26_backward,_left_%26_right)."
+        },
+        "refRoadSegment": {
+          "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/EntityIdentifierType",
+          "description": "Relação. Segmento de estrada em que foi feita a observação. Modelo: 'https://schema.org/URL'. Referência a uma entidade do tipo RoadSegment."
+        },
+        "dateObserved": {
+          "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/dateObserved"
+        },
+        "dateObservedFrom": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Data e hora de início do período de observação. Ver dateObserved. Modelo: 'https://schema.org/DateTime'."
+        },
+        "dateObservedTo": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Propriedade. Data e hora de fim do período de observação. Ver dateObserved. Modelo: 'https://schema.org/DateTime'."
+        },
+        "intensity": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Propriedade. Número total de veículos detetados durante o período de observação. Modelo: 'https://schema.org/Number'."
+        },
+        "occupancy": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Propriedade. Fração do tempo de observação em que um veículo ocupou a faixa observada. Valor entre 0 e 1. Modelo: 'https://schema.org/Number'."
+        },
+        "averageVehicleSpeed": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Velocidade média dos veículos em trânsito durante o período de observação. Modelo: 'https://schema.org/Number'. Unidade: quilómetros por hora (KMH)."
+        },
+        "averageVehicleLength": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Comprimento médio dos veículos em trânsito durante o período de observação. Modelo: 'https://schema.org/Number'. Unidade: metros (MTR)."
+        },
+        "averageGapDistance": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Distância média entre veículos consecutivos. Modelo: 'https://schema.org/Number'. Unidade: metros (MTR)."
+        },
+        "congested": {
+          "type": "boolean",
+          "description": "Propriedade. Indica se houve congestionamento de tráfego na faixa durante o período de observação. A ausência do atributo significa que não houve congestionamento. Modelo: 'https://schema.org/Boolean'."
+        },
+        "averageHeadwayTime": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Propriedade. Tempo médio de intervalo entre veículos consecutivos. Modelo: 'https://schema.org/Number'. Unidade: segundos (SEC)."
+        },
+        "laneDirection": {
+          "type": "string",
+          "enum": [
+            "forward",
+            "backward"
+          ],
+          "description": "Propriedade. Sentido habitual de circulação na faixa a que se refere a observação. Útil quando a observação não refere um segmento de estrada. Modelo: 'https://schema.org/Text'. Enumerado: forward, backward. Atributo previsto, ainda não publicado pela PGU."
+        },
+        "reversedLane": {
+          "type": "boolean",
+          "description": "Propriedade. Indica se o tráfego na faixa foi invertido durante o período de observação. A ausência do atributo significa que não houve inversão. Modelo: 'https://schema.org/Boolean'."
+        },
+        "vehicleType": {
+          "type": "string",
+          "description": "Propriedade. Tipo de veículo segundo as suas características estruturais. Modelo: 'https://schema.org/Text'. A origem distingue carro (car), camião (lorry), autocarro (bus), bicicleta (bicycle) e motociclo (motorcycle).",
+          "enum": [
+            "agriculturalVehicle",
+            "bicycle",
+            "bus",
+            "minibus",
+            "car",
+            "caravan",
+            "tram",
+            "tanker",
+            "carWithCaravan",
+            "carWithTrailer",
+            "lorry",
+            "moped",
+            "motorcycle",
+            "motorcycleWithSideCar",
+            "motorscooter",
+            "trailer",
+            "van",
+            "constructionOrMaintenanceVehicle",
+            "trolley",
+            "binTrolley",
+            "sweepingMachine",
+            "cleaningTrolley"
+          ]
+        },
+        "vehicleSubType": {
+          "type": "string",
+          "description": "Propriedade. Subtipo de vehicleType: por exemplo, se vehicleType for lorry, vehicleSubType pode ser OGV1 ou OGV2."
+        },
+        "name": {
+          "type": "string",
+          "description": "Propriedade. Nome do ponto de contagem (a rua da câmara). Modelo: 'https://schema.org/Text'."
+        },
+        "countType": {
+          "type": "string",
+          "description": "Propriedade. Tipo de contagem do evento: passage (passagem) ou dwell (permanência). Qualquer outro valor da origem é publicado como o seu slug em minúsculas ASCII. Atributo adicional, não existente no CNMD.",
+          "examples": [
+            "passage",
+            "dwell"
+          ]
+        },
+        "aggregationPeriod": {
+          "type": "string",
+          "enum": [
+            "hour",
+            "day"
+          ],
+          "description": "Propriedade. Período de agregação dos dados de contagem: hour (hora) ou day (dia). Atributo adicional, não existente no CNMD. Atributo previsto, ainda não publicado pela PGU."
+        },
+        "trafficPattern": {
+          "type": "object",
+          "description": "Propriedade. Indicadores agregados de padrões horários e sazonais do fluxo de tráfego. Atributo adicional, não existente no CNMD. Atributo previsto, ainda não publicado pela PGU."
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "type",
+    "intensity",
+    "vehicleType",
+    "countType",
+    "location",
+    "dateObserved",
+    "dataProvider",
+    "source"
+  ]
+}
